@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Gökhan Demir" />
+  <meta name="description" content="Barak Framework" />
+  <meta name="keywords" content="barak, mvc, framework, php, pdo, mysql, rails, apache, nginx, iss" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Barak 3</title>
+
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/barak-framework/barak/master/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="http://barak-framework.github.io/assets/css/bootstrap.min.css" />
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+
+  <script src="http://barak-framework.github.io/assets/js/html5shiv.min.js"></script>
+  <script src="http://barak-framework.github.io/assets/js/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://barak-framework.github.io/assets/js/bootstrap.min.js"></script>
+
+<!-- Google Analytics start -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21168139-1']);
+
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- Google Analytics end -->
+
+<!-- Animatecss start -->
+<!-- source: https://daneden.github.io/animate.css/ -->
+<link rel="stylesheet" type="text/css" href="http://barak-framework.github.io/assets/css/animate.min.css" />
+<!-- Animatecss end -->
+
+<!-- Highlightjs start -->
+<!-- source: http://highlightjs.org -->
+<link rel="stylesheet" type="text/css" href="http://barak-framework.github.io/assets/css/highlight.pack.css" />
+<script src="http://barak-framework.github.io/assets/js/highlight.pack.js"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+</script>
+<!-- Highlightjs end -->
+
+<!-- Particlesjs start -->
+<!-- source: https://github.com/VincentGarreau/particles.js -->
+<script src="http://barak-framework.github.io/assets/js/particles.min.js"></script>
+<style type="text/css">
+canvas {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+</style>
+<script type="text/javascript">
+  particlesJS.load('particles-js', 'http://gdemir.me/barak-framework/assets/js/particles.json', function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+<!-- Particlesjs end -->
+
+<!-- Showdownjs start -->
+<!-- source: https://github.com/showdownjs/showdown -->
+<script src="http://gdemir.me/barak-framework/assets/js/showdown.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    function get_markdown(URL) {
+      $.ajax({
+        url: URL,
+        type: 'get',
+        dataType: 'html',
+        async: false,
+        success: function(data) { RESULT = data; }
+      });
+      return RESULT;
+    }
+
+    var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak/v3.0.0/README.md");
+    var converter = new showdown.Converter();
+    var HTML = converter.makeHtml(MARKDOWN);
+
+    $("#readme").html(HTML).hide();
+
+    var headers = "";
+    $('#readme :header').each(function() {
+
+      var level = this.nodeName.substring(1);
+      var text = $(this).text();
+      var id = $(this).attr('id');
+      if (level != 5) {
+        headers = headers +
+        "<h" + level + " id = '" + id + "' style='margin-left:"+ level+"0px'>" +
+        "<a href='#" + id + "'>" + text + "</a>" +
+        "</h" + level + ">";
+      }
+    });
+
+    $("#help").html(headers).hide();
+
+    $("#documentation").click(function() {
+      help_state = $("#help").is(":visible");
+      readme_state = $("#readme").is(":visible");
+      $("#readme").slideToggle("slow");
+      if (!readme_state && !help_state)
+        $("#help").show();
+      else
+        $("#help").hide();
+    });
+
+    $("#readme").click(function(e) {
+      $("#help").slideToggle("slow");
+    });
+
+    var music_level = Math.floor(Math.random() * 23 + 1);
+    $("#soundtrack").html(
+      "<audio controls='controls' autoplay='autoplay' hidden='true' loop='true'>" +
+      "<source src='http://barak-framework.github.io/assets/music/music" + music_level + ".mp3' type='audio/mp3' />" +
+      "</audio>"
+      );
+
+  });
+</script>
+<!-- Showdownjs end -->
+
+<style type="text/css">
+@import  url('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
+body { font-family: 'Nunito', sans-serif;  background-color: #fdfdfd; }
+.container { word-wrap: break-word; }
+
+#intro { font-size: 12px; color: #777; }
+#intro h3 { margin: 0; padding: 10px; font-size: 33px; font-weight: 300; }
+#intro h5 { margin-top: 20px; font-size: 12px; font-weight: 500; }
+
+#about { border-top: 1px solid #ccc; }
+
+#readme { color: #333; }
+#readme h1 { color: #42AFDC; }
+#readme h2 { color: #42AFDC; }
+#readme h3 { color: #42AFDC; }
+#readme h4 { color: #42AFDC; }
+
+#help { background-color: rgba(0, 0, 0, 0.6); border-radius: 6px; top: 0; right: 0; position: fixed; }
+#help h1 { font-size: 18px; line-height: 0.2; }
+#help h2 { font-size: 16px; line-height: 0.2; }
+#help h3 { font-size: 14px; line-height: 0.2; }
+#help h4 { font-size: 12px; line-height: 0.2; }
+#help a { color: white; }
+
+#projects { background-color: rgba(0, 0, 0, 0.1); left: 0; right: 0; bottom: 0; position: fixed; }
+
+.turquoise_color { color: #30D5C8; }
+.turquoise_border { border:3px solid #30D5C8; border-radius: 8px; }
+</style>
+
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+  <div class="alert alert-info text-center" style="margin:0em;">
+    <div class="container">
+      <div class="animated pulse infinite">
+        Aww yeah, Barak 3 released!
+      </div>
+    </div>
+  </div>
+
+  <div id="intro">
+    <div class="container text-center" style="margin-top: 11%; max-width: 335px;">
+
+      <img src="https://raw.githubusercontent.com/barak-framework/barak/master/app/assets/img/default.png" width="150" />
+      <h3>BARAK<span class="turquoise_color" style="font-size:43px;">3</span> FRAMEWORK</h3>
+
+      <div id="about" style="position: relative;">
+        <h5>
+          <div class="pull-left">
+            Developed by <a href="http://www.gdemir.me" target="_blank" class="turquoise_color">Gökhan Demir</a>
+          </div>
+          <div class="pull-right">
+            <a href="https://github.com/barak-framework/barak/tree/v3.0.0" target="_blank" class="turquoise_color">Version 2.0.0</a>
+          </div>
+        </h5>
+
+        <div class="animated tada">
+          <a id="documentation" href="#" class="btn btn-default btn-sm btn-block turquoise_color" style="margin-top:50px">
+            Documentation
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:50px;">
+    <div id="readme">
+    </div>
+  </div>
+
+  <div id="help" class="pull-right">
+  </div>
+
+  <div id="soundtrack">
+  </div>
+
+  <div id="projects" class="text-center hidden-sm hidden-xs" style="margin:10px 0px 0px 0px;">
+    <ul class="list-inline" style="margin:0em;">
+      <li>
+        <a href="http://olt.com.tr" target="_blank" style="position: relative;">
+          <img src="http://gdemir.me/barak-framework/assets/img/olt.png" class="img-responsive turquoise_border" />
+        </a>
+      </li>
+      <li>
+        <a href="http://gaziantepasansor.com" target="_blank" style="position: relative;">
+          <img src="http://gdemir.me/barak-framework/assets/img/gaziantepasansor.png" class="img-responsive turquoise_border" />
+        </a>
+      </li>
+      <li>
+        <a href="http://akgenseeds.com" target="_blank" style="position: relative;">
+          <img src="http://gdemir.me/barak-framework/assets/img/akgenseeds.png" class="img-responsive turquoise_border" />
+        </a>
+      </li>
+      <li>
+        <a href="http://huseyingoksel.av.tr" target="_blank" style="position: relative;">
+          <img src="http://gdemir.me/barak-framework/assets/img/huseyingoksel.png" class="img-responsive turquoise_border" />
+        </a>
+      </li>
+      <li>
+        <a href="http://nefsistem.com" target="_blank" style="position: relative;">
+          <img src="http://gdemir.me/barak-framework/assets/img/nefsistem.png" class="img-responsive turquoise_border" />
+        </a>
+      </li>
+      <li>
+        <a href="http://gezeryapidekorasyon.com" target="_blank" style="position: relative;">
+          <img src="http://gdemir.me/barak-framework/assets/img/gezeryapidekorasyon.png" class="img-responsive turquoise_border" />
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- backtotop start -->
+  <!-- source : http://github.com/gdemir/backtotop -->
+  <link rel="stylesheet" type="text/css" href="http://barak-framework.github.io/assets/css/backtotop.min.css" />
+  <a href="#" id="backtotop" title="Back to top">&uarr;</a>
+  <script src="http://barak-framework.github.io/assets/js/backtotop.min.js"></script>
+  <!-- backtotop end -->
+
+</body>
+</html>
