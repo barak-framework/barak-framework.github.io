@@ -125,10 +125,10 @@ canvas {
     $("#readme").click(function(e) {
       $("#help").slideToggle("slow");
     });
-
+    // autoplay='autoplay'
     var music_level = Math.floor(Math.random() * 24 + 1);
     $("#soundtrack").html(
-      "<audio controls='controls' autoplay='autoplay' hidden='true' loop='true'>" +
+      "<audio controls='controls' hidden='true' loop='true'>" +
       "<source src='https://barak-framework.github.io/assets/music/music" + music_level + ".mp3' type='audio/mp3' />" +
       "</audio>"
       );
