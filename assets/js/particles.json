@@ -3,7 +3,7 @@
     "number": {
       "value": 150,
       "density": {
-        "enable": false,
+        "enable": true,
         "value_area": 800
       }
     },
@@ -54,7 +54,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 6,
+      "speed": 3.5,
       "direction": "none",
       "random": false,
       "straight": false,
