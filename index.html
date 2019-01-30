@@ -102,7 +102,7 @@ canvas {
       var level = this.nodeName.substring(1);
       var text = $(this).text();
       var id = $(this).attr('id');
-      if (level == 1 || level == 2 || level == 3) {
+      if (level == 1 || level == 2 || level == 3 || level == 4) {
         headers = headers +
         "<h" + level + " id = '" + id + "' style='margin-left:"+ level+"0px'>" +
         "<a href='#" + id + "'>" + text + "</a>" +
