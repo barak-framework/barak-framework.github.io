@@ -1867,6 +1867,7 @@ password = 123456
 - Yandex SMTP Configuration (Test Edildi)
 
 ```ini
+[mailer_configuration]
 port     = 587
 address  = smtp.yandex.com
 username = mail@gdemir.me
@@ -1876,6 +1877,7 @@ password = 123456
 - Gmail SMTP Configuration (Test Edilmedi, Gmail'in kendi problemi var)
 
 ```ini
+[mailer_configuration]
 port     = 465
 address  = smtp.gmail.com
 username = mail@gdemir.me
