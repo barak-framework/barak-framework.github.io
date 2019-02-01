@@ -1,7 +1,6 @@
 # Barak Framework Homepage
 
-[http://github.com/barak-framework/barak-framework.github.io](https://github.com/barak-framework/barak-framework.github.io/blob/master/guides/README.md)#[README.md](https://github.com/barak-framework/barak/blob/master/README.md)
- → [http://barak-framework.github.io](http://barak-framework.github.io)
+[http://github.com/barak-framework/barak-framework.github.io/guides/README.md](https://github.com/barak-framework/barak-framework.github.io/blob/master/guides/README.md) → [http://barak-framework.github.io](http://barak-framework.github.io)
 
 ## Powered By
 
