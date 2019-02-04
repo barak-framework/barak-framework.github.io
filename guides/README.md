@@ -1871,7 +1871,7 @@ Veritabanının parolası
 
 ##### `config/mailer.ini` (mailer configuration file)
 
-Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmakdır. Ayar seçeneklerini kullanmak **zorunludur.**
+Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmaktadır. Ayar seçeneklerini kullanmak **zorunludur.**
 
 - Options
 
