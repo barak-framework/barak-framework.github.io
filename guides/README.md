@@ -123,7 +123,7 @@ ApplicationRoutes::draw(function() {
   /* ROUTE_FUNCTIONS */
 });
 ```
-#### Route Functions
+#### Functions
 
 ##### `get` ($rule, $target = false, $path = null)
 
