@@ -802,7 +802,9 @@ Yönlendirme dosyasında tanımlı olan (`config/routes.php`) her `get` veya `po
 
 > `render`
 
-#### `render`
+#### Functions
+
+##### `render`
 
 Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Yalnızca `*.php` dosyalarının içersinde kullanılırken `<?php render(); ?>` şeklinde kullanılmalıdır. Daha ayrıntılı bilgi için `Controller#render` kısmına bakınız.
 
@@ -1792,7 +1794,7 @@ Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı k�
 
 - Files
 
-> `config/application.ini`, `config/database.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`
+> `config/application.ini`, `config/database.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
 
 #### Files
 
@@ -1959,6 +1961,9 @@ return [
 ];
 ?>
 ```
+##### `config/routes.php` (route configuration file)
+
+Daha ayrıntılı bilgi için `Router` kısmına bakınız.
 
 ### Seeds (`db/seeds.php`)
 
