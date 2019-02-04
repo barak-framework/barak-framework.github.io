@@ -1696,7 +1696,6 @@ class UserMailer extends ApplicationMailer {
 }
 ```
 
-// default layout TODO change?
 > `app/views/layouts/mailer.php`
 
 ```html
