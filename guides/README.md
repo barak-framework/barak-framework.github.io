@@ -586,7 +586,7 @@ Helpers `app/helpers/*Helper.php` şeklinde tanımlanan sınıfları proje için
 
 > keys : `$FILE`, `all`
 
-> `$FILE`
+###### `$FILE`
 
 İstenilen helper sınıflarını projeye dahil eder.
 
@@ -601,9 +601,9 @@ class HomeController extends ApplicationController {
 }
 ```
 
-> `all`
+###### `all` (#TODO anahtar ismi daha özel olabilir ?)
 
-`app/helpers/*` altındaki tüm helper sınıflarını projeye dahil eder. #TODO anahtar ismi daha özel olabilir ?
+`app/helpers/*` altındaki tüm helper sınıflarını projeye dahil eder. 
 
 ```php
 class HomeController extends ApplicationController {
