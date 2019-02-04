@@ -135,7 +135,7 @@ ApplicationRoutes::draw(function() {
 
 - Dynamical Segment
 
-Dinamik route tanımlamalarında "home#index" gibi hedef belirtilmelidir.
+Dinamik route tanımlamalarında "home#index" `controller#action` gibi hedef belirtilmelidir. Dinamik route tanımlamalarında ki "id" gibi parçalara erişim örneğide aşağıda verilmiştir.
 
 > `config/routes.php`
 
@@ -144,8 +144,6 @@ ApplicationRoutes::draw(function() {
   get("/home/index/:id", "home#index");
 });
 ```
-
-Dinamik route tanımlamalarında ki "id" gibi parçalara erişim:
 
 > `app/controllers/HomeController.php`
 
