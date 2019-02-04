@@ -1781,7 +1781,7 @@ Web sayfasında 1 kişi şifre değişikliği talebinde bulundu. <br/>
 
 ##### `helpers`, `before_actions`, `after_actions`
 
-Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha ayrıntılı bilgi için `Controller#options` kısmına bakınız.
+Fonksiyonları Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha ayrıntılı bilgi için `Controller#options` kısmına bakınız.
 
 ### Configurations (`config/*`)
 
@@ -1978,7 +1978,9 @@ Yapılandırma dizinindeki diller kısmında (`config/locales/`) tanımlı olan 
 
 > `locale`, `get_locale`, `translate`
 
-#### `locale` ($locale)
+#### Functions
+
+##### `locale` ($locale)
 
 Çeviri kelimeleri (`config/locales/tr.php` veya `config/locales/en.php` gibi dosyalar dizi olarak `$_SESSION["_i18n"]` üzerine yüklenir.) proje başlangıcında `config/application.ini` dosyası içerisinde `locale` değişkenine ile atanabilir veya projenin herhangi bir aşamasında aşağıdaki gibi atanabilir/değiştirilebilir.
 
@@ -1986,7 +1988,7 @@ Yapılandırma dizinindeki diller kısmında (`config/locales/`) tanımlı olan 
 ApplicationI18n::locale("tr");
 ```
 
-#### `get_locale` ()
+##### `get_locale` ()
 
 O an seçili olan dilin hangisi olduğunu anlamak için kullanılan fonksiyondur.
 
@@ -2005,7 +2007,7 @@ ApplicationI18n::get_locale();
 
 ```
 
-#### `translate` ($path)
+##### `translate` ($path)
 
 Çevirisi yapılacak bir kelime dizini o an hangi dil yüklü ise ona göre çeviri yapmak için aşağıdaki gibi kullanılır.
 
@@ -2029,7 +2031,9 @@ Uygulamanın her istek URL geldiğinde Exception, Error, Shutdown(Fatal Error) a
 
 > `exception`, `error`, `shutdown`
 
-#### `exception` (Exception $exception)
+#### Functions
+
+##### `exception` (Exception $exception)
 
 ```php
 throw new Exception("OMG!");
@@ -2043,7 +2047,7 @@ ApplicationDebug::exception(new Exception("OMG!"));
 
 tarzındaki fonksiyonlar ile hataları bulunduğu sayfada yakalar ve istisnanın bulunduğu kod satırınının bir kısmını gösterir.
 
-#### `error` ($errno, $error, $file, $line)
+##### `error` ($errno, $error, $file, $line)
 
 ```php
 ApplicationDebug::error(123123, "Undefined variable: a", "/var/www/html/app/controllers/DefaultController.php", 10);
@@ -2057,7 +2061,7 @@ echo $a;
 
 gibi ifadelerle bir tanımlanmayan değişkenin kullanma hatasını adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
 
-#### `shutdown` ()
+##### `shutdown` ()
 
 ```
 ApplicationDebug::shutdown();
@@ -2077,7 +2081,9 @@ veya
 
 > `size`, `info`, `warning`, `error`, `fatal`, `debug`
 
-#### `size` ($byte = 5242880)
+#### Functions
+
+##### `size` ($byte = 5242880)
 
 Log dosyasının maximum ulaşabilecğei boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
 
@@ -2088,7 +2094,7 @@ ApplicationLogger::info("bla bla");
 // 2017-06-18 09:45:36 → info : bla bla
 ```
 
-#### `info`, `warning`, `error`, `fatal`, `debug` ($message)
+##### `info`, `warning`, `error`, `fatal`, `debug` ($message)
 
 ```php
 ApplicationLogger::info("bilmek iyidir");
@@ -2136,7 +2142,9 @@ foreach ($users as $user)
 
 > `expiration`, `write`, `read`, `delete`, `exist`, `reset`
 
-#### `expiration` ($millisecond = 600000)
+#### Functions
+
+##### `expiration` ($millisecond = 600000)
 
 Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 milisaniye (10 dakika)` süre ile saklanır.
 
@@ -2144,7 +2152,7 @@ Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, v
 ApplicationLogger::expiration(600000);
 ```
 
-#### `write` ($key, $value)
+##### `write` ($key, $value)
 
 Saklanacak verilerin  `request_url` + `key` (istek url ve verilen anahtar)'e göre md5 ile şifreleyip belleğe yazar. Bu şekilde farklı bir sayfada kaydettiğiniz aynı anahtar isimli veriler, farklı dosyalar olarak kaydedilmektedir.
 
@@ -2153,7 +2161,7 @@ $users = User::all();
 ApplicationCache::write("users", $users);
 ```
 
-#### `read` ($key)
+##### `read` ($key)
 
 Bellekteki veriyi `request_url` + `key` mantığı ile okur, eğer dosyanın süresi geçmişse otomatik olarak siler.
 
@@ -2161,7 +2169,7 @@ Bellekteki veriyi `request_url` + `key` mantığı ile okur, eğer dosyanın sü
 $users = ApplicationCache::read("users");
 ```
 
-#### `delete` ($key)
+##### `delete` ($key)
 
 `request_url` + `key` mantığına göre bulunan ve var olan dosya süresine bakılmaksızın silinir.
 
@@ -2169,7 +2177,7 @@ $users = ApplicationCache::read("users");
 ApplicationCache::delete("users");
 ```
 
-#### `exists` ($key)
+##### `exists` ($key)
 
 `request_url` + `key` mantığına göre var olmasına bakar.
 
@@ -2177,7 +2185,7 @@ ApplicationCache::delete("users");
 echo (ApplicationCache::exists("users")) ? "bellekte var" : "bellekte yok";
 ```
 
-#### `reset` ()
+##### `reset` ()
 
 `tmp/cache/*` altındaki tüm saklanan verileri sürelerine bakılmaksızın siler.
 
