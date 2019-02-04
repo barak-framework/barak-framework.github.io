@@ -6,6 +6,7 @@
 
  - [Bootstrap](http://getbootstrap.com)
  - [Highlightjs](https://highlightjs.org)
+ - [Github-markdown-css](https://github.com/sindresorhus/github-markdown-css) 
  - [Animatecss](https://daneden.github.io/animate.css)
  - [Showdownjs](https://github.com/showdownjs/showdown)
  - [Particlesjs](https://github.com/VincentGarreau/particles.js)
