@@ -1576,7 +1576,7 @@ Her hazırlanan Mailer sınıfı kullanırken,
 4. View olarak **zorunlu** `app/views/mail` dizinini kullanmaktadır. İstenilen actiona göre `app/views/mail/ACTION.php` dosyası tanımlanması gerekir.
 
 
-- Mailer Kick Functions
+- Kick Function
 
 > `delivery`
 
@@ -1588,7 +1588,9 @@ Her hazırlanan Mailer sınıfı kullanırken,
 
 > `helpers`, `before_actions`, `after_actions`
 
-#### `delivery` ($action, [$param1, ...])
+#### Kick Function
+
+##### `delivery` ($action, [$param1, ...])
 
 1. parametre olarak kullanılacak Mailer içersindeki method ismi yazılır.
 2. parametre eğer method bir veri alacak şekilde tanımlandıysa bu veriler liste içersinde gönderilir.
@@ -1640,7 +1642,9 @@ class PasswordMailer extends ApplicationMailer {
 }
 ```
 
-#### `mail` (["to" => [$email1 => $name1, ...], "subject" => $subject])
+#### Functions
+
+##### `mail` (["to" => [$email1 => $name1, ...], "subject" => $subject])
 
 > options : `to`, `subject`
 
@@ -1772,6 +1776,12 @@ Endişelenme! Parolanızı sıfırlamak için 1 saat içinde aşağıdaki bağla
 Web sayfasında 1 kişi şifre değişikliği talebinde bulundu. <br/>
 <b>Tarih :</b> <?= date("Y-m-d H:i:s"); ?>
 ```
+
+#### Options
+
+##### `helpers`, `before_actions`, `after_actions`
+
+Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha ayrıntılı bilgi için `Controller#options` kısmına bakınız.
 
 ### Configurations (`config/*`)
 
