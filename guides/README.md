@@ -111,7 +111,10 @@ Herhangi bir istek URL çalışabilmesi için yönlendirilme dosyasında (`confi
 
 > `get`, `post`, `resource`, `resources`, `scope`, `root`
 
-#### `draw` (`function() { /* ROUTE_FUNCTIONS */ }`)
+
+#### Kick Function
+
+##### `draw` (`function() { /* ROUTE_FUNCTIONS */ }`)
 
 Tanımlaması yapılan yönlendirmelerin okunması ve çalışması için tetikleyici fonksiyondur. Bu fonksiyon ikinci kez kullanıldığında işleme almamaktadır.
 
@@ -120,8 +123,9 @@ ApplicationRoutes::draw(function() {
   /* ROUTE_FUNCTIONS */
 });
 ```
+#### Route Functions
 
-#### `get` ($rule, $target = false, $path = null)
+##### `get` ($rule, $target = false, $path = null)
 
 - Simple
 
@@ -164,7 +168,7 @@ class HomeController extends ApplicationController {
 <?= "id: $id"; ?>
 ```
 
-#### `post` ($rule, $target = false, $path = null)
+##### `post` ($rule, $target = false, $path = null)
 
 - Simple
 
@@ -235,7 +239,7 @@ class AdminController extends ApplicationController {
 <?= $_SESSION["full_name"]; ?>
 ```
 
-#### `resource` ($rule, $path = null)
+##### `resource` ($rule, $path = null)
 
 > `config/routes.php`
 
@@ -259,7 +263,7 @@ ApplicationRoutes::draw(function() {
 });
 ```
 
-#### `resources` ($rule, $path = null)
+##### `resources` ($rule, $path = null)
 
 > `config/routes.php`
 
@@ -283,7 +287,7 @@ ApplicationRoutes::draw(function() {
 });
 ```
 
-#### `scope` ($path, callable $routes)
+##### `scope` ($path, callable $routes)
 
 Kodları daha derli toplu kullanmak için Route'in gruplama özelliğidir. Bir `PATH` altında `CONTROLLER` ve `VIEW` dizininin çalışma imkanı sağlar.
 
@@ -388,7 +392,7 @@ ApplicationRoutes::draw(function() {
 });
 ```
 
-#### `root` ($target = false, $path = null)
+##### `root` ($target = false, $path = null)
 
 > `config/routes.php`
 
@@ -431,10 +435,12 @@ Her `config/routes.php` içerisinde tanımlanan
 
 > `helpers`, `before_actions`, `after_actions`
 
-#### `render`
-##### (["view" => $view, "action" => $action, "template" => $template, "layout" => $layout, "locals" => $locals, "file" => $file, "partial" => $partial, "text" => $text])
+#### Functions
+
+##### `render`
+###### (["view" => $view, "action" => $action, "template" => $template, "layout" => $layout, "locals" => $locals, "file" => $file, "partial" => $partial, "text" => $text])
 or
-##### ($template)
+###### ($template)
 
 > options : `layout`, `view`, `action`, `template`, `file`, `text`, `partial`, `locals`
 
@@ -541,7 +547,7 @@ class HomeController extends ApplicationController {
 }
 ```
 
-#### `redirect_to` ($url)
+##### `redirect_to` ($url)
 
 > request url [`/` or `/home`] redirect to `/home/index`
 
@@ -572,7 +578,9 @@ class HomeController extends ApplicationController {
 <h1> Home#Index </h1>
 ```
 
-#### `helpers`
+#### Options
+
+##### `helpers`
 
 Helpers `app/helpers/*Helper.php` şeklinde tanımlanan sınıfları proje için gerekli görüldüğü yerlerde projeye dahil eder.
 
@@ -609,7 +617,7 @@ class HomeController extends ApplicationController {
 }
 ```
 
-#### `before_actions`
+##### `before_actions`
 
 Before Action (`protected $before_actions`) özelliği, `app/controller/*.php` dosyası içerisinde her çalışacak get/post fonksiyonları için önceden çalışacak fonksiyonları belirtmeye yarayan özelliktir. Özelliğin etkisini ayarlamak için aşağıdaki 3 şekilde kullanılabilir.
 
@@ -647,7 +655,7 @@ class HomeController extends ApplicationController {
   }
 ```
 
-#### `after_actions`
+##### `after_actions`
 
 After Action (`protected $after_actions`) özelliği, `app/controller/*.php` dosyası içerisinde her çalışacak get/post fonksiyonları için sonradan çalışacak fonksiyonları belirtmeye yarayan özelliktir. Özelliğin etkisini ayarlamak için aşağıdaki 3 şekilde kullanılabilir.
 
