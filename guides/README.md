@@ -1787,7 +1787,16 @@ Fonksiyonları Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha 
 
 ---
 
-#### `config/application.ini` (application configuration file)
+Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı kısımdır.
+
+
+- Files
+
+> `config/application.ini`, `config/database.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`
+
+#### Files
+
+##### `config/application.ini` (application configuration file)
 
 Genel ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
 
@@ -1805,7 +1814,7 @@ logsize         = 5242880
 cacheexpiration = 600000
 ```
 
-##### `debug` [= false]
+###### `debug` [= false]
 
 Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) hata akışlarını yakalayıp `true`: Yazılımcı Modu veya `false` : Kullanıcı Modu şeklinde gösterilmesinin ayarlandığı anahtardır.
 
@@ -1814,20 +1823,20 @@ Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) hata akışla
 
 Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
 
-##### `timezone` [= America/New_York]
+###### `timezone` [= America/New_York]
 
 PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi için `PHP#date_default_timezone_set` fonksiyonuna bakınız.
 
-##### `locale` [= tr]
+###### `locale` [= tr]
 
 `config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
 
-##### `cacheexpiration` [= 600000]
+###### `cacheexpiration` [= 600000]
 
 `tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
 
 
-#### `config/database.ini` (database configuration file)
+##### `config/database.ini` (database configuration file)
 
 Veritabanı ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak **zorunludur.**
 
@@ -1844,23 +1853,23 @@ pass  = barak
 name  = BARAK
 ```
 
-##### `host`
+###### `host`
 
 Veritabanı hostunun adı
 
-##### `user`
+###### `user`
 
 Veritabanı kullanıcısının adı
 
-##### `name`
+###### `name`
 
 Veritabanın adı
 
-##### `pass`
+###### `pass`
 
 Veritabanının parolası
 
-#### `config/mailer.ini` (mailer configuration file)
+##### `config/mailer.ini` (mailer configuration file)
 
 Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmakdır. Ayar seçeneklerini kullanmak **zorunludur.**
 
@@ -1901,23 +1910,23 @@ username = mail@gdemir.me
 password = 123456
 ```
 
-##### `port`
+###### `port`
 
 Mail web servis adresine hangi porttan bağlanacağını belirleyen anahtardır.
 
-##### `address`
+###### `address`
 
 Mail web servisi adresinin belirleyen anahtardır.
 
-##### `username`
+###### `username`
 
 Mail web servisine hangi kullanıcı ile bağlanacağını belirleyen anahtardır.
 
-##### `password`
+###### `password`
 
 Mail web servisine hangi parola ile bağlanacağını belirleyen anahtardır.
 
-#### `config/locales/LANGUAGE.php` (language configuration file)
+##### `config/locales/LANGUAGE.php` (language configuration file)
 
 Varsayılan olarak okunan `config/locales/tr.php` dosyasıdır, yeni bir dil eklenecekse aynı `list` kullanılıp değer kısımları değiştirilerek kaydedilmelidir. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
 
