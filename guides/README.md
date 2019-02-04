@@ -1796,7 +1796,7 @@ Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) hata akışla
 1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, hatanın nedenini gösterilmek isteniyorsa kullanılır
 2. `false` : [Kullanıcı Modu] Sadece uygulamanın çalışmadığını üstü kapalı bir şekilde gösterilmek isteniyorsa kullanılır, `public/500.html` sayfası gösterilir.
 
-Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmında bakınız.
+Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
 
 ##### `timezone` [= America/New_York]
 
@@ -1804,11 +1804,11 @@ PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi içi
 
 ##### `locale` [= tr]
 
-`config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmında bakınız.
+`config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
 
 ##### `cacheexpiration` [= 600000]
 
-`tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmında bakınız.
+`tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
 
 
 #### `config/database.ini` (database configuration file)
