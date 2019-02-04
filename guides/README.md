@@ -107,7 +107,7 @@ Herhangi bir istek URL çalışabilmesi için yönlendirilme dosyasında (`confi
 
 > `draw`
 
-- Route Functions (global)
+- Functions (global)
 
 > `get`, `post`, `resource`, `resources`, `scope`, `root`
 
