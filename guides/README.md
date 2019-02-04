@@ -423,7 +423,7 @@ class HomeController extends ApplicationController {
 Her `config/routes.php` içerisinde tanımlanan
 
 1. `get` yönlendirmesi için  `app/controller/CONTROLLER.php` sınıfı içerisinde fonksiyon tanımlamak zorunlu değildir. Eğer fonksiyon tanımlanırsa ve değişken yükü/yükleri controller içinde `$this->KEY` şeklinde atandığında ilgili yönlenen sayfada (`app/views/CONTROLLER/ACTION.php`) bu veriye `$KEY` şeklinde erişme imkanı verir.
-2. `post` yönlendirmesi için `app/controller/CONTROLLER.php` sınıfı içerisinde fonksiyon tanımlamak zorunludur.
+2. `post` yönlendirmesi için `app/controller/CONTROLLER.php` sınıfı içerisinde fonksiyon tanımlamak **zorunludur.**
 
 - Functions
 
@@ -1847,7 +1847,7 @@ Veritabanının parolası
 
 #### `config/mailer.ini` (mailer configuration file)
 
-Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmakdır. Ayar seçeneklerini kullanmak zorunludur.
+Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmakdır. Ayar seçeneklerini kullanmak **zorunludur.**
 
 - Options
 
