@@ -841,7 +841,7 @@ echo $user->full_name();
 
 > `draft`, `create`, `save`, `destroy`
 
-#### CREATE
+#### Create Functions
 
 - Functions
 
@@ -872,7 +872,7 @@ $user = User::create(["first_name" => "Gökhan"]);
 print_r($user);
 ```
 
-#### READ
+#### Read Functions
 
 - Functions
 
@@ -1446,7 +1446,7 @@ foreach ($users as $user)
   User::update($user->id, ["first_name" => "Göktuğ", "last_name" => "Demir"]);
 ```
 
-#### DELETE
+#### Delete Functions
 
 - Functions
 
@@ -1478,7 +1478,7 @@ User::load()->where("first_name", "Gökhan")->limit(10)->delete_all();
 User::load()->limit(10)->delete_all();
 ```
 
-#### DEPENDENCIES
+#### Dependencies
 
 > `$BELONGTABLE->OWNERTABLE`
 
