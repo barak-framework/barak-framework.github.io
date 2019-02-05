@@ -843,8 +843,6 @@ echo $user->full_name();
 
 #### Create Functions
 
-- Functions
-
 >  `draft`, `create`
 
 ##### `draft` ([$field1 => $value1, ...])
@@ -873,8 +871,6 @@ print_r($user);
 ```
 
 #### Read Functions
-
-- Functions
 
 > `load`, `select`, `where`, `or_where`, `order`, `group`, `limit`, `get`, `get_all`, `pluck`, `count`, `joins`, `find`, `find_all`, `all`, `first`, `last`
 
@@ -1380,9 +1376,7 @@ foreach ($users as $user)
 echo User::exists(1) ? "kayit var" : "kayit yok";
 ```
 
-#### UPDATE
-
-- Functions
+#### Update Functions
 
 > `save`, `update`
 
@@ -1447,8 +1441,6 @@ foreach ($users as $user)
 ```
 
 #### Delete Functions
-
-- Functions
 
 > `destroy`, `delete`, `delete_all`
 
