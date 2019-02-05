@@ -930,7 +930,7 @@ Ayrıca  `joins` işleminde tüm sütunlar otomatik gelmektedir, bundan dolayı 
 // Ör. 2:
 
 // user ["id", "first_name", "last_name"]
-// address ["id", "phone" "user_id"]
+// address ["id", "phone", "user_id"]
 
 $users = User::load()
            ->joins("address")
@@ -1541,7 +1541,7 @@ Helpers `app/helpers/*Helper.php` şeklinde tanımlanan sınıfları proje için
 // Ör.: dosya : `app/helpers/PasswordHelper.php`
 class PasswordHelper {
   public static function generate($length) {
-    // rastgele bir parolar belirle
+    // rastgele bir parola belirle
     $alphabet = "abcdefghijklmnopqrstuwxyzABC0123456789";
     for ($i = 0; $i < $length; $i++) {
       $random_password[$i] = $alphabet[rand(0, strlen($alphabet) - 1)];
