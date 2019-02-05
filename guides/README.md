@@ -949,7 +949,7 @@ or
 defaults: mark="=", logic="AND"
 
 
-operators: `=`, `!=`, `>`, `<`, `>=`, `<=`
+###### `=`, `!=`, `>`, `<`, `>=`, `<=`
 
 ```php
 $users = User::load()->where("first_name", "Gökhan")->get_all();
@@ -972,7 +972,7 @@ $users = User::load()->where("age", 25, "<=")->get_all();
 // SELECT * FROM user WHERE age <= 25;
 ```
 
-operators: `IS NULL`, `IS NOT NULL`
+###### `IS NULL`, `IS NOT NULL`
 
 ```php
 $users = User::load()->where("email", NULL)->get_all();
@@ -982,7 +982,7 @@ $users = User::load()->where("email", "IS NOT NULL")->get_all();
 // SELECT * FROM user WHERE email IS NOT NULL;
 ```
 
-operators: `LIKE`, `NOT LIKE`
+###### `LIKE`, `NOT LIKE`
 
 ```php
 $users = User::load()->where("email", "%.com.tr", "LIKE")->get_all();
@@ -991,7 +991,7 @@ $users = User::load()->where("email", "%.com.tr", "NOT LIKE")->get_all();
 // SELECT * FROM user WHERE email NOT LIKE '%.com.tr';
 ```
 
-operators: `IN`, `NOT IN`
+###### `IN`, `NOT IN`
 
 ```php
 $users = User::load()->where("id", [1, 2, 3], "IN")->get_all();
@@ -1000,7 +1000,7 @@ $users = User::load()->where("id", [1, 2, 3], "NOT IN")->get_all();
 // SELECT * FROM user WHERE id NOT IN (1, 2, 3)
 ```
 
-operators: `BETWEEN`, `NOT BETWEEN`
+##### `BETWEEN`, `NOT BETWEEN`
 
 ```php
 $users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "BETWEEN")->get_all();
