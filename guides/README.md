@@ -2119,7 +2119,7 @@ veya
 
 ---
 
-Verilen mesajları **günlük** dosyalara (`yyyy-mm-dd.log` formatında dosyalar) yazmaya yarayan özelliktir.
+Verilen mesajları **günlük** dosyalara (`tmp/log/yyyy-mm-dd.log` formatında) yazmaya yarayan özelliktir.
 
 - Functions
 
