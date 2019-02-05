@@ -2129,7 +2129,7 @@ Verilen mesajları **günlük** dosyalara (`tmp/log/yyyy-mm-dd.log` formatında)
 
 ##### `size` ($byte = 5242880)
 
-Log dosyasının maximum ulaşabilecğei boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
+Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
 
 ```php
 ApplicationLogger::size(5000);
