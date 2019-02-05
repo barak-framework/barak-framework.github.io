@@ -1472,7 +1472,9 @@ User::load()->limit(10)->delete_all();
 
 #### Dependencies
 
-> `$BELONGTABLE->OWNERTABLE`
+> `$BELONGTABLE->OWNERTABLE`, `$OWNERTABLE->all_of_BELONGTABLE`
+
+##### `$BELONGTABLE->OWNERTABLE`
 
 ```php
 // department ["id", "name"]
@@ -1506,7 +1508,7 @@ echo "$book->user->department->name $book->user->first_name $book->name";
 // "Bilgisayar Mühendisliği Gökhan Barak Türkmenlerinin Tarihi"
 ```
 
-> `$OWNERTABLE->all_of_BELONGTABLE`
+##### `$OWNERTABLE->all_of_BELONGTABLE`
 
 ```php
 // user ["id", "department_id", "first_name", "last_name"]
