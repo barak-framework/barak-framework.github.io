@@ -1585,7 +1585,7 @@ class HomeController extends ApplicationController {
 ```php
 class HomeController extends ApplicationController {
 
-  protected $helpers = ["all"];
+  protected $helpers = "all";
 
   public function index() {
     echo "random string   : " . StringHelper::generate(10);
