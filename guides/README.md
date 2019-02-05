@@ -414,7 +414,7 @@ ApplicationRoutes::draw(function() {
 
 ---
 
-Her controller dosyası ile sınıfının ismi aynı olmalıdır ve sistemin olan `ApplicationController` sınıfından miras alır.
+Her controller dosyası ile sınıfının ismi aynı **olmalıdır** ve sistemin olan `ApplicationController` sınıfından miras alır.
 
 ```php
 // Ör.: dosya : `app/controllers/HomeController.php`
@@ -582,40 +582,7 @@ class HomeController extends ApplicationController {
 
 ##### `helpers`
 
-Helpers `app/helpers/*Helper.php` şeklinde tanımlanan sınıfları proje için gerekli görüldüğü yerlerde projeye dahil eder.
-
-> keys : `$FILE`, `all`
-
-###### `$FILE`
-
-İstenilen helper sınıflarını projeye dahil eder.
-
-```php
-class HomeController extends ApplicationController {
-
-  protected $helpers = ["Password"];
-
-  public function index() {
-    echo "random password : " . PasswordHelper::generate(10);
-  }
-}
-```
-
-###### `all` (#TODO anahtar ismi daha özel olabilir ?)
-
-`app/helpers/*` altındaki tüm helper sınıflarını projeye dahil eder. 
-
-```php
-class HomeController extends ApplicationController {
-
-  protected $helpers = ["all"];
-
-  public function index() {
-    echo "random string   : " . StringHelper::generate(10);
-    echo "random password : " . PasswordHelper::generate(10);
-  }
-}
-```
+Daha ayrıntılı bilgi için `Helpers` kısmına bakınız.
 
 ##### `before_actions`
 
@@ -1564,9 +1531,72 @@ foreach ($books as $book)
   echo $book->name;
 ```
 
+### Helpers (`app/helpers/*.php`)
+
+Helpers `app/helpers/*Helper.php` şeklinde tanımlanan sınıfları proje için gerekli görüldüğü yerlerde projeye dahil eder. Helpers özelliğini  `Controller` ve `Mailer` sınıfları kullanmaktadır.
+
+```
+// Ör.: dosya : `app/helpers/PasswordHelper.php`
+class PasswordHelper {
+  public static function generate($length) {
+    // rastgele bir parolar belirle
+    $alphabet = "abcdefghijklmnopqrstuwxyzABC0123456789";
+    for ($i = 0; $i < $length; $i++) {
+      $random_password[$i] = $alphabet[rand(0, strlen($alphabet) - 1)];
+    }
+    return implode("", $random_password);
+  }
+}
+```
+
+- Options
+
+> `$FILE`, `all`
+
+#### Options
+
+##### `$FILE`
+
+İstenilen helper sınıflarını projeye dahil eder.
+
+```php
+class HomeController extends ApplicationController {
+
+  protected $helpers = ["Password"];
+
+  public function index() {
+    echo "random password : " . PasswordHelper::generate(10);
+  }
+}
+```
+
+##### `all` (#TODO anahtar ismi daha özel olabilir ?)
+
+`app/helpers/*` altındaki tüm helper sınıflarını projeye dahil eder. 
+
+```php
+class HomeController extends ApplicationController {
+
+  protected $helpers = ["all"];
+
+  public function index() {
+    echo "random string   : " . StringHelper::generate(10);
+    echo "random password : " . PasswordHelper::generate(10);
+  }
+}
+```
+
 ### Mailer (`app/mailers/*.php`)
 
 ---
+
+Her mailer dosyası ile sınıfının ismi aynı **olmalıdır** ve sistemin olan `ApplicationMailer` sınıfından miras alır.
+
+```php
+// Ör.: dosya : `app/mailers/PasswordMailer.php`
+class PasswordMailer extends ApplicationMailer {
+}
+```
 
 Mailer sınıf olarak `PHPMailer`i kullanmaktadır ve yapı olarak Controller sınıfındaki gibi benzeri görev yapmaktadır. Ayarlama olarak `helper`, `before_actions`, `after_actions` yardımcı özelliklerini kullanabilme imkanı vermektedir.
 
@@ -1576,7 +1606,6 @@ Her hazırlanan Mailer sınıfı kullanırken,
 2. Sınıf içerisinde tanımlanan fonksiyonlarda `mail` fonksiyonu kullanılmak **zorunludur**.
 3. Layout olarak **zorunlu** `app/views/layouts/mailer.php` dosyasını kullanmaktadır.
 4. View olarak **zorunlu** `app/views/mail` dizinini kullanmaktadır. İstenilen actiona göre `app/views/mail/ACTION.php` dosyası tanımlanması gerekir.
-
 
 - Kick Function
 
@@ -1790,7 +1819,6 @@ Fonksiyonları Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha 
 ---
 
 Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı kısımdır.
-
 
 - Files
 
