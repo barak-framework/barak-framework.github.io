@@ -442,7 +442,7 @@ Her `config/routes.php` içerisinde tanımlanan
 or
 ###### ($template)
 
-`redirect_to` fonnksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılan** istek olmasıdır.
+`redirect_to` fonnksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılmayan** istek olmasıdır.
 
 Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ise hata verecektir.
 
