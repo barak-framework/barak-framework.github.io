@@ -2115,7 +2115,7 @@ veya
 
 ölümcül başka türlü hatalarda (sistemin çalışmadığı durumlarda) sistemin ölümcül hata verdiği kısmı adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
 
-### Logger (`tmp/log/*`)
+### Logger (`tmp/log/*.log`)
 
 ---
 
@@ -2134,7 +2134,7 @@ Log dosyasının maximum ulaşabilecğei boyutu ayarlar, varsayılan olarak boyu
 ```php
 ApplicationLogger::size(5000);
 ApplicationLogger::info("bla bla");
-// tmp/log/2017-06-18.txt → dosya boyutu 5000 byte üzerine ulaştığında yazma işlemi kesilecek.
+// tmp/log/2017-06-18.log → dosya boyutu 5000 byte üzerine ulaştığında yazma işlemi kesilecek.
 // 2017-06-18 09:45:36 → info : bla bla
 ```
 
@@ -2147,7 +2147,7 @@ ApplicationLogger::error("dikkat et");
 ApplicationLogger::fatal("cevap vermiyor");
 ApplicationLogger::debug("olaylar olaylar");
 
-// tmp/log/2017-06-18.txt
+// tmp/log/2017-06-18.log
 // 2017-06-18 09:45:36 → info : bilmek iyidir
 // 2017-06-18 09:45:36 → warning : olabilir?
 // 2017-06-18 09:45:36 → error : dikkat et
