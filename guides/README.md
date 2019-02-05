@@ -442,6 +442,10 @@ Her `config/routes.php` içerisinde tanımlanan
 or
 ###### ($template)
 
+`redirect_to` fonnksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılan** istek olmasıdır.
+
+Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ise hata verecektir.
+
 > options : `layout`, `view`, `action`, `template`, `file`, `text`, `partial`, `locals`
 
 ```php
@@ -549,7 +553,9 @@ class HomeController extends ApplicationController {
 
 ##### `redirect_to` ($url)
 
-> request url [`/` or `/home`] redirect to `/home/index`
+`render` fonnksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılan** istek olmasıdır.
+
+İlgili Controller ve View akışı ile sayfayı görüntülemeye yarayan istektir. Aşağıda `/` veya `/home` gibi isteklerin `home#home` olarak `Controller#action` fonksiyonuna gittiği buradan da tekrar bir `/home/index` isteği geldiği örneği verilmektedir.
 
 > `config/routes.php`
 
