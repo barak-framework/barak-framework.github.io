@@ -1533,6 +1533,8 @@ foreach ($books as $book)
 
 ### Helpers (`app/helpers/*.php`)
 
+---
+
 Helpers `app/helpers/*Helper.php` şeklinde tanımlanan sınıfları proje için gerekli görüldüğü yerlerde projeye dahil eder. Helpers özelliğini  `Controller` ve `Mailer` sınıfları kullanmaktadır.
 
 ```
