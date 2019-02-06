@@ -1359,7 +1359,7 @@ defaults: count=1
 // Ör. 1:
 
 $user = User::last();
-  echo $user->first_name;
+echo $user->first_name;
 ```
 
 ```php
