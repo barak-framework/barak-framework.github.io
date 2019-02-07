@@ -846,20 +846,22 @@ echo $user->full_name();
 
 ##### `draft` ([$field1 => $value1, ...])
 
+`create` fonksiyonundan farkı verilen sütunlara göre(verilirse) taslak bir model nesnesi oluşturur. Ancak veritabanında yeni bir kayıt oluşturmaz.
+
 ```php
 // Ör. 1:
 
 $user = User::draft();
 $user->first_name = "Gökhan";
-$user->save();
-print_r($user); // otomatik id alır
+$user->save(); // otomatik id alır
+print_r($user);
 ```
 
 ```php
 // Ör. 2:
 
-$user = User::draft(["first_name" => "Gökhan"])->save();
-print_r($user); // otomatik id alır
+$user = User::draft(["first_name" => "Gökhan"])->save(); // otomatik id alır
+print_r($user);
 ```
 
 ##### `create` ([$field1 => $value1, ...])
@@ -943,12 +945,11 @@ foreach ($users as $user)
 ```
 
 ##### `where`
-##### ($key, $value, $mark={"=", "LIKE", "NOT LIKE", "IN", "NOT IN", "BETWEEN", "NOT BETWEEN"}, $logic={"AND", "OR"})
+##### ($key, $value, $mark={"=", "!=", ">", "<", ">=", "<=", "LIKE", "NOT LIKE", "IN", "NOT IN", "BETWEEN", "NOT BETWEEN"}, $logic={"AND", "OR"})
 or
 ##### ($key, $mark={"NULL", "IS NULL", "IS NOT NULL"}, $logic={"AND", "OR"})
 
 defaults: mark="=", logic="AND"
-
 
 ###### `=`, `!=`, `>`, `<`, `>=`, `<=`
 
@@ -1025,8 +1026,7 @@ $users = User::load()->where("first_name", "Gökhan", "=", "AND")->where("last_n
 
 ##### `order` ($field, $sort_type={"DESC", "ASC"})
 
-- defaults: sort_type="ASC"
-
+defaults: sort_type="ASC"
 
 - Simple
 
@@ -1080,7 +1080,7 @@ foreach ($users as $user)
 // 4, Gökçe, Demir
 ```
 
-- Simple With `count`
+- Simple with `count`
 
 ```php
 // Ör.: 2
@@ -1131,7 +1131,7 @@ foreach ($users as $user)
 // 4, Gökhan, Seven
 ```
 
-- Multiple With `count`
+- Multiple with `count`
 
 ```php
 // Ör.: 1
@@ -1164,7 +1164,7 @@ foreach ($user_counts as $user_count => $user_fields)
 // 1 : Gökhan, Seven
 ```
 
-- Multiple With `joins`, `count`
+- Multiple with `joins`, `count`
 
 ```php
 // Ör.: 3
@@ -1213,7 +1213,7 @@ $user_count = User::load()
 
 ##### `limit` ($limit=1)
 
-- defaults: limit=1
+defaults: limit=1
 
 ```php
 $users = User::load()
@@ -1243,7 +1243,7 @@ print_r($user_firstnames);
 
 ##### `count` ()
 
-Bu fonksiyon kullnılırken eğer `group` kullanılmamışsa direkt rakamsal sonuç döner, ancak `group` kullanılmışsa dizi döner.
+Bu fonksiyon kullanılırken eğer `group` kullanılmamışsa direkt rakamsal sonuç döner, ancak `group` kullanılmışsa dizi döner.
 
 ```php
 // Ör. 1:
