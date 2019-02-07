@@ -441,7 +441,7 @@ Her `config/routes.php` içerisinde tanımlanan
 or
 ###### ($template)
 
-`redirect_to` fonnksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılmayan** , ilgili `Controller` ve `View` akışı **olmayan** istektir.
+`redirect_to` fonksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılmayan** , ilgili `Controller` ve `View` akışı **olmayan** istektir.
 
 Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ve `template` üzerine gönderilecek bir `locals` yok ise hata verecektir.
 
@@ -552,7 +552,7 @@ class HomeController extends ApplicationController {
 
 ##### `redirect_to` ($url)
 
-`render` fonnksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılan** , ilgili `Controller` ve `View` akışı **olan** istektir.
+`render` fonksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılan** , ilgili `Controller` ve `View` akışı **olan** istektir.
 
 Örneğin aşağıda `/` veya `/home` gibi isteklerin `home#home` olarak `Controller#action` fonksiyonuna gittiği buradan da tekrar bir `/home/index` isteği geldiği verilmektedir.
 
