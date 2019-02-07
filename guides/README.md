@@ -50,7 +50,7 @@ Barak is released under the [MIT License](http://www.opensource.org/licenses/MIT
 
 ---
 
-Basit bir URL olarak `/` yönlendirme isteği geldiğinde Barak Framework uygulamasının takip edeceği `Router`, `Controller`, `Views`, `Layouts` adımlarını genel hatlarıyla gösterebilmek için aşağıdaki örneği inceleyebilirsiniz.
+Basit bir URL olarak `/` yönlendirme isteği geldiğinde Barak Framework uygulamasının takip edeceği `Router`, `Controller`, `Views`, `Layouts` adımlarını genel hatlarıyla görebilmek için aşağıdaki örneği inceleyebilirsiniz.
 
 > `config/routes.php`
 
