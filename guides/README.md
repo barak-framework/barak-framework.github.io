@@ -102,16 +102,16 @@ class HomeController extends ApplicationController {
 
 Herhangi bir istek URL çalışabilmesi için yönlendirilme dosyasında (`config/routes.php`) ne tür bir istek olduğu tanımlanmalıdır. Eğer istek URL bulunmuyorsa  `public/404.html` sayfası gösterilir. Yönlendirme fonksiyonları olan `get`, `post`, `resource`, `resources`, `scope`, `root` fonksiyonları tanımlama yapılmadan önce  tetikleyici `draw` fonksiyonu içerisine yazılmalıdır.
 
-- Kick Function (static)
+- Kick Method (static)
 
 > `draw`
 
-- Functions (global)
+- Methods (global)
 
 > `get`, `post`, `resource`, `resources`, `scope`, `root`
 
 
-#### Kick Function
+#### Kick Method
 
 ##### `draw` (`function() { /* ROUTE_FUNCTIONS */ }`)
 
@@ -122,7 +122,7 @@ ApplicationRoutes::draw(function() {
   /* ROUTE_FUNCTIONS */
 });
 ```
-#### Functions
+#### Methods
 
 ##### `get` ($rule, $target = false, $path = null)
 
@@ -426,7 +426,7 @@ Her `config/routes.php` içerisinde tanımlanan
 1. `get` yönlendirmesi için  `app/controller/CONTROLLER.php` sınıfı içerisinde fonksiyon tanımlamak zorunlu değildir. Eğer fonksiyon tanımlanırsa ve değişken yükü/yükleri controller içinde `$this->KEY` şeklinde atandığında ilgili yönlenen sayfada (`app/views/CONTROLLER/ACTION.php`) bu veriye `$KEY` şeklinde erişme imkanı verir.
 2. `post` yönlendirmesi için `app/controller/CONTROLLER.php` sınıfı içerisinde fonksiyon tanımlamak **zorunludur.**
 
-- Functions
+- Methods
 
 > `render`, `redirect_to`
 
@@ -434,7 +434,7 @@ Her `config/routes.php` içerisinde tanımlanan
 
 > `helpers`, `before_actions`, `after_actions`
 
-#### Functions
+#### Methods
 
 ##### `render`
 ###### (["view" => $view, "action" => $action, "template" => $template, "layout" => $layout, "locals" => $locals, "file" => $file, "partial" => $partial, "text" => $text])
@@ -770,11 +770,11 @@ Yönlendirme dosyasında tanımlı olan (`config/routes.php`) her `get` veya `po
 </html>
 ```
 
-- Functions
+- Methods
 
 > `render`
 
-#### Functions
+#### Methods
 
 ##### `render`
 
@@ -820,27 +820,27 @@ echo $user->full_name();
 // Gökhan Demir
 ```
 
-- Query Kick Function (static)
+- Query Kick Method (static)
 
 > `load`
 
-- Query Load Functions (public)
+- Query Load Methods (public)
 
 > `select`, `where`, `or_where`, `joins`, `order`, `group`, `limit`, `offset`
 
-- Query Fetch Functions (public)
+- Query Fetch Methods (public)
 
 > `get`, `get_all`, `pluck`, `count`, `update_all`, `delete_all`, `first`, `last`
 
-- Query Function Helpers (static) [alias]
+- Query Helper Methods (static) [alias]
 
 > `all`, `unique`, `find`, `find_all`, `exists`, `update`, `delete`
 
-- Model Functions
+- Model Methods
 
 > `draft`, `create`, `save`, `destroy`
 
-#### Create Functions
+#### Create Methods
 
 >  `draft`, `create`
 
@@ -871,7 +871,7 @@ $user = User::create(["first_name" => "Gökhan"]);
 print_r($user);
 ```
 
-#### Read Functions
+#### Read Methods
 
 > `load`, `select`, `where`, `or_where`, `order`, `group`, `limit`, `get`, `get_all`, `pluck`, `count`, `joins`, `find`, `find_all`, `all`, `first`, `last`
 
@@ -1375,7 +1375,7 @@ foreach ($users as $user)
 echo User::exists(1) ? "kayit var" : "kayit yok";
 ```
 
-#### Update Functions
+#### Update Methods
 
 > `save`, `update`
 
@@ -1439,7 +1439,7 @@ foreach ($users as $user)
   User::update($user->id, ["first_name" => "Göktuğ", "last_name" => "Demir"]);
 ```
 
-#### Delete Functions
+#### Delete Methods
 
 > `destroy`, `delete`, `delete_all`
 
@@ -1608,11 +1608,11 @@ Her hazırlanan Mailer sınıfı kullanırken,
 3. Layout olarak **zorunlu** `app/views/layouts/mailer.php` dosyasını kullanmaktadır.
 4. View olarak **zorunlu** `app/views/mail` dizinini kullanmaktadır. İstenilen actiona göre `app/views/mail/ACTION.php` dosyası tanımlanması gerekir.
 
-- Kick Function
+- Kick Method
 
 > `delivery`
 
-- Functions
+- Methods
 
 > `mail`
 
@@ -1620,7 +1620,7 @@ Her hazırlanan Mailer sınıfı kullanırken,
 
 > `helpers`, `before_actions`, `after_actions`
 
-#### Kick Function
+#### Kick Method
 
 ##### `delivery` ($action, [$param1, ...])
 
@@ -1674,7 +1674,7 @@ class PasswordMailer extends ApplicationMailer {
 }
 ```
 
-#### Functions
+#### Methods
 
 ##### `mail` (["to" => [$email1 => $name1, ...], "subject" => $subject])
 
@@ -2017,11 +2017,11 @@ if (User::load()->count() == 0) {
 
 Yapılandırma dizinindeki diller kısmında (`config/locales/`) tanımlı olan dil dosyaları (Ör.: `config/locales/tr.php`, `config/locales/en.php`) üzerinden erişim, çeviri, o anki dilin ne olduğu gibi işlemlerin yapılması hakkında kullanılan fonksiyonlar bu bölümde anlatılmıştır.
 
-- Functions
+- Methods
 
 > `locale`, `get_locale`, `translate`
 
-#### Functions
+#### Methods
 
 ##### `locale` ($locale)
 
@@ -2070,11 +2070,11 @@ t("home.about_us");
 
 Uygulamanın her istek URL geldiğinde Exception, Error, Shutdown(Fatal Error) akışlarını yakalayıp tek sayfada gösterilmesini sağladığını anlatan bölümdür. Eğer hataların gösterilmesi istenmiyorsa `config/application.ini` dosyası içerisinde `debug = false` denilerek kullanıcı bazlı `public/500.html` sayfası gösterilir, ancak log kaydı her şekilde de tutulur.
 
-- Functions
+- Methods
 
 > `exception`, `error`, `shutdown`
 
-#### Functions
+#### Methods
 
 ##### `exception` (Exception $exception)
 
@@ -2120,11 +2120,11 @@ veya
 
 Verilen mesajları **günlük** dosyalara (`tmp/log/yyyy-mm-dd.log` formatında) yazmaya yarayan özelliktir.
 
-- Functions
+- Methods
 
 > `size`, `info`, `warning`, `error`, `fatal`, `debug`
 
-#### Functions
+#### Methods
 
 ##### `size` ($byte = 5242880)
 
@@ -2181,11 +2181,11 @@ foreach ($users as $user)
   echo $user->first_name;
 ```
 
-- Functions
+- Methods
 
 > `expiration`, `write`, `read`, `delete`, `exist`, `reset`
 
-#### Functions
+#### Methods
 
 ##### `expiration` ($millisecond = 600000)
 
