@@ -110,23 +110,24 @@ canvas {
 <!-- Moonmode end -->
   
 <script type="text/javascript">
-  function get_markdown(URL) {
-    $.ajax({
-      url: URL,
-      type: 'get',
-      dataType: 'html',
-      async: false,
-      success: function(data) { RESULT = data; }
-    });
-    return RESULT;
-  }
+
   $(document).ready(function() {
+
+    function get_markdown(URL) {
+      $.ajax({
+        url: URL,
+        type: 'get',
+        dataType: 'html',
+        async: false,
+        success: function(data) { RESULT = data; }
+      });
+      return RESULT;
+    }
 
     $("#moonmode-logo").click(function() {
       $("body").toggleClass("moonmode-body");
       $("#readme").toggleClass("moonmode-page");
     });
-
 
     $('select').change(function() {
       var VERSION = $(this).val();
