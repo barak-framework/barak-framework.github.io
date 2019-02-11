@@ -8,16 +8,16 @@
 
 - Php Version : 7.0, - Php Database Access : [PDO](http://php.net/manual/tr/book.pdo.php)
 
-- Install : [LAMP](http://gdemir.me/categories/linux/lamp/) or [LEMP](http://gdemir.me/categories/linux/lemp/)
+- Install : [LAMP](http://gdemir.github.io/categories/linux/lamp/) or [LEMP](http://gdemir.me/categories/linux/lemp/)
 
-- [Composer](http://gdemir.me/categories/php/composer/)
+- [Composer](http://gdemir.github.io/categories/php/composer/)
 
 
 ## Install
 
 - Composer
 
-[Composer](http://gdemir.me/categories/php/composer/)
+[Composer](http://gdemir.github.io/categories/php/composer/)
 
 - Barak
 
