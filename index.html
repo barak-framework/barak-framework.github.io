@@ -110,7 +110,6 @@ canvas {
 <!-- Moonmode end -->
   
 <script type="text/javascript">
-
   function get_markdown(URL) {
     $.ajax({
       url: URL,
@@ -121,7 +120,6 @@ canvas {
     });
     return RESULT;
   }
-
   $(document).ready(function() {
 
     $("#moonmode-logo").click(function() {
@@ -129,27 +127,31 @@ canvas {
       $("#readme").toggleClass("moonmode-page");
     });
 
-    var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/README.md");
-    var converter = new showdown.Converter();
-    var HTML = converter.makeHtml(MARKDOWN);
 
-    $("#readme").html(HTML).hide();
+    $('select').change(function() {
+      var VERSION = $(this).val();
+      var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
+      var converter = new showdown.Converter();
+      var HTML = converter.makeHtml(MARKDOWN);
 
-    var headers = "";
-    $('#readme :header').each(function() {
+      $("#readme").html(HTML).hide();
 
-      var level = this.nodeName.substring(1);
-      var text = $(this).text();
-      var id = $(this).attr('id');
-      if (level == 1 || level == 2 || level == 3 || level == 4) {
-        headers = headers +
-        "<h" + level + " id = '" + id + "' style='margin-left:"+ level+"0px'>" +
-        "<a href='#" + id + "'>" + text + "</a>" +
-        "</h" + level + ">";
-      }
-    });
+      var headers = "";
+      $('#readme :header').each(function() {
 
-    $("#help").html(headers).hide();
+        var level = this.nodeName.substring(1);
+        var text = $(this).text();
+        var id = $(this).attr('id');
+        if (level == 1 || level == 2 || level == 3 || level == 4) {
+          headers = headers +
+          "<h" + level + " id = '" + id + "' style='margin-left:"+ level+"0px'>" +
+          "<a href='#" + id + "'>" + text + "</a>" +
+          "</h" + level + ">";
+        }
+      });
+
+      $("#help").html(headers).hide();
+    }).trigger('change');
 
     $("#documentation").click(function() {
       help_state = $("#help").is(":visible");
@@ -164,17 +166,16 @@ canvas {
     $("#readme").click(function(e) {
       $("#help").slideToggle("slow");
     });
-    // autoplay='autoplay'
-    var music_level = Math.floor(Math.random() * 24 + 1);
-    $("#soundtrack").html(
-      "<audio controls='controls' hidden='true' loop='true'>" +
-      "<source src='https://barak-framework.github.io/assets/music/music" + music_level + ".mp3' type='audio/mp3' />" +
-      "</audio>"
-      );
+// autoplay='autoplay'
+var music_level = Math.floor(Math.random() * 24 + 1);
+$("#soundtrack").html(
+  "<audio controls='controls' hidden='true' loop='true'>" +
+  "<source src='https://barak-framework.github.io/assets/music/music" + music_level + ".mp3' type='audio/mp3' />" +
+  "</audio>"
+  );
 
-  });
+});
 </script>
-<!-- Showdownjs end -->
 
 <style type="text/css">
 @import  url('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
@@ -229,11 +230,16 @@ code { color: #c7254e; }
       <div id="about" style="position: relative;">
         <h5>
           <div class="row">
-          <div class="ck6 k6 o6 b6 yazi-sol">
+          <div class="ck6 k6 o6 b6 yazi-sol" style="margin-top:15px;">
             <a href="https://github.com/barak-framework/barak/releases" target="_blank" class="turquoise_color">Sürüm Notları</a>
           </div>
-          <div class="ck6 k6 o6 b6 yazi-sag">
-            <a href="https://github.com/barak-framework/barak/tree/v4.0.0" target="_blank" class="turquoise_color">v4.0.0</a>
+          <div class="ck6 k6 o6 b6 yazi-sag" style="margin:0px;">
+            <select>
+              <option value="v4.0.0">v4.0.0</option>
+              <option value="v3.0.0">v3.0.0</option>
+              <option value="v2.0.0">v2.0.0</option>
+              <option value="v1.0.0">v1.0.0</option>
+            </select>
           </div>
         </h5>
 
@@ -253,7 +259,7 @@ code { color: #c7254e; }
   </div>
 
   <!-- Moonmode logo start -->
-  <div id="moonmode-logo"></div>
+  <div id="moonmode-logo" style="top:0;left:0;"></div>
   <!-- Moonmode logo end -->
   
   <div id="help">
