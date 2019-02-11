@@ -111,23 +111,23 @@ canvas {
   
 <script type="text/javascript">
 
+  function get_markdown(URL) {
+    $.ajax({
+      url: URL,
+      type: 'get',
+      dataType: 'html',
+      async: false,
+      success: function(data) { RESULT = data; }
+    });
+    return RESULT;
+  }
+
   $(document).ready(function() {
 
     $("#moonmode-logo").click(function() {
       $("body").toggleClass("moonmode-body");
       $("#readme").toggleClass("moonmode-page");
     });
-    
-    function get_markdown(URL) {
-      $.ajax({
-        url: URL,
-        type: 'get',
-        dataType: 'html',
-        async: false,
-        success: function(data) { RESULT = data; }
-      });
-      return RESULT;
-    }
 
     var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/README.md");
     var converter = new showdown.Converter();
