@@ -152,6 +152,11 @@ canvas {
       });
 
       $("#help").html(headers).hide();
+
+      $("pre").each(function (i, e) {
+        hljs.highlightBlock(e);
+      });
+
     }).trigger('change');
 
     $("#documentation").click(function() {
