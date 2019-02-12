@@ -29,7 +29,7 @@
 ## Install
 
 ```sh
-composer create-project barak-framework/barak project_name
+composer create-project barak-framework/barak=v3.0.0 project_name
 ```
 
 ## Run
