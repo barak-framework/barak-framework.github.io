@@ -182,6 +182,7 @@ $("#soundtrack").html(
 </script>
 
 <style type="text/css">
+  /* locals */
 @import  url('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
 body { font-family: 'Nunito', sans-serif;  background-color: #fdfdfd; }
 code { color: #c7254e; }
@@ -209,7 +210,7 @@ code { color: #c7254e; }
 
 .turquoise_color { color: turquoise; }
 .turquoise_border { border:3px solid turquoise; border-radius: 8px; }
-
+/* add-on */
 .list-inline {
   padding-left: 0;
   list-style: none;
@@ -228,6 +229,8 @@ code { color: #c7254e; }
   padding:0.7em;
   background-color:#f5f7f9;
 }
+  /* overwrite TurkuazCSS */
+  blockquote { background-color: transparent }
 </style>
 </head>
 <body>
@@ -299,8 +302,8 @@ code { color: #c7254e; }
     </div>
   </div>
 
-  <div class="container" style="margin-top:50px;">
-    <div id="readme" class="markdown-body">
+  <div class="container markdown-body " style="margin-top:50px;">
+    <div id="readme">
     </div>
   </div>
 
