@@ -2064,6 +2064,9 @@ bu fonksiyonu daha kolay kullanmak için alias olarak tanımlı `t` fonksiyonu i
 t("home.about_us");
 ```
 
+Buradaki çeviri ayarlarının kaydedildiği yer `config/locales/*` dizinidir. Daha ayrıntılı bilgi için `Configurations#config/locales/LANGUAGE.php` kısmına bakınız.
+
+
 ### Debug
 
 ---
