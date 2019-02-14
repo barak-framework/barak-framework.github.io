@@ -1002,7 +1002,7 @@ $users = User::load()->where("id", [1, 2, 3], "NOT IN")->get_all();
 // SELECT * FROM user WHERE id NOT IN (1, 2, 3)
 ```
 
-##### `BETWEEN`, `NOT BETWEEN`
+###### `BETWEEN`, `NOT BETWEEN`
 
 ```php
 $users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "BETWEEN")->get_all();
