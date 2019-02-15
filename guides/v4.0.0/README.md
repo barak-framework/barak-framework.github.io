@@ -140,7 +140,7 @@ ApplicationRoutes::draw(function() {
 
 - Target
 
-Yönlendirici isteği olan `/home/index` gibi bir yapının gideceği rota `controller : HomeController`, `action : index` şeklindedir. Ancak bu rotayı değiştirebiliriz. Aşağıdaki örnekte gideceği rota `controller : HomeController`, `action : about` şeklinde belirlenmiştir.
+Yönlendirici isteği olan `/home/index` gibi bir yapının gideceği rota `controller : HomeController`, `action : index` şeklindedir. Ancak bu rotayı değiştirebiliriz, aşağıdaki örnekte gideceği rota `controller : HomeController`, `action : about` şeklinde belirlenmiştir.
 
 > `config/routes.php`
 
@@ -152,7 +152,7 @@ ApplicationRoutes::draw(function() {
 
 - Dynamical Segment
 
-`:` ile başlayan dinamik route tanımlamalarında (Ör.: `:id`), yapı olarak yönlendirici isteklerinin, denetleyici eylemiyle eşleşmesini ister. Örneğin `/home/index/12`, `/home/index/foo` gibi yönlendiri istekleri, tanımlanmış denetleyici `/home/index/:id` yapısında eşleşme sağlar. Ayrıca "home#index" `controller#action` gibi hedef belirtilmesi **zorunludur**. Dinamik route tanımlamalarında ki "$id" gibi parçalara erişim örneği aşağıda verilmiştir.
+`:` ile başlayan dinamik route tanımlamalarında (Ör.: `:id`), yapı olarak yönlendirici isteklerinin, denetleyici eylemiyle eşleşmesini ister. Örneğin `/home/index/12`, `/home/index/foo` gibi yönlendiri istekleri, tanımlanmış denetleyici `/home/index/:id` yapısında eşleşme sağlar. Ayrıca "home#index" `controller#action` gibi hedef belirtilmesi **zorunludur**. Dinamik denetleyici tanımlamalarında ki "$id" gibi parçalara erişim örneği aşağıda verilmiştir.
 
 > `config/routes.php`
 
