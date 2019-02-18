@@ -1289,7 +1289,13 @@ Veriler alınırken eğer ilişki kurulan diğer tabloda ilişik-veri (yabancı 
 // document ["id", "category_id"]
 
 $categories = Category::load()->joins("article")->get_all();
-// SELECT category.id, category.name, article.id as article_id, article.category_id as article_category_id * FROM category INNER JOIN article ON article.category_id=category.id;
+/*
+SELECT category.id, category.name,
+       article.id as article_id,
+       article.category_id as article_category_id
+FROM category
+INNER JOIN article ON article.category_id=category.id;
+*/
 
 $categories = Category::load()->joins(["article"])->get_all();
 $categories = Category::load()->joins(["article" => "comment"])->get_all();
