@@ -168,7 +168,7 @@ ApplicationRoutes::draw(function() {
 class HomeController extends ApplicationController {
 
   public function index() {
-    echo $this->id;
+    $this->id = 1071;
   }
 
 }
