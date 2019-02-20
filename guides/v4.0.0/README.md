@@ -1644,8 +1644,8 @@ Her hazırlanan Mailer sınıfı kullanırken,
 
 ##### `delivery` ($action, [$param1, ...])
 
-1. parametre olarak kullanılacak Mailer içersindeki method ismi yazılır.
-2. parametre eğer method bir veri alacak şekilde tanımlandıysa bu veriler liste içersinde gönderilir.
+1. `$action` parametresi olarak oluşturduğunuz `*app/mailers/*Mailer.php` sınıfı içersindeki method ismi yazılır.
+2. `$action` adındaki oluşturduğunu method eğer bir veri alacak şekilde tanımlandıysa bu veriler `[$param1, ...]` şeklinde gönderilir.
 
 > `app/controllers/HomeController.php`
 
