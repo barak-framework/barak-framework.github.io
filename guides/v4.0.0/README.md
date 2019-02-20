@@ -74,10 +74,8 @@ class HomeController extends ApplicationController {
 
 > `app/views/home/index.php`
 
-```html
-<h1> Home/Index </h1>;
-```
 ```php
+<h1> Home/Index </h1>;
 <?= $message; ?>
 ```
 
