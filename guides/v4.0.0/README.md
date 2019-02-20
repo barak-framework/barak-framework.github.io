@@ -152,7 +152,7 @@ ApplicationRoutes::draw(function() {
 
 - Dynamical Segment
 
-`:` ile başlayan dinamik denetleyici tanımlamalarında (Ör.: `:id`) yönlendirici isteklerinin, denetleyici eylemiyle eşleşmesini ister. Örneğin `/home/index/12`, `/home/index/foo` gibi yönlendiri istekleri, tanımlanmış denetleyici `/home/index/:id` yapısında eşleşme sağlar. Ayrıca "home#index" `controller#action` gibi hedef belirtilmesi **zorunludur**. Dinamik denetleyici tanımlamalarında ki "$id" gibi parçalara erişim örneği aşağıda verilmiştir.
+`:` ile başlayan dinamik denetleyici tanımlamalarında (Ör.: `:id`) yönlendirici isteklerinin, denetleyici eylemiyle eşleşmesini ister. Örneğin `/home/index/12`, `/home/index/foo` gibi yönlendiri istekleri, tanımlanmış denetleyici `/home/index/:id` yapısında eşleşme sağlar. Ayrıca "home#index" `controller#action` gibi hedef belirtilmesi **zorunludur**. Dinamik denetleyici tanımlamalarında ki `$id` gibi parçalara erişim örneği aşağıda verilmiştir.
 
 > `config/routes.php`
 
