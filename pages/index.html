@@ -110,20 +110,21 @@
       $("#readme").toggleClass("moonmode-page");
     });
 
+    $("#path").hide();
     $('.page').click(function() {
       var PAGE = $(this).attr('id');
       var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/pages/_" + PAGE );
       var converter = new showdown.Converter();
       var HTML = converter.makeHtml(MARKDOWN);
 
-      $("#readme").html(HTML).show();
+      var PAGETEXT = $(this).text();
+      $("#subpath").html(PAGETEXT);
+      $("#path").show()
+
+      $("#readme").html(HTML);
 
       $('pre code').each(function(i, e) { hljs.highlightBlock(e) });
 
-    }).trigger('change');
-
-    $("#documentation").click(function() {
-      $("#readme").slideToggle("slow");
     });
 
   });
@@ -170,14 +171,23 @@
 </head>
 <body>
 
-
+  <div class="row" style="padding:1em">
+    <div class="ck2 k2 o2 b2 cb2">
+      <a href="http://barak-framework.github.io/pages">
+        <img src="https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/assets/img/default-border.png" height="58"/>
+      </a>
+    </div>
+    <div class="ck8 k8 o8 b8 cb8">
+    </div>
+    <div class="ck2 k2 o2 b2 cb2" style="margin-top:20px">
+      <a href="http://barak-framework.github.io">
+        Barak Framework
+      </a>
+    </div>
+  </div>
 
   <nav class="menu">
     <div class="container">
-    <a href="http://barak-framework.github.io">
-    <img src="https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/assets/img/default.png" width="25"/>
-    </a>
-      
       <a href="http://barak-framework.github.io/pages">Anasayfa</a>
       <a class="page" id="terms-of-use.md">Kullanım Şartları</a>
       <a class="page" id="privacy-policy.md">Gizlilik Politikası</a>
@@ -185,23 +195,30 @@
     </div>
   </nav>
 
+  <div id="path" style="text-align:right">
+    <nav class="konum">
+      <ul>
+        <li><a href="http://barak-framework.github.io/pages">Ana Sayfa</a></li>
+        <li><a id="subpath"></a></li>
+      </ul>
+    </nav>
+  </div>
 
-
-  <div id="readme" class="ck9 k9 o9 b9 cb9 markdown-body" style="background-color:#ddd">
+  <div id="readme" class="markdown-body">
     Barak Framework sayfalar bölümüne hoş geldiniz!
   </div>
 
-<!-- Moonmode logo start -->
-<div id="moonmode-logo" style="top:0; left:0;"></div>
-<!-- Moonmode logo end -->
+  <!-- Moonmode logo start -->
+  <div id="moonmode-logo" style="top:0; left:0;"></div>
+  <!-- Moonmode logo end -->
 
 
-<!-- backtotop start -->
-<!-- source : http://github.com/gdemir/backtotop -->
-<link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/backtotop.min.css" />
-<a href="#" id="backtotop" title="Back to top">&uarr;</a>
-<script src="https://barak-framework.github.io/assets/js/backtotop.min.js"></script>
-<!-- backtotop end -->
+  <!-- backtotop start -->
+  <!-- source : http://github.com/gdemir/backtotop -->
+  <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/backtotop.min.css" />
+  <a href="#" id="backtotop" title="Back to top">&uarr;</a>
+  <script src="https://barak-framework.github.io/assets/js/backtotop.min.js"></script>
+  <!-- backtotop end -->
 
 </body>
 </html>
