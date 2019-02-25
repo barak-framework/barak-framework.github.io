@@ -13,3 +13,11 @@ Ondan sonra, içerde ve dışarda saygı ile tanınan yeni yapılandırmalar, ye
 Ve bunları başarmak için aralıksız kodlamalar...
 
 İşte Türk genel framework'ün (Barak) kısa diyemi...
+
+### 
+
+####
+
+#####
+
+######
