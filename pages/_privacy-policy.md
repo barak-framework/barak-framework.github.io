@@ -22,7 +22,7 @@ Kullanıcıların Barak'a dahil olmasıyla bu telif hakkı bildirisini kabul ett
 ## GİZLİLİK
 
 Barak bireylerin mahremiyetine saygı duyar.
-kişilere ait toplanan verileri yasal zorunluluklar hali dışında üçüncü şahıslarla asla paylaşmaz;
+Kişilere ait toplanan verileri yasal zorunluluklar hali dışında üçüncü şahıslarla asla paylaşmaz;
 şahsi bilgilerinizin güvenliği için tüm tedbirlerin alındığını taahhüt eder.
 Kişisel verileriniz reklam, kampanya, veri madenciliği ve benzer maksatlarla satılması söz konusu değildir.
 Kurumların bilgi, sonuç, değerlendirme ve benzeri verileri Barak tarafından kurumlara sunulan analizlerin dışında
