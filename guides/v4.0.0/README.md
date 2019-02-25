@@ -1,19 +1,5 @@
 # BARAK FRAMEWORK
 
-## Neden Barak ?
-
-Tüm Framework çılgınlıklarının kenarında yıkık bir yazılımcı...
-
-Türlü Frameworklerle kanlı boğuşmalar...
-
-Yıllarca süren kodlar...
-
-Ondan sonra, içerde ve dışarda saygı ile tanınan yeni yapılandırmalar, yeni sınıflar, yeni framework...
-
-Ve bunları başarmak için aralıksız kodlamalar...
-
-İşte Türk genel framework'ün (Barak) kısa diyemi...
-
 ## Barak Framework Nedir ?
 
 Barak Framework PHP diliyle yazılmış, açık kaynak kodlu bir web uygulama geliştirme çatısıdır. Web uygulamaları için ihtiyaç duyulabilecek bütün bileşenleri barındıran Barak; MVC (model-view-controller), DRY (don't repeat yourself), CoC (convention over configuration) yaklaşımlarını temel alır. Barak ile aktif hızlı ve kolay RESTful web uygulamaları yapabilirsiniz.
