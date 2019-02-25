@@ -1,6 +1,6 @@
-# BARAK FRAMEWORK
+# Barak Hakkında
 
-## Vizyon
+## VİZYON
 
 Tüm Framework çılgınlıklarının kenarında yıkık bir yazılımcı...
 
@@ -14,10 +14,10 @@ Ve bunları başarmak için aralıksız kodlamalar...
 
 İşte Türk genel framework'ün (Barak) kısa diyemi...
 
-## Nasıl Yaparız ?
+## NASIL YAPARIZ ?
 
 Türk örf-adet geleneklerine göre.
 
-### İnandığımız Neler
+## İNANDIĞIMIZ İLKELER
 
 Türklük.
