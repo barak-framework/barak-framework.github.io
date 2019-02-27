@@ -1853,7 +1853,7 @@ Genel ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorun
 
 - Options
 
-> `debug`, `timezone`, `locale`, `cacheexpiration`
+> `debug`, `timezone`, `locale`, `logsize`, `cacheexpiration`
 
 ```ini
 ; Ör.:
