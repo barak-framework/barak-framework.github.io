@@ -1868,7 +1868,7 @@ Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı k�
 
 - Files
 
-> `config/application.ini`, `config/database.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
+> `config/application.ini`, `config/database.ini`, `config/logger.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
 
 #### Files
 
