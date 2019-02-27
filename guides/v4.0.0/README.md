@@ -1882,10 +1882,13 @@ PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi içi
 
 `config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
 
+###### `logsize` [= 5242880]
+
+Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
+
 ###### `cacheexpiration` [= 600000]
 
 `tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
-
 
 ##### `config/database.ini` (database configuration file)
 
