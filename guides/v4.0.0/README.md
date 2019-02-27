@@ -1849,7 +1849,7 @@ Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı k�
 
 ##### `config/application.ini` (application configuration file)
 
-Genel ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
+Genel ayarların yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
 
 - Options
 
