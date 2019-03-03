@@ -600,7 +600,7 @@ class HomeController extends ApplicationController {
 <h1> Home#Index </h1>
 ```
 
-##### `send_data` ($content, $filename)
+##### `send_data` ($content, $filename, $contenttype = [="application/octet-stream"])
 
 Gönderdiğiniz veriyi (örneğin, bir PDF dosyası) kaydetmesi için tetiklemek isterseniz, bir dosya ismi ve içeriğini girerek kullanabilirsiniz.
 
@@ -618,6 +618,7 @@ ApplicationRoutes::draw(function() {
 class HomeController extends ApplicationController {
   public function index() {
     return $this->send_data("Bu bir TEXT dosya içeriğidir.", "bilgi.txt");
+    // return $this->send_data("Bu bir TEXT dosya içeriğidir.", "bilgi.txt", "text/plain");
   }
 }
 ```
