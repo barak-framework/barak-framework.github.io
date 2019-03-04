@@ -208,7 +208,7 @@ class AdminController extends ApplicationController {
   public function login() {
 
     if (isset($_SESSION["admin"]))
-      return $this->redirect_to("/admin/index");
+      return $this->redirect_to("admin/index");
 
     if (isset($_POST["username"]) and isset($_POST["password"])) {
 
@@ -236,13 +236,13 @@ class AdminController extends ApplicationController {
   public function logout() {
     if (isset($_SESSION["admin"]))
       session_destroy();
-    return $this->redirect_to("/admin/login");
+    return $this->redirect_to("admin/login");
   }
 
   public function require_login() {
     if (!isset($_SESSION["admin"])) {
       $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
-      return $this->redirect_to("/admin/login");
+      return $this->redirect_to("admin/login");
     }
   }
 }
@@ -588,7 +588,7 @@ ApplicationRoutes::draw(function() {
 ```php
 class HomeController extends ApplicationController {
   public function home() {
-    return $this->redirect_to("/home/index");
+    return $this->redirect_to("home/index");
   }
   public function index() {}
 }
@@ -701,7 +701,7 @@ class AdminController extends ApplicationController {
   public function login() {
 
     if (isset($_SESSION["admin"]))
-      return $this->redirect_to("/admin/index");
+      return $this->redirect_to("admin/index");
 
     if (isset($_POST["username"]) and isset($_POST["password"])) {
 
@@ -729,13 +729,13 @@ class AdminController extends ApplicationController {
   public function logout() {
     if (isset($_SESSION["admin"]))
       session_destroy();
-    return $this->redirect_to("/admin/login");
+    return $this->redirect_to("admin/login");
   }
 
   public function require_login() {
     if (!isset($_SESSION["admin"])) {
       $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
-      return $this->redirect_to("/admin/login");
+      return $this->redirect_to("admin/login");
     }
   }
 }
