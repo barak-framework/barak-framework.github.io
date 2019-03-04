@@ -127,7 +127,7 @@ ApplicationRoutes::draw(function() {
 ```
 #### Methods
 
-##### `get` ($rule, $target = false, $path = null)
+##### `get` ($rule, $target = false, $path = "")
 
 - Simple
 
@@ -184,7 +184,7 @@ class HomeController extends ApplicationController {
 <?= "id: $id"; ?>
 ```
 
-##### `post` ($rule, $target = false, $path = null)
+##### `post` ($rule, $target = false, $path = "")
 
 - Simple
 
@@ -255,7 +255,7 @@ class AdminController extends ApplicationController {
 <?= $_SESSION["full_name"]; ?>
 ```
 
-##### `resource` ($rule, $path = null)
+##### `resource` ($rule, $path = "")
 
 > `config/routes.php`
 
@@ -279,7 +279,7 @@ ApplicationRoutes::draw(function() {
 });
 ```
 
-##### `resources` ($rule, $path = null)
+##### `resources` ($rule, $path = "")
 
 > `config/routes.php`
 
@@ -408,7 +408,7 @@ ApplicationRoutes::draw(function() {
 });
 ```
 
-##### `root` ($target = false, $path = null)
+##### `root` ($target = false, $path = "")
 
 > `config/routes.php`
 
