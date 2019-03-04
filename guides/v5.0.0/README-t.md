@@ -59,7 +59,7 @@ Basit bir URL olarak `/` yönlendirme isteği geldiğinde Barak Framework uygula
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/", "home#index");
+  get("", "home#index");
 });
 ```
 
@@ -137,7 +137,7 @@ Yönlendirici isteği olan `/home/index` gibi bir yapının gideceği rota `cont
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/home/index");
+  get("home/index");
 });
 ```
 
@@ -149,7 +149,7 @@ Yönlendirici isteği olan `/home/index` gibi bir yapının gideceği rota `cont
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/home/index", "home#about");
+  get("home/index", "home#about");
 });
 ```
 
@@ -161,7 +161,7 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/home/index/:id", "home#index");
+  get("home/index/:id", "home#index");
 });
 ```
 
@@ -192,7 +192,7 @@ class HomeController extends ApplicationController {
 
 ```php
 ApplicationRoutes::draw(function() {
-  post("/admin/login");
+  post("admin/login");
 });
 ```
 
@@ -261,7 +261,7 @@ class AdminController extends ApplicationController {
 
 ```php
 ApplicationRoutes::draw(function() {
-  resource("/users");
+  resource("users");
 });
 ```
 
@@ -269,13 +269,13 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/users/", "users#index"); // all record
-  get("/users/create");          // new record form
-  post("users/save");            // new record save
-  get("/users/show");            // display record
-  get("/users/edit");            // edit record
-  post("/users/update");         // update record
-  post("/users/destroy");        // destroy record
+  get("users", "users#index");  // all record
+  get("users/create");          // new record form
+  post("users/save");           // new record save
+  get("users/show");            // display record
+  get("users/edit");            // edit record
+  post("users/update");         // update record
+  post("users/destroy");        // destroy record
 });
 ```
 
@@ -285,7 +285,7 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  resources("/users");
+  resources("users");
 });
 ```
 
@@ -293,13 +293,13 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/users", "users#index");         // all record
-  get("/users/create");                 // new record form
-  post("/users/save");                  // new record save
-  get("/users/show/:id", "users#show"); // display record
-  get("/users/edit/:id", "users#edit"); // edit record
-  post("/users/update");                // update record
-  post("/users/destroy");               // destroy record
+  get("users", "users#index");         // all record
+  get("users/create");                 // new record form
+  post("users/save");                  // new record save
+  get("users/show/:id", "users#show"); // display record
+  get("users/edit/:id", "users#edit"); // edit record
+  post("users/update");                // update record
+  post("users/destroy");               // destroy record
 });
 ```
 
@@ -320,8 +320,8 @@ Kodları daha derli toplu kullanmak için Route'in gruplama özelliğidir. Bir `
 
 ```php
 ApplicationRoutes::draw(function() {
- scope("/admin", function() {
-    resources("/categories");
+ scope("admin", function() {
+    resources("categories");
  });
 });
 ```
@@ -329,13 +329,13 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/admin/categories",          "categories#index", "/admin");  // all record
-  get("/admin/categories/create",   false,              "/admin");  // new record form
-  post("/admin/categories/save",    false,              "/admin");  // new record save
-  get("/admin/categories/show/:id", "categories#show",  "/admin");  // display record
-  get("/admin/categories/edit/:id", "categories#edit",  "/admin");  // edit record
-  post("/admin/categories/update",  false,              "/admin");  // update record
-  post("/admin/categories/destroy", false,              "/admin");  // destroy record
+  get("admin/categories",          "categories#index", "admin/");  // all record
+  get("admin/categories/create",   false,              "admin/");  // new record form
+  post("admin/categories/save",    false,              "admin/");  // new record save
+  get("admin/categories/show/:id", "categories#show",  "admin/");  // display record
+  get("admin/categories/edit/:id", "categories#edit",  "admin/");  // edit record
+  post("admin/categories/update",  false,              "admin/");  // update record
+  post("admin/categories/destroy", false,              "admin/");  // destroy record
 });
 ```
 
@@ -343,9 +343,9 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  scope("/admin", function() {
-    scope("/dashboard", function() {
-      resources("/categories");
+  scope("admin", function() {
+    scope("dashboard", function() {
+      resources("categories");
     });
   });
 });
@@ -355,13 +355,13 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/admin/dashboard/categories",          "categories#index", "/admin/dashboard");  // all record
-  get("/admin/dashboard/categories/create",   false,              "/admin/dashboard");  // new record form
-  post("/admin/dashboard/categories/save",    false,              "/admin/dashboard");  // new record save
-  get("/admin/dashboard/categories/show/:id", "categories#show",  "/admin/dashboard");  // display record
-  get("/admin/dashboard/categories/edit/:id", "categories#edit",  "/admin/dashboard");  // edit record
-  post("/admin/dashboard/categories/update",  false,              "/admin/dashboard");  // update record
-  post("/admin/dashboard/categories/destroy", false,              "/admin/dashboard");  // destroy record
+  get("admin/dashboard/categories",          "categories#index", "admin/dashboard/");  // all record
+  get("admin/dashboard/categories/create",   false,              "admin/dashboard/");  // new record form
+  post("admin/dashboard/categories/save",    false,              "admin/dashboard/");  // new record save
+  get("admin/dashboard/categories/show/:id", "categories#show",  "admin/dashboard/");  // display record
+  get("admin/dashboard/categories/edit/:id", "categories#edit",  "admin/dashboard/");  // edit record
+  post("admin/dashboard/categories/update",  false,              "admin/dashboard/");  // update record
+  post("admin/dashboard/categories/destroy", false,              "admin/dashboard/");  // destroy record
 });
 ```
 
@@ -371,12 +371,12 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/admin/login");
-  scope("/admin", function() {
-    get("/users", "users#index");
-    get("/users/show/:id");
-    resources("/categories");
-    resource("/products");
+  get("admin/login");
+  scope("admin", function() {
+    get("users", "users#index");
+    get("users/show/:id");
+    resources("categories");
+    resource("products");
   });
 });
 ```
@@ -385,26 +385,26 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/admin/login");
+  get("admin/login");
 
-  get("/admin/users",               "users#index",      "/admin");  // all record
-  get("/admin/users/show/:id",      false,              "/admin");  // display record
+  get("admin/users",               "users#index",      "admin/");  // all record
+  get("admin/users/show/:id",      false,              "admin/");  // display record
 
-  get("/admin/categories",          "categories#index", "/admin");  // all record
-  get("/admin/categories/create",   false,              "/admin");  // new record form
-  post("/admin/categories/save",    false,              "/admin");  // new record save
-  get("/admin/categories/show/:id", "categories#show",  "/admin");  // display record
-  get("/admin/categories/edit/:id", "categories#edit",  "/admin");  // edit record
-  post("/admin/categories/update",  false,              "/admin");  // update record
-  post("/admin/categories/destroy", false,              "/admin");  // destroy record
+  get("admin/categories",          "categories#index", "admin/");  // all record
+  get("admin/categories/create",   false,              "admin/");  // new record form
+  post("admin/categories/save",    false,              "admin/");  // new record save
+  get("admin/categories/show/:id", "categories#show",  "admin/");  // display record
+  get("admin/categories/edit/:id", "categories#edit",  "admin/");  // edit record
+  post("admin/categories/update",  false,              "admin/");  // update record
+  post("admin/categories/destroy", false,              "admin/");  // destroy record
 
-  get("/admin/products",           "products#index",    "/admin");  // all record
-  get("/admin/products/create",     false,              "/admin");  // new record form
-  post("/admin/products/save",      false,              "/admin");  // new record save
-  get("/admin/products/show",       false,              "/admin");  // display record
-  get("/admin/products/edit",       false,              "/admin");  // edit record
-  post("/admin/products/update",    false,              "/admin");  // update record
-  post("/admin/products/destroy",   false,              "/admin");  // destroy record
+  get("admin/products",           "products#index",    "admin/");  // all record
+  get("admin/products/create",     false,              "admin/");  // new record form
+  post("admin/products/save",      false,              "admin/");  // new record save
+  get("admin/products/show",       false,              "admin/");  // display record
+  get("admin/products/edit",       false,              "admin/");  // edit record
+  post("admin/products/update",    false,              "admin/");  // update record
+  post("admin/products/destroy",   false,              "admin/");  // destroy record
 });
 ```
 
@@ -422,7 +422,7 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/", "home#index");
+  get("", "home#index");
 });
 ```
 
@@ -577,9 +577,9 @@ class HomeController extends ApplicationController {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/", "home#home"); // or root("home#home"),
-  get("/home", "home#home");
-  get("/home/index");
+  get("", "home#home"); // or root("home#home"),
+  get("home", "home#home");
+  get("home/index");
 });
 ```
 
@@ -608,7 +608,7 @@ Gönderdiğiniz veriyi (örneğin, bir PDF dosyası) kaydetmesi için tetiklemek
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/home/index");
+  get("home/index");
 });
 ```
 
@@ -683,9 +683,9 @@ After Action (`protected $after_actions`) özelliği, `app/controller/*.php` dos
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/admin/home");
-  get("/admin/login");
-  post("/admin/login");
+  get("admin/home");
+  get("admin/login");
+  post("admin/login");
 });
 ```
 
