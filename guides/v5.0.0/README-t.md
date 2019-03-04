@@ -2326,7 +2326,9 @@ Composer paket yöneticisi kullanarak kütüphane dahil etmek için `require` ve
 
 > `require`, `update`
 
-#### require
+#### Options
+
+##### require
 
 Komut satırında `require` anahtarı ile çalıştırmak.
 
@@ -2340,7 +2342,7 @@ composer require user/package
 ```sh
 composer require google/recaptcha
 ```
-#### update
+##### update
 
 Ana dizinde bulunan `composer.json` dosyasının `require` anahtar bölümüne eklemek.
 
