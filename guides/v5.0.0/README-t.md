@@ -2315,3 +2315,79 @@ echo (ApplicationCache::exists("users")) ? "bellekte var" : "bellekte yok";
 ```php
 ApplicationCache::reset();
 ```
+
+### Harici Kütüphanelerin Entegrasyonu (`composer`)
+
+Barak Framework `PHPMailer` kütüphanesini kullanmaktadır. Kendi yazdığınız ya da kullanmak istediğiniz diğer harici kütüphanelerin de dahil edilip kullanılmasına olanak verir. Harici kütüphaneler `composer` paket yöneticisi kullanılarak ya da manuel olarak dosyaların kopyalanması ile dahil edilebilir.
+
+Composer paket yöneticisi kullanarak kütüphane dahil etmek için `require` ve `update` ayar kullanımları vardır.
+
+- Options
+
+> `require`, `update`
+
+#### require
+
+Komut satırında `require` anahtarı ile çalıştırmak.
+
+
+```sh
+composer require user/package
+```
+
+Ör.:
+
+```sh
+composer require google/recaptcha
+```
+#### update
+
+Ana dizinde bulunan `composer.json` dosyasının `require` anahtar bölümüne eklemek.
+
+```json
+{
+    "name": "barak-framework/barak",
+    "type": "project",
+    "description": "Barak Framework",
+    "keywords": ["barak", "turkmen", "framework"],
+    "homepage": "http://barak-framework.github.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gökhan DEMİR",
+            "email": "gdemir3327@gmail.com",
+            "homepage": "http://gdemir.github.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "phpmailer/phpmailer": "^5.2"
+    }
+}
+```
+
+yukarıdaki örnekte olduğu gibi projenin gereksinimlerinde php ve phpmailer gözükmektedir.
+
+```js
+"require": {
+  "php": ">=5.4.0",
+  "phpmailer/phpmailer": "~5.2"
+}
+```
+
+Örneğin, `"google/recaptcha": "^1.1"` satırını ekleyip `google/recaptcha` uygulamasını projeye dahil edebiliriz.
+
+```js
+"require": {
+  "php": ">=5.4.0",
+  "phpmailer/phpmailer": "~5.2",
+  "google/recaptcha": "^1.1"
+}
+```
+
+Daha sonra aşağıdaki komut çalıştırılmalıdır.
+
+```sh
+composer update
+```
