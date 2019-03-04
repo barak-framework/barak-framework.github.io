@@ -266,7 +266,7 @@ ApplicationRoutes::draw(function() {
 
 ```php
 ApplicationRoutes::draw(function() {
-  get("/users/", "users#index"); // all record
+  get("/users", "users#index");  // all record
   get("/users/create");          // new record form
   post("users/save");            // new record save
   get("/users/show");            // display record
