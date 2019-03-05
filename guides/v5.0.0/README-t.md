@@ -2316,7 +2316,7 @@ echo (ApplicationCache::exists("users")) ? "bellekte var" : "bellekte yok";
 ApplicationCache::reset();
 ```
 
-### Harici Kütüphanelerin Entegrasyonu (`composer`)
+### Packages (`composer`)
 
 Barak Framework `PHPMailer` kütüphanesini kullanmaktadır. Kendi yazdığınız ya da kullanmak istediğiniz diğer harici kütüphanelerin de dahil edilip kullanılmasına olanak verir. Harici kütüphaneler `composer` paket yöneticisi kullanılarak ya da manuel olarak dosyaların kopyalanması ile dahil edilebilir.
 
