@@ -2346,7 +2346,7 @@ composer require google/recaptcha
 
 Ana dizinde bulunan `composer.json` dosyasının `require` anahtar bölümüne eklemek.
 
-```json
+```diff
 {
     "name": "barak-framework/barak",
     "type": "project",
