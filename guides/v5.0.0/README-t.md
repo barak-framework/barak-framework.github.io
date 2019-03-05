@@ -2373,11 +2373,11 @@ yukarıdaki örnekte olduğu gibi projenin gereksinimlerinde php ve phpmailer g�
 
 Örneğin, `"google/recaptcha": "^1.1"` satırını ekleyip `google/recaptcha` uygulamasını projeye dahil edebiliriz.
 
-```js
+```diff
 "require": {
-  "php": ">=5.4.0",
-  "phpmailer/phpmailer": "~5.2",
-  "google/recaptcha": "^1.1"
+    "php": ">=5.4.0",
+    "phpmailer/phpmailer": "~5.2",
++   "google/recaptcha": "^1.1"
 }
 ```
 
