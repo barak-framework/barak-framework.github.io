@@ -219,7 +219,7 @@ class AdminController extends ApplicationController {
         $_SESSION["admininfo"] = $user;
         $_SESSION["admin"] = true;
 
-        return $this->render("/admin/index");
+        return $this->render("admin/index");
 
       } else {
 
@@ -462,47 +462,67 @@ or
 
 Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ve `template` üzerine gönderilecek bir `locals` yok ise hata verecektir.
 
+Aşağıdaki örnekte `HomeController` içerisinde yazılan her render sonucu,
+
+"LAYOUT: home, VIEW: home, ACTION: index, LOCALS: null"
+
+şeklinde olduğu örneklendirilmiştir.
+
 > options : `layout`, `view`, `action`, `template`, `file`, `text`, `partial`, `locals`
+
+###### `action`
 
 ```php
 class HomeController extends ApplicationController {
 
   public function index() {
-    echo "HomeIndex sayfası öncesi çalışan fonksiyon";
-
-    /////////////////////////////////////////////////////////////////////////////////
-    // default render for this functions examples : /home/index
-    /////////////////////////////////////////////////////////////////////////////////
 
     // LAYOUT: home, VIEW: home, ACTION: index, LOCALS: null
-    $this->render("/home/index");
-
-    $this->render(["template" => "/home/index"]);
-    $this->render(["template" => "/home/index", "locals" => null]);
-    $this->render(["template" => "/home/index", "layout" => "home"]);
-    $this->render(["template" => "/home/index", "layout" => "home", "locals" => null]);
-
+    $this->render("home/index");
+    $this->render(["template" => "home/index"]);
+    $this->render(["template" => "home/index", "locals" => null]);
+    $this->render(["template" => "home/index", "layout" => "home"]);
+    $this->render(["template" => "home/index", "layout" => "home", "locals" => null]);
     $this->render(["view" => "home"]);
     $this->render(["action" => "index"]);
     $this->render(["layout" => "home"]);
-
     $this->render(["view" => "home", "action" => "index"]);
     $this->render(["view" => "home", "action" => "index", "locals" => null]);
     $this->render(["view" => "home", "action" => "index", "layout" => "home"]);
     $this->render(["view" => "home", "action" => "index", "layout" => "home", "locals" = null]);
+  }
+}
+```
 
-    /////////////////////////////////////////////////////////////////////////////////
-    // no options
-    /////////////////////////////////////////////////////////////////////////////////
+###### `template`
+
+```php
+class HomeController extends ApplicationController {
+
+  public function index() {
 
     // DEFAULT LAYOUT: home, VIEW: home, ACTION: index, DEFAULT LOCALS: null
-    $this->render("/home/index"); // like $this->render(["template" => "/home/index"]);
+    $this->render("home/index");
+    $this->render(["template" => "home/index"]);
 
     // DEFAULT LAYOUT: home, VIEW: home, ACTION: show, DEFAULT LOCALS: null
-    $this->render("/home/show");  // like $this->render(["template" => "/home/show"]);
+    $this->render("home/show");
+    like $this->render(["template" => "home/show"]);
 
     // DEFAULT LAYOUT: home, VIEW: admin, ACTION: show, DEFAULT LOCALS: null
-    $this->render("/admin/show"); // like $this->render(["template" => "/admin/show"]);
+    $this->render("admin/show");
+    $this->render(["template" => "admin/show"]);
+  }
+
+}
+```
+
+
+
+```
+class HomeController extends ApplicationController {
+
+  public function index() {
 
     /////////////////////////////////////////////////////////////////////////////////
     // option : layout, view, action, template
@@ -518,7 +538,7 @@ class HomeController extends ApplicationController {
     $this->render(["view" => "home"]);
 
     // DEFAULT LAYOUT: home, VIEW: home, ACTION: index, DEFAULT LOCALS: null
-    $this->render(["template" => "/home/index"]);
+    $this->render(["template" => "home/index"]);
 
     // DEFAULT LAYOUT: home, VIEW: admin, ACTION: index, DEFAULT LOCALS: null
     $this->render(["view" => "admin", "action" => "index"]);
@@ -536,19 +556,19 @@ class HomeController extends ApplicationController {
     // option : file ( LAYOUT : pass, VIEW : pass, ACTION : pass )
     /////////////////////////////////////////////////////////////////////////////////
     // include locals and this file
-    // example file path = "/app/views/home/users/show.php"
+    // example file path = "app/views/home/users/show.php"
 
     // DEFAULT LOCALS: null
-    $this->render(["file" => "/app/views/home/users/show.php"]);
+    $this->render(["file" => "app/views/home/users/show.php"]);
 
     // LOCALS: ( $fist_name : "Gökhan", $last_name : "Demir" )
-    $this->render(["file" => "/app/views/home/users/show.php", "locals" => ["fist_name" => "Gökhan", "last_name" => "Demir"]);
+    $this->render(["file" => "app/views/home/users/show.php", "locals" => ["fist_name" => "Gökhan", "last_name" => "Demir"]);
 
     /////////////////////////////////////////////////////////////////////////////////
     // option : partial ( LAYOUT : pass, VIEW : pass, ACTION : pass )
     /////////////////////////////////////////////////////////////////////////////////
     // include locals and this file "_show.php" on VIEW path
-    // example file : /app/views/home/users/_show.php
+    // example file : app/views/home/users/_show.php
 
     // DEFAULT LOCALS: null
     $this->render(["partial" => "home/users/show"]);
@@ -712,7 +732,7 @@ class AdminController extends ApplicationController {
         $_SESSION["admininfo"] = $user;
         $_SESSION["admin"] = true;
 
-        return $this->render("/admin/index");
+        return $this->render("admin/index");
 
       } else {
 
