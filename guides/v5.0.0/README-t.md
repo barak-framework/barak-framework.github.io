@@ -453,24 +453,25 @@ Her `config/routes.php` içerisinde tanımlanan
 
 #### Methods
 
-##### `render`
-###### (["view" => $view, "action" => $action, "template" => $template, "layout" => $layout, "locals" => $locals, "file" => $file, "partial" => $partial, "text" => $text])
-or
-###### ($template)
+##### `render` ($options = []) veya ($template = "")
 
 `redirect_to` fonksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılmayan** , ilgili `Controller` ve `View` akışı **olmayan** istektir.
 
 Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ve `template` üzerine gönderilecek bir `locals` yok ise hata verecektir.
 
-Aşağıdaki örnekte `HomeController` içerisinde yazılan her render sonucu,
+> options : `layout`, `view`, `action`, `template`, `file`, `partial`, `text`, `locals`
 
-"LAYOUT: home, VIEW: home, ACTION: index, LOCALS: null"
+###### [`view` ve `action`] veya [`template`]
 
-şeklinde olduğu örneklendirilmiştir.
+Eylem oluşturma en yaygın biçimdir ve başka bir şey belirtilmediğinde Eylem Denetleyicisi tarafından otomatik olarak kullanılan türdür. Varsayılan olarak, eylemler mevcut mizanpaj içinde gerçekleştirilir (varsa).
 
-> options : `layout`, `view`, `action`, `template`, `file`, `text`, `partial`, `locals`
+`template` anahtar ayarı,
 
-###### `action`
+- `view/action` şeklinde ayar anahtarlarının birlikte kısa kullanımıdır.
+
+- Sadece `locals`, `layout` ayar anahtarlarını kullanılabilir.
+
+`layout` ayar anahtarı `FALSE` ise sadece `template` gösterilir.
 
 ```php
 class HomeController extends ApplicationController {
@@ -490,17 +491,7 @@ class HomeController extends ApplicationController {
     $this->render(["view" => "home", "action" => "index", "locals" => null]);
     $this->render(["view" => "home", "action" => "index", "layout" => "home"]);
     $this->render(["view" => "home", "action" => "index", "layout" => "home", "locals" = null]);
-  }
-}
-```
-
-###### `template`
-
-```php
-class HomeController extends ApplicationController {
-
-  public function index() {
-
+    
     // DEFAULT LAYOUT: home, VIEW: home, ACTION: index, DEFAULT LOCALS: null
     $this->render("home/index");
     $this->render(["template" => "home/index"]);
@@ -513,48 +504,18 @@ class HomeController extends ApplicationController {
     $this->render("admin/show");
     $this->render(["template" => "admin/show"]);
   }
-
 }
 ```
 
+###### `file`
 
+Sadece `locals` ayar anahtarı ile kullanılabilir.
 
-```
+```php
 class HomeController extends ApplicationController {
 
   public function index() {
 
-    /////////////////////////////////////////////////////////////////////////////////
-    // option : layout, view, action, template
-    /////////////////////////////////////////////////////////////////////////////////
-
-    // LAYOUT: false, DEFAULT VIEW: home, DEFAULT ACTION: index, DEFAULT LOCALS: null
-    $this->render(["layout" => false]);
-
-    // DEFAULT LAYOUT: false, DEFAULT VIEW: home, ACTION: index, DEFAULT LOCALS: null
-    $this->render(["action" => "index"]);
-
-    // DEFAULT LAYOUT: false, VIEW: home, DEFAULT ACTION: index, DEFAULT LOCALS: null
-    $this->render(["view" => "home"]);
-
-    // DEFAULT LAYOUT: home, VIEW: home, ACTION: index, DEFAULT LOCALS: null
-    $this->render(["template" => "home/index"]);
-
-    // DEFAULT LAYOUT: home, VIEW: admin, ACTION: index, DEFAULT LOCALS: null
-    $this->render(["view" => "admin", "action" => "index"]);
-
-    // LAYOUT: admin, VIEW: home, ACTION: show, DEFAULT LOCALS: null
-    $this->render(["layout" => "admin", "view" => "home", "action" => "show"]);
-
-    // LAYOUT: admin, VIEW: home, ACTION: index, DEFAULT LOCALS: null
-    $this->render(["layout" => "admin", "template" => "home/index"]);
-
-    // LAYOUT: admin, VIEW: home, ACTION: show, DEFAULT LOCALS: null
-    $this->render(["layout" => "admin", "template" => "home/show"]);
-
-    /////////////////////////////////////////////////////////////////////////////////
-    // option : file ( LAYOUT : pass, VIEW : pass, ACTION : pass )
-    /////////////////////////////////////////////////////////////////////////////////
     // include locals and this file
     // example file path = "app/views/home/users/show.php"
 
@@ -563,10 +524,20 @@ class HomeController extends ApplicationController {
 
     // LOCALS: ( $fist_name : "Gökhan", $last_name : "Demir" )
     $this->render(["file" => "app/views/home/users/show.php", "locals" => ["fist_name" => "Gökhan", "last_name" => "Demir"]);
+  }
 
-    /////////////////////////////////////////////////////////////////////////////////
-    // option : partial ( LAYOUT : pass, VIEW : pass, ACTION : pass )
-    /////////////////////////////////////////////////////////////////////////////////
+}
+```
+
+###### `partial`
+
+Sadece `locals` ayar anahtarı ile kullanılabilir.
+
+```php
+class HomeController extends ApplicationController {
+
+  public function index() {
+
     // include locals and this file "_show.php" on VIEW path
     // example file : app/views/home/users/_show.php
 
@@ -575,12 +546,19 @@ class HomeController extends ApplicationController {
 
     // LOCALS: ( $fist_name : "Gökhan", $last_name : "Demir" )
     $this->render(["partial" => "home/users/show", "locals" => "locals" => ["fist_name" => "Gökhan", "last_name" => "Demir"]]);
+  }
 
-    /////////////////////////////////////////////////////////////////////////////////
-    // option : text ( LAYOUT : pass, VIEW : pass, ACTION : pass, LOCALS : pass )
-    /////////////////////////////////////////////////////////////////////////////////
-    // this option, available in Ajax functions
+}
+```
 
+###### `text`
+
+Diğer tüm ayarları pas geçer. Bu ayar genelde Ajax fonksiyonların kullanımı içindir.
+
+```php
+class HomeController extends ApplicationController {
+
+  public function index() {
     $this->render(["text" => "Hello World"]);
   }
 
