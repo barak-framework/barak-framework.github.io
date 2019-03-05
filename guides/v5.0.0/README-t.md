@@ -2362,21 +2362,14 @@ Ana dizinde bulunan `composer.json` dosyasının `require` anahtar bölümüne e
             "role": "Developer"
         }
     ],
-    "require": {
-        "php": ">=5.4.0",
-        "phpmailer/phpmailer": "^5.2"
-    }
++   "require": {
++       "php": ">=5.4.0",
++       "phpmailer/phpmailer": "^5.2"
++   }
 }
 ```
 
 yukarıdaki örnekte olduğu gibi projenin gereksinimlerinde php ve phpmailer gözükmektedir.
-
-```js
-"require": {
-  "php": ">=5.4.0",
-  "phpmailer/phpmailer": "~5.2"
-}
-```
 
 Örneğin, `"google/recaptcha": "^1.1"` satırını ekleyip `google/recaptcha` uygulamasını projeye dahil edebiliriz.
 
