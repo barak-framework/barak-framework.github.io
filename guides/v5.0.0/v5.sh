@@ -13,7 +13,7 @@ sed -i 's/scope("\//scope("/g' $filename;
 sed -i 's/resource("\//resource("/g' $filename;
 sed -i 's/resources("\//resources("/g' $filename;
 
-# filenames=$(grep -rl "render" *);
-# for filename in $filenames; do
-# sed -i 's/render("\//render("g' $filename;
-# done          
+filenames=$(grep -rl "render" app/controllers/*);
+for filename in $filenames; do
+sed -i 's/render("\//render("/g' $filename;
+done          
