@@ -453,15 +453,19 @@ Her `config/routes.php` içerisinde tanımlanan
 
 #### Methods
 
-##### `render` ($options = []) veya ($template = "")
+##### `render` ($view_options = [], $response_options = NULL) veya ($template = "", $response_options = NULL)
 
 `redirect_to` fonksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılmayan** , ilgili `Controller` ve `View` akışı **olmayan** istektir.
 
 Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ve `template` üzerine gönderilecek bir `locals` yok ise hata verecektir.
 
-> options : `layout`, `view`, `action`, `template`, `file`, `partial`, `text`, `locals`
+> view_options : `layout`, `view`, `action`, `template`, `file`, `partial`, `text`, `locals`
 
-###### [`view` ve `action`] veya [`template`]
+> response_options : `content_type`, `status_code`, `headers`
+
+###### View Options
+
+> [`view` ve `action`] veya [`template`]
 
 Eylem oluşturma en yaygın biçimdir ve başka bir şey belirtilmediğinde Eylem Denetleyicisi tarafından otomatik olarak kullanılan türdür. Varsayılan olarak, eylemler mevcut mizanpaj içinde gerçekleştirilir (varsa).
 
@@ -491,7 +495,7 @@ class HomeController extends ApplicationController {
     $this->render(["view" => "home", "action" => "index", "locals" => null]);
     $this->render(["view" => "home", "action" => "index", "layout" => "home"]);
     $this->render(["view" => "home", "action" => "index", "layout" => "home", "locals" = null]);
-    
+
     // DEFAULT LAYOUT: home, VIEW: home, ACTION: index, DEFAULT LOCALS: null
     $this->render("home/index");
     $this->render(["template" => "home/index"]);
@@ -507,7 +511,7 @@ class HomeController extends ApplicationController {
 }
 ```
 
-###### `file`
+> `file`
 
 Sadece `locals` ayar anahtarı ile kullanılabilir.
 
@@ -529,7 +533,7 @@ class HomeController extends ApplicationController {
 }
 ```
 
-###### `partial`
+> `partial`
 
 Sadece `locals` ayar anahtarı ile kullanılabilir.
 
@@ -551,7 +555,7 @@ class HomeController extends ApplicationController {
 }
 ```
 
-###### `text`
+> `text`
 
 Diğer tüm ayarları pas geçer. Bu ayar genelde Ajax fonksiyonların kullanımı içindir.
 
@@ -562,6 +566,70 @@ class HomeController extends ApplicationController {
     $this->render(["text" => "Hello World"]);
   }
 
+}
+```
+
+###### Response Options
+
+> `content_type` [= text/html]
+
+Dönen verinin içerik tipini belirler. (Ör.: text, json, xml gibi)
+
+```php
+class HomeController extends ApplicationController {
+
+  public function index() {
+
+    $this->render("home/index", ["content_type" => "text/html"]);
+    $this->render(["template" => "home/index"], ["content_type" => "text/html"]);
+
+    $list = [
+    "state" : "OK",
+    "message" : "Record Saved!"
+    ];
+    $this->render(["text" => json_encode($list)], ["content_type" => "application/json"]);
+  }
+}
+```
+
+> `status_code` [= 200]
+
+Dönen verinin durum kodunu belirler. (Ör.: text, json, xml gibi)
+
+```php
+class HomeController extends ApplicationController {
+
+  public function create() {
+
+    $this->render("home/show", ["content_type" => "text/html", "status_code" => 201]);
+  }
+}
+```
+
+> `headers`
+
+Veri verilmeden önce eklenecek başlığı belirler.
+
+Uygulama ile gelen varsayılan güvenli başlıklar :
+
+```php
+  const DEFAULTHEADERS = [
+    'X-Frame-Options' => 'SAMEORIGIN',
+    'X-XSS-Protection' => '1; mode=block',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-Download-Options' => 'noopen',
+    'X-Permitted-Cross-Domain-Policies' => 'none',
+    'Referrer-Policy' => 'strict-origin-when-cross-origin'
+  ];
+```
+
+```php
+class HomeController extends ApplicationController {
+
+  public function create() {
+
+    $this->render("home/show", ["content_type" => "text/html", "status_code" => 201, "headers" => ["Strict-Transport-Security" => "max-age=16070400"]]);
+  }
 }
 ```
 
@@ -598,7 +666,7 @@ class HomeController extends ApplicationController {
 <h1> Home#Index </h1>
 ```
 
-##### `send_data` ($content, $filename, $contenttype = [="application/octet-stream"])
+##### `send_data` ($content, $filename, $content_type = [= application/octet-stream])
 
 Gönderdiğiniz veriyi (örneğin, bir PDF dosyası) kaydetmesi için tetiklemek isterseniz, bir dosya ismi ve içeriğini girerek kullanabilirsiniz.
 
@@ -814,9 +882,14 @@ Yönlendirme dosyasında tanımlı olan (`config/routes.php`) her `get` veya `po
 
 #### Methods
 
-##### `render`
+##### `render` ($view_options = [])
 
-Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Yalnızca `*.php` dosyalarının içersinde kullanılırken `<?php render(); ?>` şeklinde kullanılmalıdır. Daha ayrıntılı bilgi için `Controller#render` kısmına bakınız.
+`render` methodu için `Controllers` kısmındaki,
+- `Controllers#render#view_options` özelliği kullanılabilir.
+- `Controllers#render#response_options` özelliği **kullanılamaz.**
+- Görünüm dosyalarının içerisinde (`html` içerikli dosyalarının) `<?php render(); ?>` şeklinde kullanılmalıdır.
+
+Daha ayrıntılı bilgi için `Controllers#render#view_options` kısmına bakınız.
 
 ### Model (`app/models/TABLE.php`)
 
