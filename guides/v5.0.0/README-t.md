@@ -938,7 +938,7 @@ foreach ($users as $user)
   echo $user->first_name;
 ```
 
-##### `select` ("tablename.field1", ...)
+##### `select` ("table.field1", ...)
 
  Tablodan her kayıt bir sınıfa yüklenirken sütun ismi olarak `id` otomatik olarak eklenmektedir.
 
@@ -1090,7 +1090,7 @@ foreach ($users as $user)
   echo $user->first_name;
 ```
 
-##### `group` ("tablename.field1", ...)
+##### `group` ("table.field1", ...)
 
 - Simple
 
