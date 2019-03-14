@@ -307,16 +307,53 @@ ApplicationRoutes::draw(function() {
 
 Kodları daha derli toplu kullanmak için Route'in gruplama özelliğidir. Bir `PATH` altında `CONTROLLER` ve `VIEW` dizininin çalışma imkanı sağlar.
 
-> controller: `app/controllers/PATH/CONTROLLER.php`
-
-> view : `app/views/VIEW/PATH/CONTROLLER/ACTION.php`
+`PATH` altındaki sınıflara üst sınıf olarak `{PATH}Controller` isminde sınıfı da yükler. Bu üst sınıf, alt sınıflar tarafından miras alınacak şekilde ayarlanırsa `PATH` altındaki tüm sınıflarda kullanılacak `helpers`, `before_actions`, `after_actions` özelliklerini ortak havuz gibi kullanma imkanı sağlar. 
 
 - Simple
 
+Aşağıdaki örnek route yapılandırmasına göre şu sınıfları yüklenecektir:
+
+`app/controllers/admin/CategoriesController.php`
+
+`app/controllers/AdminController.php`
+
+Üst sınıf aşağıdaki gibi olduğunu düşünelim:
+
+```php
+class AdminController extends ApplicationController {
+
+ protected $helpers = ["Password"];
+
+  protected $before_actions = [["require_login"]];
+
+  public function require_login() {
+    if (!isset($_SESSION["admin"])) {
+      $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
+      return $this->redirect_to("admin/login");
+    }
+  }
+}
+```
+
+Alt sınıf aşağıdaki gibi olduğunu düşünelim:
+
+```diff
++ class CategoriesController extends AdminController {
+  public function index() {}
+}
+```
+
+Alt sınıflar `AdminController` sınıfından miras almalıdır,  böylelikle bu `PATH` altındaki tüm sınıflara erişimde `app/helpers/PasswordHelper.php` sınıfı yüklenecek her erişim öncesi `require_login` methodu çalıştırılacaktır.
+
+Buradaki Admin path'i altıdan yapılacak tüm işlemlerde login olma özelliği zorunlu kılınmış oldu. Bu da bize her sınıf altında `require_login` methodunun tekrar tekrar yazma zorluğundan bizi kurtarmış oldu.
+
 > `config/routes.php`
 
-> view : `app/views/admin/categories/ACTION.php`
-> controller : `app/controllers/admin/CategoriesController.php`
+view : `app/views/admin/categories/ACTION.php`
+
+controller : `app/controllers/admin/CategoriesController.php`
+
+path_controller : `app/controllers/AdminController.php`
 
 ```php
 ApplicationRoutes::draw(function() {
@@ -325,6 +362,7 @@ ApplicationRoutes::draw(function() {
  });
 });
 ```
+
 > *Aşağıdaki routes kümesini üretir.*
 
 ```php
@@ -340,6 +378,14 @@ ApplicationRoutes::draw(function() {
 ```
 
 - Multiple
+
+view : `app/views/admin/dashboard/categories/ACTION.php`
+
+controller : `app/controllers/admin/dashboard/CategoriesController.php`
+
+path_controller1 : `app/controllers/AdminController.php`
+
+path_controller2 : `app/controllers/admin/DashboardController.php`
 
 ```php
 ApplicationRoutes::draw(function() {
