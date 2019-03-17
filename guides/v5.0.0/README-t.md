@@ -2001,10 +2001,11 @@ Genel ayarların yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu 
 ```ini
 ; Ör.:
 [application_configuration]
-debug           = true
-timezone        = Europe/Istanbul
-locale          = tr
-cacheexpiration = 600000
+debug                   = false
+timezone                = Europe/Istanbul
+locale                  = tr
+cache_expiration        = 600000
+session.cookie_httponly = 1
 ```
 
 ###### `debug` [= false]
@@ -2024,9 +2025,13 @@ PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi içi
 
 `config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
 
-###### `cacheexpiration` [= 600000]
+###### `cache_expiration` [= 600000]
 
 `tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
+
+###### `session.cookie_httponly` [=true]
+
+httponly ile JS'in ilgili cookie'yi okuması engellenmesinin varsayılan olarak ayarlandığı anahtardı. Session Cookie, XSS atağından korunmuş olur. Eğer pasif etmek istenirse `false` değeri atanmalıdır.
 
 ##### `config/database.ini` (database configuration file)
 
