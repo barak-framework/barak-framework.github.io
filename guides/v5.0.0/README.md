@@ -2,7 +2,7 @@
 
 ## Barak Framework Nedir ?
 
-Barak Framework PHP diliyle yazılmış, açık kaynak kodlu bir web uygulama geliştirme çatısıdır. Web uygulamaları için ihtiyaç duyulabilecek bütün bileşenleri barındıran Barak; MVC (model-view-controller), DRY (don't repeat yourself), CoC (convention over configuration) yaklaşımlarını temel alır. Barak ile aktif hızlı ve kolay RESTful web uygulamaları yapabilirsiniz.
+Barak Framework PHP diliyle yazılmış, açık kaynak kodlu bir web uygulama geliştirme çatısıdır. Web uygulamaları için ihtiyaç duyulabilecek bütün bileşenleri barındıran Barak; MVC (model-view-controller), DRY (don't repeat yourself), CoC (convention over configuration) yaklaşımlarını temel alır. Barak ile aktif hızlı ve web uygulamaları yapabilirsiniz.
 
 ### Gereksinimler
 
@@ -2436,6 +2436,85 @@ echo (ApplicationCache::exists("users")) ? "bellekte var" : "bellekte yok";
 
 ```php
 ApplicationCache::reset();
+```
+
+### Http
+
+---
+
+Api servislerine `GET`, `POST`, `HEAD` methodları ile istek gönderen bir sınıftır.
+
+Uygulama ile gelen varsayılan varsayılan başlıklar :
+
+```php
+const DEFAULTHEADERS = [
+  'Content-Type' => 'application/x-www-form-urlencoded'
+];
+```
+
+Uygulama ile gelen varsayılan varsayılan ayarlar :
+
+```php
+const DEFAULTOPTIONS = [
+  'CURLOPT_HEADER' => true,
+  'CURLOPT_RETURNTRANSFER' => true
+];
+```
+
+- Methods
+
+> `head`, `get`, `post`
+
+- Attributes
+
+> `headers`, `options`
+
+- Method Output Attributes
+
+> `status_code`, `content_type`, `headers`, `body`
+
+#### Methods
+
+##### `head` ($url)
+
+Api servisine HEAD isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
+
+```php
+$http = new ApplicationHttp();
+$response = $http->head("http://api.gdemir.github.io");
+print_r($response);
+```
+
+##### `get` ($url)
+
+Api servisine GET isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
+
+```php
+$http = new ApplicationHttp();
+// $http->headers = ["Content-type" => "application/html"];
+// $http->options = [];
+$response = $http->get("http://api.gdemir.github.io");
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+echo $response->body; // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
+```
+
+##### `post` ($url, $data = [])
+
+Api servisine POST isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
+Aşağıdaki örnek MNG kargo entegrosyonu bağlantı testi içindir, test edilen bir örnektir.
+
+```php
+$http = new ApplicationHttp();
+// $http->headers = [];
+// $http->options = ["CURLOPT_SSL_VERIFYPEER" => false];
+$response= $http->post("http://service.mngkargo.com.tr/tservis/musterikargosiparis.asmx/Baglanti_Test");
+
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+$result = simplexml_load_string($response->body);  // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
 ```
 
 ### Packages (`composer`)
