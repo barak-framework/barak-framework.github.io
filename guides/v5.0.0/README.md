@@ -2506,10 +2506,24 @@ Api servisine POST isteği yollar. Nitelik olan `headers` ve `options` anahtarla
 Aşağıdaki örnek MNG kargo entegrosyonu bağlantı testi içindir, test edilen bir örnektir.
 
 ```php
+// Ör. 1:
 $http = new ApplicationHttp();
 // $http->headers = [];
 // $http->options = ["CURLOPT_SSL_VERIFYPEER" => false];
 $response= $http->post("http://service.mngkargo.com.tr/tservis/musterikargosiparis.asmx/Baglanti_Test");
+
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+$result = simplexml_load_string($response->body);  // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
+```
+
+```php
+// Ör. 2:
+$http = new ApplicationHttp();
+// $http->headers = [];
+// $http->options = ["CURLOPT_SSL_VERIFYPEER" => false];
+$response = $http->post("http://service.mngkargo.com.tr/tservis/musterikargosiparis.asmx/SiparisGirisiDetayliV3", $_POST);
 
 echo $response->status_code;
 echo $response->content_type;
