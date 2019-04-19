@@ -2056,7 +2056,7 @@ password = barak
 Veritabanı sürücüsü olarak `PDÒ` kullanıldığı için [`PDOnun desteklediği veritabanları`](http://php.net/manual/tr/pdo.drivers.php) seçilmelidir.
 
 | Desteklenen Veritabanı | Veritabanı Sürücü İsmi (Ör.: `adapter = mysql`) |
-| --- | --- |
+| --- | ---: |
 | CUBRID Functions | `cubrid` |
 | Microsoft SQL Sunucusu ve Sybase | `dblib` |
 | Firebird/Interbase | `firebird` |
