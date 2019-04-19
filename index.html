@@ -134,7 +134,8 @@ canvas {
       var VERSION = $(this).val();
       var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
       var converter = new showdown.Converter({
-      ghCompatibleHeaderId: true
+      ghCompatibleHeaderId: true,
+      tables: true
       });
       var HTML = converter.makeHtml(MARKDOWN);
 
