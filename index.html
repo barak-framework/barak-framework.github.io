@@ -133,7 +133,9 @@ canvas {
     $('select').change(function() {
       var VERSION = $(this).val();
       var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
-      var converter = new showdown.Converter();
+      var converter = new showdown.Converter({
+      ghCompatibleHeaderId: true
+      });
       var HTML = converter.makeHtml(MARKDOWN);
 
       $("#readme").html(HTML).hide();
