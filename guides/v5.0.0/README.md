@@ -2444,7 +2444,7 @@ ApplicationCache::reset();
 
 Api servislerine `GET`, `POST`, `HEAD` methodları ile istek gönderen bir sınıftır.
 
-Uygulama ile gelen varsayılan varsayılan başlıklar :
+Uygulama ile gelen varsayılan başlıklar :
 
 ```php
 const DEFAULTHEADERS = [
@@ -2452,7 +2452,7 @@ const DEFAULTHEADERS = [
 ];
 ```
 
-Uygulama ile gelen varsayılan varsayılan ayarlar :
+Uygulama ile gelen varsayılan ayarlar :
 
 ```php
 const DEFAULTOPTIONS = [
