@@ -1111,10 +1111,15 @@ $user_count = User::load()
                 ->group("first_name") // or ->group("user.first_name")
                 ->count();
 
-// [4 => ["First_name" => "Gökhan"], 2 => ["first_name" => "Gökçe"]]
+/*
+[
+ ["First_name" => "Gökhan", "count(*)" => 4],
+ ["first_name" => "Gökçe", "count(*)" => 2]
+]
+*/
 
-foreach ($user_count as $count => $user_fields)
-  echo $user_count . " : " . implode(",", $user_fields));
+foreach ($user_count as $user_fields)
+  echo $user_fields["count(*)"] . " : " . $user_fields["first_name"];
 
 // 4 : Gökhan
 // 2 : Gökçe
@@ -1164,14 +1169,14 @@ $user_counts = User::load()
                  ->count();
 /*
 [
-2 => ["First_name" => "Gökhan", "last_name" => "Demir"],
-1 => ["First_name" => "Gökhan", "last_name" => "Arıoğlu"],
-1 => ["First_name" => "Gökhan", "last_name" => "Seven"]
+  ["First_name" => "Gökhan", "last_name" => "Demir", "count(*)" => 2],
+  ["First_name" => "Gökhan", "last_name" => "Arıoğlu", "count(*)" => 1],
+  ["First_name" => "Gökhan", "last_name" => "Seven", "count(*)" => 1]
 ]
 */
 
-foreach ($user_counts as $user_count => $user_fields)
-  echo $user_count . " : " . implode(",", $user_fields));
+foreach ($user_counts as $user_fields)
+  echo $user_fields["count(*)"] . " : " . $user_fields["first_name"] . " " . $user_fields["last_name"];
 
 // 2 : Gökhan, Demir
 // 1 : Gökhan, Arıoğlu
@@ -1203,11 +1208,12 @@ $user_count = User::load()
                 ->joins("address")
                 ->group("user.first_name", "address.country_id")
                 ->count();
+
 /*
 [
-2 => ["first_name" => Gökhan, "address_country_id" => 1],
-1 => ["first_name" => Gökçe, "address_country_id" => 1],
-1 => ["first_name" => Gökçe, "address_country_id" => 2]
+  ["first_name" => Gökhan, "address_country_id" => 1, "count(*)" => 2],
+  ["first_name" => Gökçe, "address_country_id" => 1, "count(*)" => 1],
+  ["first_name" => Gökçe, "address_country_id" => 2, "count(*)" => 1]
 ]
 */
 
@@ -1218,9 +1224,9 @@ $user_count = User::load()
 
 /*
 [
-2 => ["first_name" => Gökhan, "country_name" => Mersin],
-1 => ["first_name" => Gökçe, "country_name" => Mersin],
-1 => ["first_name" => Gökçe, "country_name" => Samsun]
+  ["first_name" => Gökhan, "country_name" => Mersin, "count(*)" => 2],
+  ["first_name" => Gökçe, "country_name" => Mersin, "count(*)" => 1],
+  ["first_name" => Gökçe, "country_name" => Samsun, "count(*)" => 1]
 ]
 */
 ```
