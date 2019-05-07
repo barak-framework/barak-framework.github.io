@@ -1318,8 +1318,8 @@ $user_counts = User::load()
 ]
 */
 
-foreach ($user_counts as $user_count => $user_fields)
-  echo $user_count . " : " . implode(",", $user_fields));
+foreach ($user_counts as $user_fields)
+  echo $user_fields["count(*)"] . " : " . $user_fields["first_name"] . " " . $user_fields["last_name"];
 
 // 2 : Gökhan, Demir
 // 1 : Gökhan, Arıoğlu
@@ -1351,6 +1351,7 @@ $user_count = User::load()
                 ->joins("address")
                 ->group("user.first_name", "address.country_id")
                 ->count();
+
 /*
 [
   ["first_name" => Gökhan, "address_country_id" => 1, "count(*)" => 2],
@@ -1366,9 +1367,9 @@ $user_count = User::load()
 
 /*
 [
-2 => ["first_name" => Gökhan, "country_name" => Mersin],
-1 => ["first_name" => Gökçe, "country_name" => Mersin],
-1 => ["first_name" => Gökçe, "country_name" => Samsun]
+  ["first_name" => Gökhan, "country_name" => Mersin, "count(*)" => 2],
+  ["first_name" => Gökçe, "country_name" => Mersin, "count(*)" => 1],
+  ["first_name" => Gökçe, "country_name" => Samsun, "count(*)" => 1]
 ]
 */
 ```
