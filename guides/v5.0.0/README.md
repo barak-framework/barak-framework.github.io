@@ -49,6 +49,227 @@ Barak is released under the [MIT License](http://www.opensource.org/licenses/MIT
 
 ## Guides
 
+### Configurations (`config/*`)
+
+---
+
+Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı kısımdır.
+
+- Files
+
+> `config/application.ini`, `config/database.ini`, `config/logger.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
+
+#### Files
+
+##### `config/application.ini` (application configuration file)
+
+Genel ayarların yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
+
+- Options
+
+> `debug`, `timezone`, `locale`, `cacheexpiration`
+
+```ini
+; Ör.:
+[application_configuration]
+debug                   = false
+timezone                = Europe/Istanbul
+locale                  = tr
+cache_expiration        = 600000
+```
+
+###### `debug` [= false]
+
+Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) hata akışlarını yakalayıp `true`: Yazılımcı Modu veya `false` : Kullanıcı Modu şeklinde gösterilmesinin ayarlandığı anahtardır.
+
+1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, hatanın nedenini gösterilmek isteniyorsa kullanılır
+2. `false` : [Kullanıcı Modu] Sadece uygulamanın çalışmadığını üstü kapalı bir şekilde gösterilmek isteniyorsa kullanılır, `public/500.html` sayfası gösterilir.
+
+Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
+
+###### `timezone` [= America/New_York]
+
+PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi için `PHP#date_default_timezone_set` fonksiyonuna bakınız.
+
+###### `locale` [= tr]
+
+`config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
+
+###### `cache_expiration` [= 600000]
+
+`tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
+
+##### `config/database.ini` (database configuration file)
+
+Veritabanı ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak **zorunludur.**
+
+- Options
+
+> `adapter`, `hostname`, `username`, `database`, `password`
+
+```ini
+; Ör.:
+[database_configuration]
+adapter  = mysql
+hostname = localhost
+database = BARAK
+username = root
+password = barak
+```
+
+###### `adapter`
+
+Veritabanı sürücüsü olarak `PDÒ` kullanıldığı için [`PDOnun desteklediği veritabanları`](http://php.net/manual/tr/pdo.drivers.php) seçilmelidir.
+
+| Desteklenen Veritabanı | Veritabanı Sürücü İsmi (Ör.: `adapter = mysql`) |
+| --- | ---: |
+| CUBRID Functions | `cubrid` |
+| Microsoft SQL Sunucusu ve Sybase | `dblib` |
+| Firebird/Interbase | `firebird` |
+| IBM | `ibm` |
+| Informix | `informix` |
+| MySQL | `mysql` |
+| Microsoft SQL Server Functions | `sqlsrv` |
+| Oracle | `oci` |
+| ODBC ve DB2 | `odbc` |
+| PostgreSQL | `pgsql` |
+| SQLite  | `sqlite` |
+
+###### `hostname`
+
+Veritabanı hostunun adı
+
+###### `username`
+
+Veritabanı kullanıcısının adı
+
+###### `database`
+
+Veritabanı adı
+
+###### `password`
+
+Veritabanı parolası
+
+##### `config/logger.ini` (logger configuration file)
+
+Log ayarlarının yapıldığı dosyadır.`tmp/log/` altında oluşturulan logları ayarlar. Ayar seçeneklerini kullanmak zorunlu değildir.
+
+- Options
+
+> `size`, `level`
+
+###### `size` [= 5242880]
+
+Log dosyasının maximum ulaşabileceği boyutun ayarlandığı anahtardır. Varsayılan olarak boyut 5242880 byte (5 megabyte) şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser.
+
+###### `level` [= 0,1,2,3,4]
+
+Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seçilmelidir. Uygulamada kullanılan log isminin seviyeleri, yapılandırma dosyasında girilen log seviyesinden küçük ise log bilgisini, log dosyasına yazmayacaktır. (Ör.: `level = 3` ise `ApplicationLogger::info("bilgi var!");` şeklindeki log bilgisini log dosyasına yazmyacaktır. Çünkü `info`, log seviyesi `0` şeklindedir.)
+
+| Log İsmi | Log Seviyesi |
+| --- | --- |
+| `info`    | `0` |
+| `warning` | `1` |
+| `error`   | `2` |
+| `debug`   | `3` |
+| `fatal`   | `4` |
+
+
+##### `config/mailer.ini` (mailer configuration file)
+
+Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmaktadır. Ayar seçeneklerini kullanmak **zorunludur.**
+
+- Options
+
+> `port`, `address`, `username`, `password`
+
+- Default SMTP Configuration (Test Edildi)
+
+```ini
+; Ör.:
+[mailer_configuration]
+port     = 25
+address  = mail.gdemir.me
+username = mail@gdemir.me
+password = 123456
+```
+
+- Yandex SMTP Configuration (Test Edildi)
+
+```ini
+; Ör.:
+[mailer_configuration]
+port     = 587
+address  = smtp.yandex.com
+username = mail@gdemir.me
+password = 123456
+```
+
+- Gmail SMTP Configuration (Test Edilmedi, Gmail'in kendi problemi var)
+
+```ini
+; Ör.:
+[mailer_configuration]
+port     = 465
+address  = smtp.gmail.com
+username = mail@gdemir.me
+password = 123456
+```
+
+###### `port`
+
+Mail web servis adresine hangi porttan bağlanacağını belirleyen anahtardır.
+
+###### `address`
+
+Mail web servisi adresinin belirleyen anahtardır.
+
+###### `username`
+
+Mail web servisine hangi kullanıcı ile bağlanacağını belirleyen anahtardır.
+
+###### `password`
+
+Mail web servisine hangi parola ile bağlanacağını belirleyen anahtardır.
+
+##### `config/locales/LANGUAGE.php` (language configuration file)
+
+Varsayılan olarak okunan `config/locales/tr.php` dosyasıdır, yeni bir dil eklenecekse aynı `list` kullanılıp değer kısımları değiştirilerek kaydedilmelidir. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
+
+`config/locales/tr.php`
+
+```php
+<?php
+return [
+
+"home" => [
+  "link" => "Anasayfa",
+  "about_us" => "Hakkımızda"
+  ]
+
+];
+?>
+```
+
+`config/locales/en.php`
+
+```php
+<?php
+return [
+
+"home" => [
+  "link" => "Homepage",
+  "about_us" => "About Us"
+  ]
+
+];
+?>
+```
+##### `config/routes.php` (route configuration file)
+
+Daha ayrıntılı bilgi için `Router` kısmına bakınız.
+
 ### Simple Usage
 
 ---
@@ -1983,227 +2204,6 @@ Web sayfasında 1 kişi şifre değişikliği talebinde bulundu. <br/>
 ##### `helpers`, `before_actions`, `after_actions`
 
 Fonksiyonları Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha ayrıntılı bilgi için `Controller#options` kısmına bakınız.
-
-### Configurations (`config/*`)
-
----
-
-Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı kısımdır.
-
-- Files
-
-> `config/application.ini`, `config/database.ini`, `config/logger.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
-
-#### Files
-
-##### `config/application.ini` (application configuration file)
-
-Genel ayarların yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
-
-- Options
-
-> `debug`, `timezone`, `locale`, `cacheexpiration`
-
-```ini
-; Ör.:
-[application_configuration]
-debug                   = false
-timezone                = Europe/Istanbul
-locale                  = tr
-cache_expiration        = 600000
-```
-
-###### `debug` [= false]
-
-Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) hata akışlarını yakalayıp `true`: Yazılımcı Modu veya `false` : Kullanıcı Modu şeklinde gösterilmesinin ayarlandığı anahtardır.
-
-1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, hatanın nedenini gösterilmek isteniyorsa kullanılır
-2. `false` : [Kullanıcı Modu] Sadece uygulamanın çalışmadığını üstü kapalı bir şekilde gösterilmek isteniyorsa kullanılır, `public/500.html` sayfası gösterilir.
-
-Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
-
-###### `timezone` [= America/New_York]
-
-PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi için `PHP#date_default_timezone_set` fonksiyonuna bakınız.
-
-###### `locale` [= tr]
-
-`config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
-
-###### `cache_expiration` [= 600000]
-
-`tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
-
-##### `config/database.ini` (database configuration file)
-
-Veritabanı ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak **zorunludur.**
-
-- Options
-
-> `adapter`, `hostname`, `username`, `database`, `password`
-
-```ini
-; Ör.:
-[database_configuration]
-adapter  = mysql
-hostname = localhost
-database = BARAK
-username = root
-password = barak
-```
-
-###### `adapter`
-
-Veritabanı sürücüsü olarak `PDÒ` kullanıldığı için [`PDOnun desteklediği veritabanları`](http://php.net/manual/tr/pdo.drivers.php) seçilmelidir.
-
-| Desteklenen Veritabanı | Veritabanı Sürücü İsmi (Ör.: `adapter = mysql`) |
-| --- | ---: |
-| CUBRID Functions | `cubrid` |
-| Microsoft SQL Sunucusu ve Sybase | `dblib` |
-| Firebird/Interbase | `firebird` |
-| IBM | `ibm` |
-| Informix | `informix` |
-| MySQL | `mysql` |
-| Microsoft SQL Server Functions | `sqlsrv` |
-| Oracle | `oci` |
-| ODBC ve DB2 | `odbc` |
-| PostgreSQL | `pgsql` |
-| SQLite  | `sqlite` |
-
-###### `hostname`
-
-Veritabanı hostunun adı
-
-###### `username`
-
-Veritabanı kullanıcısının adı
-
-###### `database`
-
-Veritabanı adı
-
-###### `password`
-
-Veritabanı parolası
-
-##### `config/logger.ini` (logger configuration file)
-
-Log ayarlarının yapıldığı dosyadır.`tmp/log/` altında oluşturulan logları ayarlar. Ayar seçeneklerini kullanmak zorunlu değildir.
-
-- Options
-
-> `size`, `level`
-
-###### `size` [= 5242880]
-
-Log dosyasının maximum ulaşabileceği boyutun ayarlandığı anahtardır. Varsayılan olarak boyut 5242880 byte (5 megabyte) şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser.
-
-###### `level` [= 0,1,2,3,4]
-
-Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seçilmelidir. Uygulamada kullanılan log isminin seviyeleri, yapılandırma dosyasında girilen log seviyesinden küçük ise log bilgisini, log dosyasına yazmayacaktır. (Ör.: `level = 3` ise `ApplicationLogger::info("bilgi var!");` şeklindeki log bilgisini log dosyasına yazmyacaktır. Çünkü `info`, log seviyesi `0` şeklindedir.)
-
-| Log İsmi | Log Seviyesi |
-| --- | --- |
-| `info` | `0` |
-| `warning` | `1` |
-| `error` | `2` |
-| `debug` | `3` |
-| `fatal` | `4` |
-
-
-##### `config/mailer.ini` (mailer configuration file)
-
-Mail ayarlarının yapıldığı dosyadır. `PHPMailer` eklentisini kullanmaktadır. Ayar seçeneklerini kullanmak **zorunludur.**
-
-- Options
-
-> `port`, `address`, `username`, `password`
-
-- Default SMTP Configuration (Test Edildi)
-
-```ini
-; Ör.:
-[mailer_configuration]
-port     = 25
-address  = mail.gdemir.me
-username = mail@gdemir.me
-password = 123456
-```
-
-- Yandex SMTP Configuration (Test Edildi)
-
-```ini
-; Ör.:
-[mailer_configuration]
-port     = 587
-address  = smtp.yandex.com
-username = mail@gdemir.me
-password = 123456
-```
-
-- Gmail SMTP Configuration (Test Edilmedi, Gmail'in kendi problemi var)
-
-```ini
-; Ör.:
-[mailer_configuration]
-port     = 465
-address  = smtp.gmail.com
-username = mail@gdemir.me
-password = 123456
-```
-
-###### `port`
-
-Mail web servis adresine hangi porttan bağlanacağını belirleyen anahtardır.
-
-###### `address`
-
-Mail web servisi adresinin belirleyen anahtardır.
-
-###### `username`
-
-Mail web servisine hangi kullanıcı ile bağlanacağını belirleyen anahtardır.
-
-###### `password`
-
-Mail web servisine hangi parola ile bağlanacağını belirleyen anahtardır.
-
-##### `config/locales/LANGUAGE.php` (language configuration file)
-
-Varsayılan olarak okunan `config/locales/tr.php` dosyasıdır, yeni bir dil eklenecekse aynı `list` kullanılıp değer kısımları değiştirilerek kaydedilmelidir. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
-
-`config/locales/tr.php`
-
-```php
-<?php
-return [
-
-"home" => [
-  "link" => "Anasayfa",
-  "about_us" => "Hakkımızda"
-  ]
-
-];
-?>
-```
-
-`config/locales/en.php`
-
-```php
-<?php
-return [
-
-"home" => [
-  "link" => "Homepage",
-  "about_us" => "About Us"
-  ]
-
-];
-?>
-```
-##### `config/routes.php` (route configuration file)
-
-Daha ayrıntılı bilgi için `Router` kısmına bakınız.
 
 ### Seeds (`db/seeds.php`)
 
