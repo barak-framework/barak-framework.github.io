@@ -165,7 +165,7 @@ Log dosyasının maximum ulaşabileceği boyutun ayarlandığı anahtardır. Var
 
 ###### `level` [= 0,1,2,3,4]
 
-Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seçilmelidir. Uygulamada kullanılan log isminin seviyeleri, yapılandırma dosyasında girilen log seviyesinden küçük ise log bilgisini, log dosyasına yazmayacaktır. (Ör.: `level = 3` ise `ApplicationLogger::info("bilgi var!");` şeklindeki log bilgisini log dosyasına yazmyacaktır. Çünkü `info`, log seviyesi `0` şeklindedir.)
+Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seçilmelidir. Uygulamada kullanılan log isminin seviyeleri, yapılandırma dosyasında girilen log seviyesinden küçük ise log bilgisini, log dosyasına yazmayacaktır. (Ör.: `level = 3` ise `ApplicationLogger::info("bilgi var!");` şeklindeki log bilgisini log dosyasına yazmayacaktır. Çünkü `info`, log seviyesi `0` şeklindedir.)
 
 | Log İsmi | Log Seviyesi |
 | --- | --- |
