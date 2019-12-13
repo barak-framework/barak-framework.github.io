@@ -2374,9 +2374,8 @@ Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şif
 // kaydı yok ise veritabanından çek ve yeni bir `cache` olarak `$users` verilerini kaydet.
 
 $cachekey = "users";
-if (ApplicationCache::exists($cachekey)) {
-  $users = ApplicationCache::read($cachekey);
-} else  {
+if (!$users = ApplicationCache::read($cachekey)) {
+
   $users = User::all();
   ApplicationCache::write($cachekey, $users);
 }
