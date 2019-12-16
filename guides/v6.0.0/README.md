@@ -119,10 +119,11 @@ password = barak
 
 ###### `adapter`
 
-Veritabanı sürücüsü olarak `PDÒ` kullanıldığı için [`PDOnun desteklediği veritabanları`](http://php.net/manual/tr/pdo.drivers.php) seçilmelidir.
+Veritabanı sürücüsü olarak `PDÒ` kullanıldığı için [`PDOnun desteklediği veritabanları`](http://php.net/manual/tr/pdo.drivers.php) seçilmelidir. Eğer veritabanı yönetimine ihtiyacınız yoksa (Ör.: Api üzerinden verileri al-ver yapıyorsanız, dolayısıyla Model'leri kullanmayacaksanız.) veritabanı sürücü ismini `adapter = NULL` şeklinde atayabilirsiniz.
 
 | Desteklenen Veritabanı | Veritabanı Sürücü İsmi (Ör.: `adapter = mysql`) |
 | --- | ---: |
+| No Connection | `NULL` |
 | CUBRID Functions | `cubrid` |
 | Microsoft SQL Sunucusu ve Sybase | `dblib` |
 | Firebird/Interbase | `firebird` |
