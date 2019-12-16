@@ -2390,12 +2390,12 @@ foreach ($users as $user)
 
 #### Methods
 
-##### `expiration` ($millisecond = 600000)
+##### `expiration` ($second = 600000)
 
-Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 milisaniye (10 dakika)` süre ile saklanır.
+Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 saniye (=~7 gün)` süre ile saklanır.
 
 ```php
-ApplicationLogger::expiration(600000);
+ApplicationCache::expiration(600000);
 ```
 
 ##### `write` ($key, $value)
