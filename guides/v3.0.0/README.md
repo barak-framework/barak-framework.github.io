@@ -1683,7 +1683,7 @@ ApplicationLogger::debug("olaylar olaylar");
 
 ---
 
-Verilen anahtarlara göre  `request_url` + `key` (istek url ve verilen anahtar)'e göre md5 ile şifreleyip `tmp/cache/*` dizini üzerinde yazma, okuma, silme, var olduğunu bakma, tamamen silme gibi işlemleri yapan sınıftır. Veriler varsayılan olarak 604800 milisaniye (10 dakika) süre ile saklanır.
+Verilen anahtarlara göre  `request_url` + `key` (istek url ve verilen anahtar)'e göre md5 ile şifreleyip `tmp/cache/*` dizini üzerinde yazma, okuma, silme, var olduğunu bakma, tamamen silme gibi işlemleri yapan sınıftır. Veriler varsayılan olarak 604800 saniye (=~7 gün) süre ile saklanır.
 
 - Functions
 
@@ -1694,7 +1694,7 @@ Verilen anahtarlara göre  `request_url` + `key` (istek url ve verilen anahtar)'
 Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlanması
 
 ```php
-ApplicationLogger::expiration(604800);
+ApplicationCache::expiration(604800);
 ```
 
 #### `write`
