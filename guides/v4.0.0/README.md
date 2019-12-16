@@ -2224,7 +2224,7 @@ foreach ($users as $user)
 Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 saniye (=~7 gün)` süre ile saklanır.
 
 ```php
-ApplicationLogger::expiration(600000);
+ApplicationCache::expiration(600000);
 ```
 
 ##### `write` ($key, $value)
