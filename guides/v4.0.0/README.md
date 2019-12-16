@@ -2202,11 +2202,11 @@ Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şif
 // kaydı var ise oradan al
 // kaydı yok ise veritabanından çek ve yeni bir `cache` olarak `$users` verilerini kaydet.
 
-if (ApplicationCache::exists("users")) {
-  $users = ApplicationCache::read("users");
-} else  {
+$cachekey = "users";
+if (!$users = ApplicationCache::read($cachekey)) {
+
   $users = User::all();
-  ApplicationCache::write("users", $users);
+  ApplicationCache::write($cachekey, $users);
 }
 
 foreach ($users as $user)
@@ -2219,9 +2219,9 @@ foreach ($users as $user)
 
 #### Methods
 
-##### `expiration` ($millisecond = 600000)
+##### `expiration` ($second = 600000)
 
-Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 milisaniye (10 dakika)` süre ile saklanır.
+Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 saniye (=~7 gün)` süre ile saklanır.
 
 ```php
 ApplicationLogger::expiration(600000);
