@@ -57,47 +57,93 @@ Uygulama çalışmadan önce bazı yapılandırma ayarlarının yapıldığı k�
 
 - Files
 
-> `config/application.ini`, `config/database.ini`, `config/logger.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
+> `config/application.php`, `config/cacher.ini`, `config/database.ini`, `config/mailer.ini`, `config/locales/LANGUAGE.php`, `config/routes.php`
 
 #### Files
 
-##### `config/application.ini` (application configuration file)
+##### `config/application.php` (application configuration file)
 
-Genel ayarların yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
+Uygulama ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak zorunlu değildir.
+
+- Methods
+
+> `set`, `modules`
 
 - Options
 
-> `debug`, `timezone`, `locale`, `cacheexpiration`
+> `timezone`, `debug`, `locale`, `logger`
 
-```ini
-; Ör.:
-[application_configuration]
-debug                   = false
-timezone                = Europe/Istanbul
-locale                  = tr
-cache_expiration        = 600000
+- Modules
+
+> `cacher`, `http`, `mailer`, `model`
+
+```php
+// Ör.:
+Application::config(function() {
+  set("timezone", "Europe/Istanbul"); // saat dilim ayarı
+  set("debug", true);                 // yanılgıları göster
+  set("locale", "tr");                // config/locales/tr.php
+  set("logger", [
+    "file" => "production",           // dosya ismi
+    "level" => "info",                // en kapsamlı yaz
+    "driver" => "weekly",             // haftalık
+    "rotate" => 4,                    // 4 yedek
+    "size" => 15728640                // 15 MB
+  ]);
+
+  // bu modüller kullanılsın
+  modules(["cacher", "http", "mailer", "model"]);
+});
 ```
 
-###### `debug` [= false]
+###### Methods
 
-Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) hata akışlarını yakalayıp `true`: Yazılımcı Modu veya `false` : Kullanıcı Modu şeklinde gösterilmesinin ayarlandığı anahtardır.
+> `set`: Ayar değişkenine değeri atamada kullanılır.
 
-1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, hatanın nedenini gösterilmek isteniyorsa kullanılır
+> `modules`: Ayar değişkenine `true` değerinin atamada kullanılır.
+
+###### Options
+
+> `debug` [= true]
+
+Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) yanılmalarını yakalayıp Yazılımcı Modu(`true`) veya Kullanıcı Modu(`false`) şeklinde gösterilmesinin ayarlandığı anahtardır.
+
+1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, yanılmanın nedenini gösterilmek isteniyorsa kullanılır
 2. `false` : [Kullanıcı Modu] Sadece uygulamanın çalışmadığını üstü kapalı bir şekilde gösterilmek isteniyorsa kullanılır, `public/500.html` sayfası gösterilir.
 
 Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
 
-###### `timezone` [= America/New_York]
+> `timezone` [= Europe/Istanbul]
 
 PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi için `PHP#date_default_timezone_set` fonksiyonuna bakınız.
 
-###### `locale` [= tr]
+> `locale` [= tr]
 
 `config/locales/*` altındaki `tr.php`, `en.php` gibi dosyaların, hangisinin varsayılan olarak seçileceğinin ayarlandığı anahtardır. Daha ayrıntılı bilgi için `I18n` kısmına bakınız.
 
-###### `cache_expiration` [= 600000]
+> `logger` [= ["file" => "production", "level" => "info", "driver" => "weekly", "rotate" => 4, "size" => 5242880]]
 
-`tmp/cache/` altında oluşturulacak çerezlerin, ne kadar süre ile tutulacağının varsayılan olarak ayarlandığı anahtardır. Daha ayrıntılı bilgi için `Cache` kısmına bakınız.
+Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut 5242880 byte (5 megabyte) şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
+
+`tmp/log/` altında oluşturulacak log dosyalarının, hangi ad, level, süre, döndürme, byte boyutu belirtilerek ayarlanan anahtardır. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
+
+##### Modules
+
+> `cacher` [= false]
+
+Cacher sınıfını etkin kılan anahtardır.
+
+> `http` [= false]
+
+Http sınıfını etkin kılan anahtardır.
+
+> `mailer` [= false]
+
+Mailer sınıfını etkin kılan anahtardır.
+
+> `model` [= false]
+
+Model sınıfını etkin kılan anahtardır.
 
 ##### `config/database.ini` (database configuration file)
 
@@ -335,7 +381,6 @@ Herhangi bir istek URL çalışabilmesi için yönlendirilme dosyasında (`confi
 
 > `get`, `post`, `resource`, `resources`, `scope`, `root`
 
-
 #### Kick Method
 
 ##### `draw` (`function() { /* ROUTE_FUNCTIONS */ }`)
@@ -445,7 +490,7 @@ class AdminController extends ApplicationController {
 
       } else {
 
-        $_SESSION["danger"] = "Oops! İsminiz veya şifreniz hatalı, belki de bunlardan sadece biri hatalıdır?";
+        $_SESSION["danger"] = "Oops! İsminiz veya şifreniz yanlış, belki de bunlardan sadece biri yanlıştır?";
 
       }
     }
@@ -544,7 +589,7 @@ Aşağıdaki örnek route yapılandırmasına göre şu sınıfları yüklenecek
 ```php
 class AdminController extends ApplicationController {
 
- protected $helpers = ["Password"];
+  protected $helpers = ["Password"];
 
   protected $before_actions = [["require_login"]];
 
@@ -725,7 +770,7 @@ Her `config/routes.php` içerisinde tanımlanan
 
 `redirect_to` fonksiyonuna göre farkı `Router` üzerinden normal bir istek gibi kontrolü **yapılmayan** , ilgili `Controller` ve `View` akışı **olmayan** istektir.
 
-Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ve `template` üzerine gönderilecek bir `locals` yok ise hata verecektir.
+Örneğin bir `template` içeriği ile `layout` içeriğini birleştirirken `template` içerisinde `Controller` üzerinden gelmesi gereken `$id` gibi değişkenler var ve `template` üzerine gönderilecek bir `locals` yok ise yanılgıya düşecektir. #TODO
 
 > view_options : `layout`, `view`, `action`, `template`, `file`, `partial`, `text`, `locals`
 
@@ -1050,7 +1095,7 @@ class AdminController extends ApplicationController {
 
       } else {
 
-        $_SESSION["danger"] = "Oops! İsminiz veya şifreniz hatalı, belki de bunlardan sadece biri hatalıdır?";
+        $_SESSION["danger"] = "Oops! İsminiz veya şifreniz yanlış, belki de bunlardan sadece biri yanlıştır?";
 
       }
     }
@@ -2283,7 +2328,7 @@ Buradaki çeviri ayarlarının kaydedildiği yer `config/locales/*` dizinidir. D
 
 ---
 
-Uygulamanın her istek URL geldiğinde Exception, Error, Shutdown(Fatal Error) akışlarını yakalayıp tek sayfada gösterilmesini sağladığını anlatan bölümdür. Eğer hataların gösterilmesi istenmiyorsa `config/application.ini` dosyası içerisinde `debug = false` denilerek kullanıcı bazlı `public/500.html` sayfası gösterilir, ancak log kaydı her şekilde de tutulur.
+Uygulamanın her istek URL geldiğinde Exception, Error, Shutdown(Fatal Error) akışlarını yakalayıp tek sayfada gösterilmesini sağladığını anlatan bölümdür. Eğer yanılmaların gösterilmesi istenmiyorsa `config/application.ini` dosyası içerisinde `debug = false` denilerek kullanıcı bazlı `public/500.html` sayfası gösterilir, ancak log kaydı her şekilde de tutulur.
 
 - Methods
 
@@ -2303,7 +2348,7 @@ veya
 ApplicationDebug::exception(new Exception("OMG!"));
 ```
 
-tarzındaki fonksiyonlar ile hataları bulunduğu sayfada yakalar ve istisnanın bulunduğu kod satırınının bir kısmını gösterir.
+tarzındaki fonksiyonlar ile yanılmanın bulunduğu sayfayı yakalar ve istisnanın bulunduğu kod satırınının bir kısmını gösterir.
 
 ##### `error` ($errno, $error, $file, $line)
 
@@ -2317,7 +2362,7 @@ veya
 echo $a;
 ```
 
-gibi ifadelerle bir tanımlanmayan değişkenin kullanma hatasını adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
+gibi tanımlı olmayan değişkenin kullanılması yanılmasını adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
 
 ##### `shutdown` ()
 
@@ -2327,7 +2372,7 @@ ApplicationDebug::shutdown();
 
 veya
 
-ölümcül başka türlü hatalarda (sistemin çalışmadığı durumlarda) sistemin ölümcül hata verdiği kısmı adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar. Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
+ölümcül başka türlü yanılmalarda (sistemin çalışmadığı durumlarda) sistemin ölümcül yanıldığı kısmı adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar. Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
 
 ### Logger (`tmp/log/*.log`)
 
