@@ -106,7 +106,7 @@ Application::config(function() {
 
 > `debug` [= true]
 
-Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) yanılmalarını yakalayıp Yazılımcı Modu(`true`) veya Kullanıcı Modu(`false`) şeklinde gösterilmesinin ayarlandığı anahtardır.
+Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) yanılmalarını yakalayıp Yazılımcı Modu(`true`) veya Kullanıcı Modu(`false`) şeklinde gösterilmenin ayarlandığı anahtardır.
 
 1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, yanılmanın nedenini gösterilmek isteniyorsa kullanılır
 2. `false` : [Kullanıcı Modu] Sadece uygulamanın çalışmadığını üstü kapalı bir şekilde gösterilmek isteniyorsa kullanılır, `public/500.html` sayfası gösterilir.
