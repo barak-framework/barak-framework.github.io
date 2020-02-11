@@ -127,7 +127,7 @@ Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyu
 
 `tmp/log/` altında oluşturulacak log dosyalarının, hangi ad, level, süre, döndürme, byte boyutu belirtilerek ayarlanan anahtardır. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
 
-##### Modules
+###### Modules
 
 > `cacher` [= false]
 
@@ -2028,6 +2028,627 @@ class HomeController extends ApplicationController {
 ---
 
 Her mailer dosyası ile sınıfının ismi aynı **olmalıdır** ve sistemin olan `ApplicationMailer` sınıfından miras alır.
+
+```php
+// Ör.: dosya : `app/mailers/PasswordMailer.php`
+class PasswordMailer extends ApplicationMailer {
+}
+```
+
+Mailer sınıf olarak `PHPMailer`i kullanmaktadır ve yapı olarak Controller sınıfındaki gibi benzeri görev yapmaktadır. Ayarlama olarak `helper`, `before_actions`, `after_actions` yardımcı özelliklerini kullanabilme imkanı vermektedir.
+
+Her hazırlanan Mailer sınıfı kullanırken,
+
+1. Sınıf `app/mailers/*.php` isminde tanımlanmalıdır.
+2. Sınıf içerisinde tanımlanan fonksiyonlarda `mail` fonksiyonu kullanılmak **zorunludur**.
+3. Layout olarak **zorunlu** `app/views/layouts/mailer.php` dosyasını kullanmaktadır.
+4. View olarak **zorunlu** `app/views/mail` dizinini kullanmaktadır. İstenilen actiona göre `app/views/mail/ACTION.php` dosyası tanımlanması gerekir.
+
+- Kick Method
+
+> `delivery`
+
+- Methods
+
+> `mail`
+
+- Options
+
+> `helpers`, `before_actions`, `after_actions`
+
+#### Kick Method
+
+##### `delivery` ($action, [$param1, ...])
+
+1. `$action` parametresi olarak oluşturduğunuz `app/mailers/*Mailer.php` sınıfı içersindeki method ismi yazılır.
+2. `$action` adındaki oluşturduğunu method eğer bir veri alacak şekilde tanımlandıysa bu veriler `[$param1, ...]` şeklinde gönderilir.
+
+> `app/controllers/HomeController.php`
+
+```php
+class HomeController extends ApplicationController {
+  public function index() {
+    PasswordMailer::delivery("reset");
+    PasswordMailer::delivery("reset2", ["m930fj039fj039j", "gdemir.me", "mail@gdemir.me", "Gökhan Demir"]);
+  }
+}
+```
+
+> `app/mailers/PasswordMailer.php`
+
+```php
+class PasswordMailer extends ApplicationMailer {
+
+  protected $after_actions = [["info"]];
+
+  public function info() {
+    if (isset($this->email) && isset($this->fullname)) {
+      $this->mail([
+        "to" => [$this->email => $this->fullname],
+        "subject" => "Güçlü Şifre İçin Öneriler"
+      ]);
+    }
+  }
+
+  public function reset() {
+    $this->code = "ab234c2589de345fgAASD6";
+    $this->site_url = "gdemir.me";
+    $this->mail([
+      "to" => ["mail@gdemir.me" => "Gökhan Demir"],
+      "subject" => "[Admin] Please reset your password"
+      ]);
+  }
+
+  public function reset2($random_code, $site_url, $email, $fullname) {
+    $this->code = $random_code;
+    $this->site_url = $site_url;
+    $this->mail([
+      "to" => [$email => $fullname],
+      "subject" => "[Admin] Please reset your password"
+      ]);
+  }
+}
+```
+
+#### Methods
+
+##### `mail` (["to" => [$email1 => $name1, ...], "subject" => $subject])
+
+> options : `to`, `subject`
+
+> `app/controllers/HomeController.php`
+
+```php
+class HomeController extends ApplicationController {
+  public function index() {
+    PasswordMailer::delivery("reset");
+    PasswordMailer::delivery("reset2", ["m930fj039fj039j", "gdemir.me"]);
+  }
+}
+```
+
+> `app/mailers/UserMailer.php`
+
+```php
+class UserMailer extends ApplicationMailer {
+
+  protected $after_actions = [["info"]];
+
+  protected $before_actions = [["notice"]];
+
+  public function notice() {
+    $this->mail([
+      "to" => ["gdemir@bil.omu.edu.tr" => "Gökhan Demir"],
+      "subject" => "1 Kullanıcı Şifre Sıfırlama Talebinde Bulundu"
+      ]);
+  }
+
+  public function info() {
+    if (isset($this->email) && isset($this->fullname)) {
+      $this->mail([
+        "to" => [$this->email => $this->fullname],
+        "subject" => "Güçlü Şifre İçin Öneriler"
+      ]);
+    }
+  }
+
+  public function reset() {
+    $this->code = "ab234c2589de345fgAASD6";
+    $this->site_url = "gdemir.me";
+    $this->mail([
+      "to" => ["mail@gdemir.me" => "Gökhan Demir"],
+      "subject" => "[Admin] Please reset your password"
+      ]);
+  }
+
+  public function reset2($random_code, $site_url, $email, $fullname) {
+    $this->code = $random_code;
+    $this->site_url = $site_url;
+    $this->email = $email;
+    $this->fullname = $fullname;
+    $this->mail([
+      "to" => [$this->email => $this->fullname],
+      "subject" => "[Admin] Please reset your password"
+      ]);
+  }
+}
+```
+
+> `app/views/layouts/mailer.php`
+
+```html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="tr" lang="tr">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link href="" rel="alternate" title="" type="application/atom+xml" />
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/app/assets/css/syntax.css" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="/app/assets/js/html5shiv.min.js"></script>
+  <script src="/app/assets/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="/app/assets/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container" style="width:365px; min-height:200px; margin-top: 8%;">
+    <?= $yield; ?>
+  </div>
+</body>
+</html>
+```
+
+> `app/views/mail/password/reset.php`
+
+```html
+Sistem şifrenizi kaybettiğinizi duyduk. Üzgünüm!<br/><br/>
+Endişelenme! Parolanızı sıfırlamak için 1 saat içinde aşağıdaki bağlantıyı kullanabilirsiniz:<br/><br/>
+<a href='http://$_site_url/admin/password_reset/$code'>http://$_site_url/admin/password_reset/$code</a>
+```
+
+> `app/views/mail/password/reset2.php`
+
+```html
+Sistem şifrenizi kaybettiğinizi duyduk. Üzgünüm!<br/><br/>
+Endişelenme! Parolanızı sıfırlamak için 1 saat içinde aşağıdaki bağlantıyı kullanabilirsiniz:<br/><br/>
+<a href='http://$_site_url/admin/password_reset/$code'>http://$_site_url/admin/password_reset/$code</a>
+```
+
+> `app/views/mail/password/info.php`
+
+```html
+<code>UYARI</code>:
+<i class="text-info">
+  <ul class="col-sm-offset-1">
+    <li>Şifreniz en az 8 karakterden oluşmalıdır</li>
+    <li>Büyük, küçük harfler ve rakamların her biri en az 1 defa kullanılmalıdır</li>
+    <li>"?, @, !, #, %, +, -, *, %" gibi özel karakterler en az 1 defa kullanılmalıdır</li>
+  </ul>
+</i>
+```
+
+> `app/views/mail/password/notice.php`
+
+```html
+<code>BİLDİRİM</code>:
+<hr>
+Web sayfasında 1 kişi şifre değişikliği talebinde bulundu. <br/>
+<b>Tarih :</b> <?= date("Y-m-d H:i:s"); ?>
+```
+
+#### Options
+
+##### `helpers`, `before_actions`, `after_actions`
+
+Fonksiyonları Controller'daki gibi tüm özellikleri ile kullanılabilir. Daha ayrıntılı bilgi için `Controller#options` kısmına bakınız.
+
+### Seeds (`db/seeds.php`)
+
+---
+
+Uygulamaya her URL isteği geldiğin ilk olarak çalışan betiktir. Örnekleme kayıtları oluşturmak veya loglama için kullanılabilir.
+
+> `db/seeds.php` (database seeds file)
+
+```php
+if (User::load()->count() == 0) {
+  User::create(["first_name" => "Gökhan", "last_name" => "Demir", "username" => "gdemir",  "password" => "123456"]);
+  User::create(["first_name" => "Gökçe",  "last_name" => "Demir", "username" => "gcdemir", "password" => "123456"]);
+  User::create(["first_name" => "Göktuğ", "last_name" => "Demir", "username" => "gtdemir", "password" => "123456"]);
+  User::create(["first_name" => "Atilla", "last_name" => "Demir", "username" => "ademir",  "password" => "123456"]);
+}
+```
+
+### I18n (`config/locales/LOCALE.php`)
+
+---
+
+Yapılandırma dizinindeki diller kısmında (`config/locales/`) tanımlı olan dil dosyaları (Ör.: `config/locales/tr.php`, `config/locales/en.php`) üzerinden erişim, çeviri, o anki dilin ne olduğu gibi işlemlerin yapılması hakkında kullanılan fonksiyonlar bu bölümde anlatılmıştır.
+
+- Methods
+
+> `locale`, `get_locale`, `translate`
+
+#### Methods
+
+##### `locale` ($locale)
+
+Çeviri kelimeleri (`config/locales/tr.php` veya `config/locales/en.php` gibi dosyalar dizi olarak `$_SESSION["_i18n"]` üzerine yüklenir.) proje başlangıcında `config/application.ini` dosyası içerisinde `locale` değişkenine ile atanabilir veya projenin herhangi bir aşamasında aşağıdaki gibi atanabilir/değiştirilebilir.
+
+```php
+ApplicationI18n::locale("tr");
+```
+
+##### `get_locale` ()
+
+O an seçili olan dilin hangisi olduğunu anlamak için kullanılan fonksiyondur.
+
+```php
+// Ör. 1:
+
+ApplicationI18n::get_locale();
+// tr
+```
+
+```php
+// Ör. 2:
+
+ApplicationI18n::get_locale();
+// en
+
+```
+
+##### `translate` ($path)
+
+Çevirisi yapılacak bir kelime dizini o an hangi dil yüklü ise ona göre çeviri yapmak için aşağıdaki gibi kullanılır.
+
+```php
+ApplicationI18n::translate("home.about_us");
+```
+
+bu fonksiyonu daha kolay kullanmak için alias olarak tanımlı `t` fonksiyonu ile erişilebilir.
+
+```php
+t("home.about_us");
+```
+
+Buradaki çeviri ayarlarının kaydedildiği yer `config/locales/*` dizinidir. Daha ayrıntılı bilgi için `Configurations#config/locales/LANGUAGE.php` kısmına bakınız.
+
+
+### Debug
+
+---
+
+Uygulamanın her istek URL geldiğinde Exception, Error, Shutdown(Fatal Error) akışlarını yakalayıp tek sayfada gösterilmesini sağladığını anlatan bölümdür. Eğer yanılmaların gösterilmesi istenmiyorsa `config/application.ini` dosyası içerisinde `debug = false` denilerek kullanıcı bazlı `public/500.html` sayfası gösterilir, ancak log kaydı her şekilde de tutulur.
+
+- Methods
+
+> `exception`, `error`, `shutdown`
+
+#### Methods
+
+##### `exception` (Exception $exception)
+
+```php
+throw new Exception("OMG!");
+```
+
+veya
+
+```php
+ApplicationDebug::exception(new Exception("OMG!"));
+```
+
+tarzındaki fonksiyonlar ile yanılmanın bulunduğu sayfayı yakalar ve istisnanın bulunduğu kod satırınının bir kısmını gösterir.
+
+##### `error` ($errno, $error, $file, $line)
+
+```php
+ApplicationDebug::error(123123, "Undefined variable: a", "/var/www/html/app/controllers/DefaultController.php", 10);
+```
+
+veya
+
+```php
+echo $a;
+```
+
+gibi tanımlı olmayan değişkenin kullanılma yanılmasını adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
+
+##### `shutdown` ()
+
+```
+ApplicationDebug::shutdown();
+```
+
+veya
+
+ölümcül başka türlü yanılmalarda (sistemin çalışmadığı durumlarda) sistemin ölümcül yanıldığı kısmı adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar. Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut `5242880 byte (5 megabyte)` şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
+
+### Logger (`tmp/log/*.log`)
+
+---
+
+Verilen mesajları **günlük** dosyalara (`tmp/log/yyyy-mm-dd.log` formatında) yazmaya yarayan özelliktir. Log bilgileri log isimlerinin sahip olduğu log seviyelerine göre ya kaydedilmekte ya da kaydedilmemektedir. Daha ayrıntılı bilgi için `Configurations#config/logger.ini#level` kısmına bakınız.
+
+- Methods
+
+> `info`, `warning`, `error`, `fatal`, `debug`
+
+#### Methods
+
+##### `info`, `warning`, `error`, `fatal`, `debug` ($message)
+
+```php
+ApplicationLogger::info("bilmek iyidir");
+ApplicationLogger::warning("olabilir?");
+ApplicationLogger::error("dikkat et");
+ApplicationLogger::fatal("cevap vermiyor");
+ApplicationLogger::debug("olaylar olaylar");
+
+// tmp/log/2017-06-18.log
+// bilmek iyidir
+// olabilir?
+// dikkat et
+// cevap vermiyor
+// olaylar olaylar
+```
+
+### Cache (`tmp/cache/*`)
+
+---
+
+Belirlediğiniz değişkenleri belli bir mühdet veritabanından değil de dosya olarak tutup bunu tekrar kullanmanıza yarayan özelliktir. Örneğin bir veri durmadan veritabanından çekileceğine, dosyaya yazılıp eğer dosyada varsa dosyadan çek şeklinde bir kod yazılabilir. Bu şekilde veritabanın üzerindeki yük azaltılabilir.
+
+Farklı sayfalarda yapılan değişken tanımlamalarında, aynı değişken ismini saklayabilmek için verilen anahtarlara göre  "`request_url` + `key`" (istek url ve verilen anahtar)'e göre `md5` ile şifreleyip `tmp/cache/*` dizini üzerinde yazma, okuma, silme, var olduğunu bakma, tamamen silme gibi işlemleri yapılmaktadır.
+
+Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şifreleyip `tmp/cache/3290482038.php` gibi bir dosya üzerine yazar ve bu dosyayı belli bir zaman içerisinde erişimine imkan verir. Ayrıca `/home/active_users` gibi bir sayfaya istek geldiğinde yine `$users` değişkenini saklayabilirsiniz, diğer `home/users/` sayfasındaki `$users` değişkeni ile çakışma olmamaktadır.
+
+```php
+// Ör.:
+// Eğer `cache`'de `$users` değişkenin
+// kaydı var ise oradan al
+// kaydı yok ise veritabanından çek ve yeni bir `cache` olarak `$users` verilerini kaydet.
+
+$cachekey = "users";
+if (!$users = ApplicationCache::read($cachekey)) {
+
+  $users = User::all();
+  ApplicationCache::write($cachekey, $users);
+}
+
+foreach ($users as $user)
+  echo $user->first_name;
+```
+
+- Methods
+
+> `expiration`, `write`, `read`, `delete`, `exist`, `reset`
+
+#### Methods
+
+##### `expiration` ($second = 600000)
+
+Saklanacak verilerin genel olarak ne kadar süre ile tutulacağının ayarlar, veriler varsayılan olarak `600000 saniye (=~7 gün)` süre ile saklanır.
+
+```php
+ApplicationCache::expiration(600000);
+```
+
+##### `write` ($key, $value)
+
+Saklanacak verilerin  `request_url` + `key` (istek url ve verilen anahtar)'e göre md5 ile şifreleyip belleğe yazar. Bu şekilde farklı bir sayfada kaydettiğiniz aynı anahtar isimli veriler, farklı dosyalar olarak kaydedilmektedir.
+
+```php
+$users = User::all();
+ApplicationCache::write("users", $users);
+```
+
+##### `read` ($key)
+
+Bellekteki veriyi `request_url` + `key` mantığı ile okur, eğer dosyanın süresi geçmişse otomatik olarak siler.
+
+```php
+$users = ApplicationCache::read("users");
+```
+
+##### `delete` ($key)
+
+`request_url` + `key` mantığına göre bulunan ve var olan dosya süresine bakılmaksızın silinir.
+
+```php
+ApplicationCache::delete("users");
+```
+
+##### `exists` ($key)
+
+`request_url` + `key` mantığına göre var olmasına bakar.
+
+```php
+echo (ApplicationCache::exists("users")) ? "bellekte var" : "bellekte yok";
+```
+
+##### `reset` ()
+
+`tmp/cache/*` altındaki tüm saklanan verileri sürelerine bakılmaksızın siler.
+
+```php
+ApplicationCache::reset();
+```
+
+### Http
+
+---
+
+Api servislerine `GET`, `POST`, `HEAD` methodları ile istek gönderen bir sınıftır.
+
+Uygulama ile gelen varsayılan başlıklar :
+
+```php
+const DEFAULTHEADERS = [
+  'Content-Type' => 'application/x-www-form-urlencoded'
+];
+```
+
+Uygulama ile gelen varsayılan ayarlar :
+
+```php
+const DEFAULTOPTIONS = [
+  'CURLOPT_HEADER' => true,
+  'CURLOPT_RETURNTRANSFER' => true
+];
+```
+
+- Methods
+
+> `head`, `get`, `post`
+
+- Attributes
+
+> `headers`, `options`
+
+- Method Output Attributes
+
+> `status_code`, `content_type`, `headers`, `body`
+
+#### Methods
+
+##### `head` ($url)
+
+Api servisine HEAD isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
+
+```php
+$http = new ApplicationHttp();
+$response = $http->head("http://api.gdemir.github.io");
+print_r($response);
+```
+
+##### `get` ($url)
+
+Api servisine GET isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
+
+```php
+$http = new ApplicationHttp();
+// $http->headers = ["Content-type" => "application/html"];
+// $http->options = [];
+$response = $http->get("http://api.gdemir.github.io");
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+echo $response->body; // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
+```
+
+##### `post` ($url, $data = [])
+
+Api servisine POST isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
+Aşağıdaki örnek MNG kargo entegrosyonu bağlantı testi içindir, test edilen bir örnektir.
+
+```php
+// Ör. 1:
+$http = new ApplicationHttp();
+// $http->headers = [];
+// $http->options = ["CURLOPT_SSL_VERIFYPEER" => false];
+$response= $http->post("http://service.mngkargo.com.tr/tservis/musterikargosiparis.asmx/Baglanti_Test");
+
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+$result = simplexml_load_string($response->body);  // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
+```
+
+```php
+// Ör. 2:
+$http = new ApplicationHttp();
+// $http->headers = [];
+// $http->options = ["CURLOPT_SSL_VERIFYPEER" => false];
+$response = $http->post("http://service.mngkargo.com.tr/tservis/musterikargosiparis.asmx/SiparisGirisiDetayliV3", $_POST);
+
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+$result = simplexml_load_string($response->body);  // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
+```
+
+### Packages (`composer`)
+
+Barak Framework `PHPMailer` kütüphanesini kullanmaktadır. Kendi yazdığınız ya da kullanmak istediğiniz diğer harici kütüphanelerin de dahil edilip kullanılmasına olanak verir. Harici kütüphaneler `composer` paket yöneticisi kullanılarak ya da manuel olarak dosyaların kopyalanması ile dahil edilebilir.
+
+Composer paket yöneticisi kullanarak kütüphane dahil etmek için `require` ve `update` ayar kullanımları vardır.
+
+- Options
+
+> `require`, `update`
+
+#### Options
+
+##### require
+
+Komut satırında `require` anahtarı ile çalıştırmak.
+
+```sh
+composer require USER/PACKAGE
+```
+
+Ör.:
+
+```sh
+composer require google/recaptcha
+```
+
+##### update
+
+Ana dizinde bulunan `composer.json` dosyasının `require` anahtar bölümüne eklemek.
+
+```diff
+{
+    "name": "barak-framework/barak",
+    "type": "project",
+    "description": "Barak Framework",
+    "keywords": ["barak", "turkmen", "framework"],
+    "homepage": "http://barak-framework.github.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gökhan DEMİR",
+            "email": "gdemir3327@gmail.com",
+            "homepage": "http://gdemir.github.io",
+            "role": "Developer"
+        }
+    ],
++   "require": {
++       "php": ">=5.4.0",
++       "phpmailer/phpmailer": "^5.2"
++   }
+}
+```
+
+yukarıdaki örnekte olduğu gibi projenin gereksinimlerinde php ve phpmailer gözükmektedir.
+
+Örneğin, `"google/recaptcha": "^1.1"` satırını ekleyip `google/recaptcha` uygulamasını projeye dahil edebiliriz.
+
+```diff
+"require": {
+    "php": ">=5.4.0",
+    "phpmailer/phpmailer": "~5.2",
++   "google/recaptcha": "^1.1"
+}
+```
+
+Daha sonra aşağıdaki komut çalıştırılmalıdır.
+
+```sh
+composer update
+```
+.
 
 ```php
 // Ör.: dosya : `app/mailers/PasswordMailer.php`
