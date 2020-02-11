@@ -100,7 +100,7 @@ Application::config(function() {
 
 > `set`: Ayar değişkenine değeri atamada kullanılır.
 
-> `modules`: Ayar değişkenine `true` değerinin atamada kullanılır.
+> `modules`: Ayar değişkenine `true` değerini atamada kullanılır.
 
 ###### Options
 
@@ -2362,7 +2362,7 @@ veya
 echo $a;
 ```
 
-gibi tanımlı olmayan değişkenin kullanılması yanılmasını adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
+gibi tanımlı olmayan değişkenin kullanılma yanılmasını adım adım framework'de hangi dosyalardan hangi satıra kadar olduğunun gösterilmesini sağlar.
 
 ##### `shutdown` ()
 
