@@ -214,9 +214,11 @@ Log ayarlarının yapıldığı dosyadır.`tmp/log/` altında oluşturulan logla
 
 Log dosyasının maximum ulaşabileceği boyutun ayarlandığı anahtardır. Varsayılan olarak boyut 5242880 byte (5 megabyte) şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser.
 
-###### `level` [= 0,1,2,3,4]
+###### `level` [= info, warning, error, debug, fatal]
 
-Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seçilmelidir. Uygulamada kullanılan log isminin seviyeleri, yapılandırma dosyasında girilen log seviyesinden küçük ise log bilgisini, log dosyasına yazmayacaktır. (Ör.: `level = 3` ise `ApplicationLogger::info("bilgi var!");` şeklindeki log bilgisini log dosyasına yazmayacaktır. Çünkü `info`, log seviyesi `0` şeklindedir.)
+Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seçilmelidir. Uygulamada kullanılan log isminin seviyeleri, yapılandırma dosyasında girilen log seviyesinden küçük ise log bilgisini, log dosyasına yazmayacaktır. (Ör.: `level = debug` ise `ApplicationLogger::info("bilgi var!");` şeklindeki log bilgisini log dosyasına yazmayacaktır. Çünkü `info`, log seviyesi `0` şeklindedir.) Kapsam şu şekildedir :
+
+`info` > `warning` > `error` > `debug` > `fatal`
 
 | Log İsmi | Log Seviyesi |
 | --- | --- |
@@ -225,7 +227,6 @@ Log yazma seviyesinin ayarlandığı anahtardır. Mevcut log seviyelerinden seç
 | `error`   | `2` |
 | `debug`   | `3` |
 | `fatal`   | `4` |
-
 
 ##### `config/mailer.ini` (mailer configuration file)
 
@@ -578,7 +579,7 @@ ApplicationRoutes::draw(function() {
 
 Kodları daha derli toplu kullanmak için Route'in gruplama özelliğidir. Bir `PATH` altında `CONTROLLER` ve `VIEW` dizininin çalışma imkanı sağlar.
 
-`PATH` altındaki sınıflara üst sınıf olarak `{PATH}Controller` isminde sınıfı da yükler. Bu üst sınıf, alt sınıflar tarafından miras alınacak şekilde ayarlanırsa `PATH` altındaki tüm sınıflarda kullanılacak `helpers`, `before_actions`, `after_actions` özelliklerini ortak havuz gibi kullanma imkanı sağlar. 
+`PATH` altındaki sınıflara üst sınıf olarak `{PATH}Controller` isminde sınıfı da yükler. Bu üst sınıf, alt sınıflar tarafından miras alınacak şekilde ayarlanırsa `PATH` altındaki tüm sınıflarda kullanılacak `helpers`, `before_actions`, `after_actions` özelliklerini ortak havuz gibi kullanma imkanı sağlar.
 
 - Simple
 
