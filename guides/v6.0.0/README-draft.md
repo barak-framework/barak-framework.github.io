@@ -2312,7 +2312,9 @@ ApplicationI18n::get_locale();
 
 ```
 
-##### `translate` ($path)
+##### `translate` ($path, $parameters = {NULL, [$field1 => value1, ...]})
+
+- Simple
 
 Çevirisi yapılacak bir kelime dizini o an hangi dil yüklü ise ona göre çeviri yapmak için aşağıdaki gibi kullanılır.
 
@@ -2328,6 +2330,82 @@ t("home.about_us");
 
 Buradaki çeviri ayarlarının kaydedildiği yer `config/locales/*` dizinidir. Daha ayrıntılı bilgi için `Configurations#config/locales/LANGUAGE.php` kısmına bakınız.
 
+- Lazy (Tembel)
+
+Her template dosyasının bir title vermek isterseniz ve buna kolayca erişmek istenirse kullanılır. Ör.: Dizin Yapısı aşağıdaki gibi olan templateler için
+
+```php
+views/home/index.php
+views/home/about_us.php
+views/home/contact.php
+views/home/writerpage/search.php
+views/home/writerpage/show.php
+config/tr.php içerisinde böyle bir tanımlama yapılabilir.
+```
+
+```php
+<?php
+return [
+  "home" => [
+    "index" => ["title" => "Popüler"],
+    "about_us" => ["title" => "Hakkımızda"],
+    "contact" => ["title" => "Bize Ulaşın"],
+    "writerpage" => [
+      "search" => ["title" => "Yazar Ara"],
+      "show" => ["title" => "Yazar Göster"]
+    ]
+  ]
+];
+?>
+```
+
+Bunu kullanmak için de layout/home.php içerisinde şöyle belirtmek yeterlidir.
+
+```php
+<title><?= t(".title"); ?></title>
+```
+
+- With Parameter
+
+Bu fonksiyona parametre yollayarak translate metinlerine değişken hale getirebilirsiniz.
+
+Örneğin `config/tr.php` içerisinde parametre belirtiyoruz.
+
+```php
+return [
+  "home" => [
+    "show" => [
+      "title" => "Yazar Göster - {writer_name}",
+      "success" => "Yazar Gösterildi - {writer_name}"
+  ]
+];
+```
+
+`app/controllers/HomeController.php` içerisinde veriyi atıyoruz.
+
+```php
+class HomeController {
+  function show { 
+    $name = "Hüseyin Nihal Atsız";
+    $this->writer_name = $name;
+    $_SESSION["success"] = t(".success", $name);
+    // $_SESSION["success"] = t("home.show.success", $name);
+  }
+}
+```
+
+`app/views/layouts/home.php` dosyasında veriyi gösteriyoruz.
+
+```php
+<title>
+	Yazar Göster -
+	<?php if (isset($writer_name)) { ?>
+	<?= t(".title", ["writer_name" => $writer_name]); ?>
+	<?php } else { ?>
+	<?= t(".title"); ?>
+	<?php } ?>
+</title>
+```
 
 ### Debug
 
