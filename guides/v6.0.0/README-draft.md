@@ -376,7 +376,7 @@ class HomeController extends ApplicationController {
 
 ---
 
-Herhangi bir istek URL çalışabilmesi için yönlendirilme dosyasında (`config/routes.php`) ne tür bir istek olduğu tanımlanmalıdır. Eğer istek URL bulunmuyorsa  `public/404.html` sayfası gösterilir. Yönlendirme fonksiyonları olan `get`, `post`, `resource`, `resources`, `scope`, `root` fonksiyonları tanımlama yapılmadan önce  tetikleyici `draw` fonksiyonu içerisine yazılmalıdır.
+Herhangi bir istek URL çalışabilmesi için yönlendirilme dosyasında (`config/routes.php`) ne tür bir istek olduğu tanımlanmalıdır. Eğer istek URL `get`, `post` methodu değilse `public/500.html` sayfası, `get`, `post` methodu ama eşleşen bir istek bulunmuyorsa `public/404.html` sayfası gösterilir. Yönlendirme fonksiyonları olan `get`, `post`, `resource`, `resources`, `scope`, `root` fonksiyonları tanımlama yapılmadan önce  tetikleyici `draw` fonksiyonu içerisine yazılmalıdır.
 
 - Kick Method (static)
 
