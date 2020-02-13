@@ -2486,15 +2486,15 @@ ApplicationLogger::debug("olaylar olaylar");
 // olaylar olaylar
 ```
 
-### Cache (`tmp/cache/*`)
+### Cacher (`tmp/cache/*`)
 
 ---
 
 Belirlediğiniz değişkenleri belli bir mühdet veritabanından değil de dosya olarak tutup bunu tekrar kullanmanıza yarayan özelliktir. Örneğin bir veri durmadan veritabanından çekileceğine, dosyaya yazılıp eğer dosyada varsa dosyadan çek şeklinde bir kod yazılabilir. Bu şekilde veritabanın üzerindeki yük azaltılabilir.
 
-Farklı sayfalarda yapılan değişken tanımlamalarında, aynı değişken ismini saklayabilmek için verilen anahtarlara göre  "`request_url` + `key`" (istek url ve verilen anahtar)'e göre `md5` ile şifreleyip `tmp/cache/*` dizini üzerinde yazma, okuma, silme, var olduğunu bakma, tamamen silme gibi işlemleri yapılmaktadır.
+Değişken ismini saklayabilmek için verilen anahtarlara göre  `key` (verilen anahtar)'e göre `md5` ile şifreleyip `tmp/cache/*` dizini üzerinde yazma, okuma, silme, var olduğunu bakma, tamamen silme gibi işlemleri yapılmaktadır.
 
-Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şifreleyip `tmp/cache/3290482038.php` gibi bir dosya üzerine yazar ve bu dosyayı belli bir zaman içerisinde erişimine imkan verir. Ayrıca `/home/active_users` gibi bir sayfaya istek geldiğinde yine `$users` değişkenini saklayabilirsiniz, diğer `home/users/` sayfasındaki `$users` değişkeni ile çakışma olmamaktadır.
+Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şifreleyip `tmp/cache/3290482038.php` gibi bir dosya üzerine yazar ve bu dosyayı belli bir zaman içerisinde erişimine imkan verir.
 
 ```php
 // Ör.:
