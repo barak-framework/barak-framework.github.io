@@ -113,7 +113,7 @@ Application::config(function() {
 
 Uygulama üzerinde oluşan Exception, Error, Shutdown(Fatal Error) yanılmalarını yakalayıp Yazılımcı Modu(`true`) veya Kullanıcı Modu(`false`) şeklinde gösterilmenin ayarlandığı anahtardır.
 
-1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, yanılmanın nedenini gösterilmek isteniyorsa kullanılır
+1. `true`  : [Yazılımcı Modu] Adım adım hangi dosyada, hangi satırda, yanılmanın nedenini gösterilmek isteniyorsa kullanılır.
 2. `false` : [Kullanıcı Modu] Sadece uygulamanın çalışmadığını üstü kapalı bir şekilde gösterilmek isteniyorsa kullanılır, `public/500.html` sayfası gösterilir.
 
 Ancak her türlü ayarlamada da log kaydı tutulur. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
@@ -128,9 +128,15 @@ PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi içi
 
 > `logger` [= ["file" => "production", "level" => "info", "driver" => "weekly", "rotate" => 4, "size" => 5242880]]
 
-Log dosyasının maximum ulaşabileceği boyutu ayarlar, varsayılan olarak boyut 5242880 byte (5 megabyte) şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser. Bu boyut ayarlaması yapıldığında daha önceki boyut ayarlamalarını pas geçer.
+`tmp/log/` altında oluşturulacak log dosyasının hangi ad, seviye, sürücü, döndürme sayısı, byte boyutu belirtilerek ayarlandığı anahtardır.
 
-`tmp/log/` altında oluşturulacak log dosyalarının, hangi ad, level, süre, döndürme, byte boyutu belirtilerek ayarlanan anahtardır. Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
+1. `file` : Yazılacak olan log dosyasının adı için kullanılır.
+2. `level` : Sadece seçtiğiniz seviyenin(kendisi dahil) **kapsadığı seviyeleri** yazmak için kullanılır. Ör.: `warning` seviyesi seçilirse `info` seviyeli duyuru içerikleri log dosyasına yazılmayacaktır. (Seviyeler(levels): `info`, `warning`, `error`, `debug`, `fatal` | Kapsamlar(scopes): **info** > **warning** > **error** > **debug** > **fatal**)
+3. `driver` : Log dosyasının hangi gün boyunca tutulması gerektiğini belirtmek için kullanılan sürücülerdir. Ör.: `weekly` sürücüsü seçilirse 7 gün boyunca bu dosyaya yazar ve 7 günün sonunda bu dosyayı yedek dosya olarak taşır; tekrardan yeni bir 7 günlük yazılacak log dosyası oluşturur. (Sürücüler(drivers) : `yearly`, `mountly`, `weekly`, `daily` | Günler(days): `yearly`:365, `mountly`:30, `weekly`:7, `daily`: 1)
+4. `rotate` : Tutulacak yedek dosyalarının kaç adet olacağını(döndürüleceğini) belirtmek için kullanılır.
+5. `size` : Eğer log dosyası belli bir boyutu aştıysa yedek dosya olarak taşınıp tekrardan yeni bir yazılacak log dosyası oluştururmak için kullanılır.
+
+Daha ayrıntılı bilgi için `Logger` kısmına bakınız.
 
 ###### Modules
 
@@ -2385,7 +2391,7 @@ return [
 
 ```php
 class HomeController {
-  function show { 
+  function show {
     $name = "Hüseyin Nihal Atsız";
     $this->writer_name = $name;
     $_SESSION["success"] = t(".success", $name);
@@ -2398,12 +2404,12 @@ class HomeController {
 
 ```php
 <title>
-	Yazar Göster -
-	<?php if (isset($writer_name)) { ?>
-	<?= t(".title", ["writer_name" => $writer_name]); ?>
-	<?php } else { ?>
-	<?= t(".title"); ?>
-	<?php } ?>
+  Yazar Göster -
+  <?php if (isset($writer_name)) { ?>
+  <?= t(".title", ["writer_name" => $writer_name]); ?>
+  <?php } else { ?>
+  <?= t(".title"); ?>
+  <?php } ?>
 </title>
 ```
 
@@ -2461,7 +2467,7 @@ veya
 
 ---
 
-Verilen mesajları **günlük** dosyalara (`tmp/log/yyyy-mm-dd.log` formatında) yazmaya yarayan özelliktir. Log bilgileri log isimlerinin sahip olduğu log seviyelerine göre ya kaydedilmekte ya da kaydedilmemektedir. Daha ayrıntılı bilgi için `Configurations#config/logger.ini#level` kısmına bakınız.
+Sistem mesajları ve verilen mesajları log dosyasınayazmaya yarayan özelliktir. Daha ayrıntılı bilgi için `Configurations#config/logger` kısmına bakınız.
 
 - Methods
 
