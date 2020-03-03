@@ -131,8 +131,10 @@ PHP'nin zaman ayarlamasının yapıldığı anahtardır. Ayrıntılı bilgi içi
 `tmp/log/` altında oluşturulacak log dosyasının hangi ad, seviye, sürücü, döndürme sayısı, byte boyutu belirtilerek ayarlandığı anahtardır.
 
 1. `file` : Yazılacak olan log dosyasının adı için kullanılır.
-2. `level` : Sadece seçtiğiniz seviyenin(kendisi dahil) **kapsadığı seviyeleri** yazmak için kullanılır. Ör.: `warning` seviyesi seçilirse `info` seviyeli duyuru içerikleri log dosyasına yazılmayacaktır. (Seviyeler(levels): `info`, `warning`, `error`, `debug`, `fatal` | Kapsamlar(scopes): **info** > **warning** > **error** > **debug** > **fatal**)
-3. `driver` : Log dosyasının hangi gün boyunca tutulması gerektiğini belirtmek için kullanılan sürücülerdir. Ör.: `weekly` sürücüsü seçilirse 7 gün boyunca bu dosyaya yazar ve 7 günün sonunda bu dosyayı yedek dosya olarak taşır; tekrardan yeni bir 7 günlük yazılacak log dosyası oluşturur. (Sürücüler(drivers) : `yearly`, `mountly`, `weekly`, `daily` | Günler(days): `yearly`:365, `mountly`:30, `weekly`:7, `daily`: 1)
+2. `level` : Sadece seçtiğiniz seviyenin(kendisi dahil) **kapsadığı seviyeleri** yazmak için kullanılır. Ör.: `warning` seviyesi seçilirse `info` seviyeli duyuru içerikleri log dosyasına yazılmayacaktır.
+(Seviyeler(levels): `info`, `warning`, `error`, `debug`, `fatal` | Kapsamlar(scopes): **info** > **warning** > **error** > **debug** > **fatal**)
+3. `driver` : Log dosyasının hangi gün boyunca tutulması gerektiğini belirtmek için kullanılan sürücülerdir. Ör.: `weekly` sürücüsü seçilirse 7 gün boyunca bu dosyaya yazar ve 7 günün sonunda bu dosyayı yedek dosya olarak taşır; tekrardan yeni bir 7 günlük yazılacak log dosyası oluşturur.
+(Sürücüler(drivers) : `yearly`, `mountly`, `weekly`, `daily` | Günler(days): `yearly`:365, `mountly`:30, `weekly`:7, `daily`: 1)
 4. `rotate` : Tutulacak yedek dosyalarının kaç adet olacağını(döndürüleceğini) belirtmek için kullanılır.
 5. `size` : Eğer log dosyası belli bir boyutu aştıysa yedek dosya olarak taşınıp tekrardan yeni bir yazılacak log dosyası oluştururmak için kullanılır.
 
