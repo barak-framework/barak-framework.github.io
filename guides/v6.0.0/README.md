@@ -2471,7 +2471,7 @@ veya
 
 ---
 
-Sistem mesajları ve verilen mesajları log dosyasınayazmaya yarayan özelliktir. Daha ayrıntılı bilgi için `Configurations#config/logger` kısmına bakınız.
+Sistem mesajları ve verilen mesajları log dosyasına yazmaya yarayan özelliktir. Daha ayrıntılı bilgi için `Configurations#config/logger` kısmına bakınız.
 
 - Methods
 
