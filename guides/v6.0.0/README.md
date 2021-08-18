@@ -2488,7 +2488,7 @@ ApplicationLogger::error("dikkat et");
 ApplicationLogger::fatal("cevap vermiyor");
 ApplicationLogger::debug("olaylar olaylar");
 
-// tmp/log/2017-06-18.log
+// tmp/log/production_2017-06-18.log
 // bilmek iyidir
 // olabilir?
 // dikkat et
