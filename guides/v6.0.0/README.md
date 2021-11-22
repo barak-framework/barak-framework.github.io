@@ -212,14 +212,6 @@ Veritabanı adı
 
 Veritabanı parolası
 
-##### `config/logger.ini` (logger configuration file)
-
-Log ayarlarının yapıldığı dosyadır.`tmp/log/` altında oluşturulan logları ayarlar. Ayar seçeneklerini kullanmak zorunlu değildir.
-
-- Options
-
-> `size`, `level`
-
 ###### `size` [= 5242880]
 
 Log dosyasının maximum ulaşabileceği boyutun ayarlandığı anahtardır. Varsayılan olarak boyut 5242880 byte (5 megabyte) şeklindedir. Eğer belirlenen boyut aşılırsa dosyaya yazmayı keser.
