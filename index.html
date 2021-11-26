@@ -14,8 +14,10 @@
 
   <!-- turkuazcss start -->
   <!-- source: https://github.com/turkuazcss/turkuazcss -->
+  <!--
   <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/turkuaz.css" />
   <script src="https://barak-framework.github.io/assets/js/turkuaz.js"></script>
+-->
   <!-- turkuazcss end -->
 
   <!-- <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/bootstrap.min.css" /> -->
@@ -28,152 +30,152 @@
 
 <![endif]-->
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<!-- <script src="https://barak-framework.github.io/assets/js/bootstrap.min.js"></script> -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <!-- <script src="https://barak-framework.github.io/assets/js/bootstrap.min.js"></script> -->
 
-<!-- Google Analytics start -->
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-111463108-1']);
+  <!-- Google Analytics start -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-111463108-1']);
 
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-<!-- Google Analytics end -->
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <!-- Google Analytics end -->
 
-<!-- Highlightjs start -->
-<!-- source: http://highlightjs.org -->
-<link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/highlight.pack.css" />
-<script src="https://barak-framework.github.io/assets/js/highlight.pack.js"></script>
-<script type="text/javascript">
-  hljs.initHighlightingOnLoad();
-</script>
-<!-- Highlightjs end -->
+  <!-- Highlightjs start -->
+  <!-- source: http://highlightjs.org -->
+  <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/highlight.pack.css" />
+  <script src="https://barak-framework.github.io/assets/js/highlight.pack.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+  <!-- Highlightjs end -->
 
-<!-- Animatecss start -->
-<!-- source: https://daneden.github.io/animate.css/ -->
-<link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/animate.min.css" />
-<!-- Animatecss end -->
+  <!-- Animatecss start -->
+  <!-- source: https://daneden.github.io/animate.css/ -->
+  <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/animate.min.css" />
+  <!-- Animatecss end -->
 
-<!-- Github-markdown-css start -->
-<!-- source: https://github.com/sindresorhus/github-markdown-css -->
-<link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/github-markdown.css" />
-<style>
-.markdown-body {
-  box-sizing: border-box;
-  min-width: 200px;
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 45px;
-}
-
-@media (max-width: 767px) {
-  .markdown-body {
-    padding: 15px;
-  }
-}
-</style>
-<!-- Github-markdown-css end -->
-
-<!-- Particlesjs start -->
-<!-- source: https://github.com/VincentGarreau/particles.js -->
-<script src="https://barak-framework.github.io/assets/js/particles.min.js"></script>
-<style type="text/css">
-canvas {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 0;
-}
-</style>
-<script type="text/javascript">
-  particlesJS.load('particles-js', 'https://barak-framework.github.io/assets/js/particles.json', function() {
-    console.log('particles.js loaded - callback');
-  });
-</script>
-<!-- Particlesjs end -->
-
-<!-- Showdownjs start -->
-<!-- source: https://github.com/showdownjs/showdown -->
-<script src="https://barak-framework.github.io/assets/js/showdown.min.js"></script>
-<!-- Showdownjs end -->
-
-<!-- Moonmode start -->
-<!-- source : http://github.com/gdemir/moonmode -->
-<link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/moonmode.min.css" />
-<!-- Moonmode end -->
-
-<script type="text/javascript">
-
-  $(document).ready(function() {
-
-    function get_markdown(URL) {
-      $.ajax({
-        url: URL,
-        type: 'get',
-        dataType: 'html',
-        async: false,
-        success: function(data) { RESULT = data; }
-      });
-      return RESULT;
+  <!-- Github-markdown-css start -->
+  <!-- source: https://github.com/sindresorhus/github-markdown-css -->
+  <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/github-markdown.css" />
+  <style>
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
     }
 
-    $("#moonmode-logo").click(function() {
-      $("body").toggleClass("moonmode-body");
-      $("#readme").toggleClass("moonmode-page");
-    });
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+  <!-- Github-markdown-css end -->
 
-    $('select').change(function() {
-      var VERSION = $(this).val();
-      var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
-      var converter = new showdown.Converter({
-      tables: true,
-      literalMidWordUnderscores: true
+  <!-- Particlesjs start -->
+  <!-- source: https://github.com/VincentGarreau/particles.js -->
+  <script src="https://barak-framework.github.io/assets/js/particles.min.js"></script>
+  <style type="text/css">
+    canvas {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+    }
+  </style>
+  <script type="text/javascript">
+    particlesJS.load('particles-js', 'https://barak-framework.github.io/assets/js/particles.json', function() {
+      console.log('particles.js loaded - callback');
+    });
+  </script>
+  <!-- Particlesjs end -->
+
+  <!-- Showdownjs start -->
+  <!-- source: https://github.com/showdownjs/showdown -->
+  <script src="https://barak-framework.github.io/assets/js/showdown.min.js"></script>
+  <!-- Showdownjs end -->
+
+  <!-- Moonmode start -->
+  <!-- source : http://github.com/gdemir/moonmode -->
+  <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/moonmode.min.css" />
+  <!-- Moonmode end -->
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      function get_markdown(URL) {
+        $.ajax({
+          url: URL,
+          type: 'get',
+          dataType: 'html',
+          async: false,
+          success: function(data) { RESULT = data; }
+        });
+        return RESULT;
+      }
+
+      $("#moonmode-logo").click(function() {
+        $("body").toggleClass("moonmode-body");
+        $("#readme").toggleClass("moonmode-page");
       });
-      var HTML = converter.makeHtml(MARKDOWN);
 
-      $("#readme").html(HTML).hide();
+      $('select').change(function() {
+        var VERSION = $(this).val();
+        var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
+        var converter = new showdown.Converter({
+          tables: true,
+          literalMidWordUnderscores: true
+        });
+        var HTML = converter.makeHtml(MARKDOWN);
 
-      var headers = "";
-      $('#readme :header').each(function() {
+        $("#readme").html(HTML).hide();
 
-        var level = this.nodeName.substring(1);
-        var text = $(this).text();
-        var id = $(this).attr('id');
-        if (level == 1 || level == 2 || level == 3 || level == 4) {
-          headers = headers +
-          "<h" + level + " id = '" + id + "' style='margin-left:"+ level+"0px'>" +
-          "<a href='#" + id + "'>" + text + "</a>" +
-          "</h" + level + ">";
-        }
+        var headers = "";
+        $('#readme :header').each(function() {
+
+          var level = this.nodeName.substring(1);
+          var text = $(this).text();
+          var id = $(this).attr('id');
+          if (level == 1 || level == 2 || level == 3 || level == 4) {
+            headers = headers +
+            "<h" + level + " id = '" + id + "' style='margin-left:"+ level+"0px'>" +
+            "<a href='#" + id + "'>" + text + "</a>" +
+            "</h" + level + ">";
+          }
+        });
+
+        $("#help").html(headers).hide();
+
+        $('pre code').each(function(i, e) { hljs.highlightBlock(e) });
+
+      }).trigger('change');
+
+      $("#documentation").click(function() {
+        help_state = $("#help").is(":visible");
+        readme_state = $("#readme").is(":visible");
+        $("#readme").slideToggle("slow");
+        if (!readme_state && !help_state)
+          $("#help").show();
+        else
+          $("#help").hide();
       });
 
-      $("#help").html(headers).hide();
-
-      $('pre code').each(function(i, e) { hljs.highlightBlock(e) });
-
-    }).trigger('change');
-
-    $("#documentation").click(function() {
-      help_state = $("#help").is(":visible");
-      readme_state = $("#readme").is(":visible");
-      $("#readme").slideToggle("slow");
-      if (!readme_state && !help_state)
-        $("#help").show();
-      else
-        $("#help").hide();
-    });
-
-    $("#readme").click(function(e) {
-      $("#help").slideToggle("slow");
-    });
+      $("#readme").click(function(e) {
+        $("#help").slideToggle("slow");
+      });
 // autoplay='autoplay'
 var music_level = Math.floor(Math.random() * 24 + 1);
 $("#soundtrack").html(
@@ -187,59 +189,60 @@ $("#soundtrack").html(
 
 <style type="text/css">
   /* locals */
-  
-@import  url('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
-body { font-family: 'Nunito', sans-serif;  background-color: #fdfdfd; }
-code { color: #c7254e; }
-.container { word-wrap: break-word; }
 
-#intro { font-size: 12px; color: #777; }
-#intro h3 { margin: 0; padding: 10px; font-size: 33px; font-weight: 300; line-height: 1.1; }
-#intro h5 { margin-top: 20px; margin-bottom: 20px; font-size: 12px; font-weight: 500; }
+  @import  url('https://fonts.googleapis.com/css?family=Nunito:300,400,600');
+  body { font-family: 'Nunito', sans-serif;  background-color: #fdfdfd; }
+  code { color: #c7254e; }
+  .container { word-wrap: break-word; }
 
-#about { border-top: 1px solid #ccc; }
+  #intro { font-size: 12px; color: #777; }
+  #intro h3 { margin: 0; padding: 10px; font-size: 33px; font-weight: 300; line-height: 1.1; }
+  #intro h5 { margin-top: 20px; margin-bottom: 20px; font-size: 12px; font-weight: 500; }
 
-#readme { color: #333; }
-#readme h1 { color: #424242; font-weight: bold; }
-#readme h4 { border-bottom: 1px solid #e1e4e8; padding-bottom: 1em; }
-#readme h5 { border-radius: 8px; border: 2px dotted #424242; padding: 1em; }
+  #about { border-top: 1px solid #ccc; }
 
-#help { background-color: rgba(0, 0, 0, 0.6); border-radius: 6px; top: 0; right: 0; position: fixed; }
-#help h1 { font-size: 13px; line-height: 0.15; margin-top: 14px; }
-#help h2 { font-size: 12px; line-height: 0.10; margin-top: 16px; }
-#help h3 { font-size: 11px; line-height: 0.05; margin-top: 18px; }
-#help h4 { font-size: 10px; line-height: 0.00; }
-#help a { color: white; }
+  #readme { color: #333; }
+  #readme h1 { color: #424242; font-weight: bold; }
+  #readme h4 { border-bottom: 1px solid #e1e4e8; padding-bottom: 1em; }
+  #readme h5 { border-radius: 8px; border: 2px dotted #424242; padding: 1em; }
 
-#projects { background-color: rgba(0, 0, 0, 0.1); left: 0; right: 0; bottom: 0; position: fixed; }
+  #help { background-color: rgba(0, 0, 0, 0.6); border-radius: 6px; top: 0; right: 0; position: fixed; }
+  #help h1 { font-size: 13px; line-height: 0.15; margin-top: 14px; }
+  #help h2 { font-size: 12px; line-height: 0.10; margin-top: 16px; }
+  #help h3 { font-size: 11px; line-height: 0.05; margin-top: 18px; }
+  #help h4 { font-size: 10px; line-height: 0.00; }
+  #help a { color: white; }
 
-.turquoise_color { color: turquoise; }
-.turquoise_border { border:3px solid turquoise; border-radius: 8px; }
+  #projects { background-color: rgba(0, 0, 0, 0.1); left: 0; right: 0; bottom: 0; position: fixed; }
+
+  .original_color { color: #ef9141; }
+  .desert_border { border:3px solid #d6d4ca; border-radius: 8px; }
 
   /* add-on */
 
-.list-inline {
-  padding-left: 0;
-  list-style: none;
-}
-.list-inline>li {
-  display: inline-block;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-.github-background {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  width: 48px;
-  height: 48px;
-  text-align: center;
-  padding: 0.7em;
-  background-color: #f5f7f9;
-}
+  .list-inline {
+    padding-left: 0;
+    list-style: none;
+  }
+  .list-inline>li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .github-background {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    padding: 0.7em;
+    background-color: #f5f7f9;
+  }
   /* overwrite TurkuazCSS */
-  
+  /*
   blockquote { background-color: transparent; }
   ol, ul, dl { list-style-type: disc; }
+*/
 </style>
 </head>
 <body>
@@ -286,7 +289,7 @@ code { color: #c7254e; }
 
       <img src="https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/assets/img/default.png" width="150" />
       <h3>
-        BARAK <span class="turquoise_color" style="font-size:43px;">7</span> FRAMEWORK
+        BARAK <span class="original_color" style="font-size:43px;">X</span> FRAMEWORK
       </h3>
 
       <div id="about" style="position: relative;">
@@ -294,7 +297,7 @@ code { color: #c7254e; }
         <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
           <div class="ck12 k12 o12 b12">
             <select>
-              <option value="v7.0.0">v7.0.0 - beta</option>
+              <option value="v7.0.0">vX.0.0 - beta</option>
               <option value="v6.0.0">v6.0.0</option>
               <option value="v5.0.0">v5.0.0</option>
               <option value="v4.0.0">v4.0.0</option>
@@ -336,62 +339,62 @@ code { color: #c7254e; }
     <ul class="list-inline" style="line-height:0px;margin:0em;">
       <li>
         <a href="http://olt.com.tr" style="position: relative;" target="_blank" title="Optik Line Telekominikasyon">
-          <img src="http://barak-framework.github.io/assets/img/olt.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/olt.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://gaziantepasansor.com" style="position: relative;" target="_blank" title="Tek Genç Asansör">
-          <img src="http://barak-framework.github.io/assets/img/gaziantepasansor.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/gaziantepasansor.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://akgenseeds.com" style="position: relative;" target="_blank" title="Akgenseeds Tohumculuk">
-          <img src="http://barak-framework.github.io/assets/img/akgenseeds.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/akgenseeds.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://huseyingoksel.av.tr" style="position: relative;" target="_blank" title="Göksel Hukuk Bürosu">
-          <img src="http://barak-framework.github.io/assets/img/huseyingoksel.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/huseyingoksel.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://nefsistem.com" style="position: relative;" target="_blank" title="NEF Systems CO LTD">
-          <img src="http://barak-framework.github.io/assets/img/nefsistem.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/nefsistem.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://gezeryapidekorasyon.com" style="position: relative;" target="_blank" title="Gezer Yapı Dekorasyon">
-          <img src="http://barak-framework.github.io/assets/img/gezeryapidekorasyon.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/gezeryapidekorasyon.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://neflan.com" style="position: relative;" target="_blank" title="NEF LAN CO LTD">
-          <img src="http://barak-framework.github.io/assets/img/neflan.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/neflan.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://on-line.com.tr" style="position: relative;" target="_blank" title="On Line logistics">
-          <img src="http://barak-framework.github.io/assets/img/on-line.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/on-line.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://enn-ara.github.io" style="position: relative;" target="_blank" title="Enn Ara">
-          <img src="http://barak-framework.github.io/assets/img/enn-ara.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/enn-ara.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://kitap-bulur.github.io" style="position: relative;" target="_blank" title="Kitap Bulur">
-          <img src="http://barak-framework.github.io/assets/img/kitap-bulur.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/kitap-bulur.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://yazartakibi.com/" style="position: relative;" target="_blank" title="Yazar Takibi">
-          <img src="http://barak-framework.github.io/assets/img/yazartakibi.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/yazartakibi.png" class="img-responsive desert_border" />
         </a>
       </li>
       <li>
         <a href="http://islamvakti.net" style="position: relative;" target="_blank" title="İslam Vakti">
-          <img src="http://barak-framework.github.io/assets/img/islamvakti.png" class="img-responsive turquoise_border" />
+          <img src="http://barak-framework.github.io/assets/img/islamvakti.png" class="img-responsive desert_border" />
         </a>
       </li>
     </ul>
