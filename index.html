@@ -199,7 +199,7 @@ $("#soundtrack").html(
   #readme h4 { border-bottom: 1px solid #e1e4e8; padding-bottom: 1em; }
   #readme h5 { border-radius: 8px; border: 2px dotted #424242; padding: 1em; }
 
-  #help { background-color: rgba(0, 0, 0, 0.6); border-radius: 6px; top: 0; right: 0; position: fixed; }
+  #help { background-color: rgba(0, 0, 0, 0.6); border-radius: 6px; top: 0; right: 0; bottom: 0; position: fixed; }
   #help h1 { font-size: 13px; line-height: 0.15; margin-top: 14px; }
   #help h2 { font-size: 12px; line-height: 0.10; margin-top: 16px; }
   #help h3 { font-size: 11px; line-height: 0.05; margin-top: 18px; }
@@ -211,17 +211,25 @@ $("#soundtrack").html(
   .original_color { color: #ef9141; }
   .desert_border { border:3px solid #d6d4ca; border-radius: 8px; }
 
+  /* overwrite */
+
+  blockquote { background-color: transparent; }
+  ol, ul, dl { list-style-type: disc; }
+  a { text-decoration: none; }
+
   /* add-on */
 
   .list-inline {
     padding-left: 0;
     list-style: none;
   }
+
   .list-inline>li {
     display: inline-block;
     padding-right: 5px;
     padding-left: 5px;
   }
+
   .github-background {
     border: 1px solid #ddd;
     border-radius: 12px;
@@ -231,13 +239,7 @@ $("#soundtrack").html(
     padding: 0.7em;
     background-color: #f5f7f9;
   }
-  /* overwrite */
 
-  blockquote { background-color: transparent; }
-  ol, ul, dl { list-style-type: disc; }
-  a { text-decoration: none; }
-
-  /* new */
   .btn-button {
     color: #fff;
     background-color: #ef9141;
@@ -337,7 +339,7 @@ $("#soundtrack").html(
 <div id="soundtrack">
 </div>
 
-<div id="projects" class="list-inline text-center d-md-none d-lg-none d-xk-block" style="margin:10px 0px 0px 0px;">
+<div id="projects" class="list-inline text-center d-md-none d-lg-none d-xs-block" style="margin:10px 0px 0px 0px;">
   <h6 style="color:#03968a">Barak Framework Kullanan Servisler ve Sponsorlar</h6>
   <ul class="list-inline" style="line-height:0px;margin:0em;">
     <li>
