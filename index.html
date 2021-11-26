@@ -230,6 +230,10 @@ $("#soundtrack").html(
     padding: 0.7em;
     background-color: #f5f7f9;
   }
+  /* overwrite */
+
+  blockquote { background-color: transparent; }
+  ol, ul, dl { list-style-type: disc; }
 </style>
 </head>
 <body>
@@ -282,8 +286,8 @@ $("#soundtrack").html(
       <div id="about" style="position: relative;">
 
         <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-          <div class="ck12 k12 o12 b12">
-            <select>
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
               <option value="v7.0.0">vX.0.0 - beta</option>
               <option value="v6.0.0">v6.0.0</option>
               <option value="v5.0.0">v5.0.0</option>
