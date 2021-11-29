@@ -1,6 +1,6 @@
 # BARAK FRAMEWORK
 
-## Barak Framework v7
+## Barak Framework vX
 
 <b style="font-size:20px;"> `Çok Yakında`</b>
 
