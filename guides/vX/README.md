@@ -2,10 +2,10 @@
 
 ## Barak Framework vX
 
-<b style="font-size:20px;"> `Çok Yakında`</b>
+<b style="font-size:30px;"> `Çok Yakında`</b>
 
 
-# ApplicationLogger:
+# ApplicationLogger
 - Path yolu düzeltme
 - **DRIVERNAMES** sabit dizisi içerisindeki `montly` ifadesinin doğru yazımı olan `mountly` olarak düzeltilmesi
 # ApplicationMailer
@@ -21,5 +21,5 @@
 - ApplicationFlash özellik değerlerinin kaldırılması
 # ApplicationFlash -
 - Sınıfın kaldırılması
-# ApplicationResponse.php 
+# ApplicationResponse
 - Yanıtlarda ek değerinin `0` yerine `NULL` olarak değiştirilmesi
