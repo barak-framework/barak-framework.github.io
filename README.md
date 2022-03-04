@@ -4,7 +4,7 @@
 
 ## Powered By
 
- - [Turkuazcss](https://github.com/omergulcicek/turkuaz)
+ - [Bootstrap](https://github.com/twbs/bootstrap)
  - [Highlightjs](https://highlightjs.org)
  - [Github-markdown-css](https://github.com/sindresorhus/github-markdown-css) 
  - [Animatecss](https://daneden.github.io/animate.css)
