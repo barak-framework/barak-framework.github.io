@@ -22,4 +22,4 @@
 # ApplicationFlash -
 - Sınıfın kaldırılması
 # ApplicationResponse
-- Yanıtlarda ek değerinin `0` yerine `NULL` olarak değiştirilmesi
+- Yanıtlarda `_attachment`(**ek dosya**) değerinin `0` yerine `NULL` olarak değiştirilmesi
