@@ -10,7 +10,7 @@
 - **DRIVERNAMES** sabit dizisi içerisindeki `montly` ifadesinin doğru yazımı olan `mountly` olarak düzeltilmesi
 # ApplicationMailer
 - Erişim değişkenin değiştirilmesi
-- `delivery` methodunun hata olduğunda hata dizisi döndürmesi ya da boş dizi dönmesi özelliği eklenmesi
+- `delivery` methodunun hata olduğunda her `action`a ait stringi dönen string dizisi dönmesi eklenmesi
 # BarakApplication
 - `_close_option_kernel` fonksiyonun kaldırılması
 - ApplicationFlash özellik değerlerinin kaldırılması
