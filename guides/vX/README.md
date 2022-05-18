@@ -2069,7 +2069,7 @@ Her hazırlanan Mailer sınıfı kullanırken,
 
 1. `$action` parametresi olarak oluşturduğunuz `app/mailers/*Mailer.php` sınıfı içersindeki method ismi yazılır.
 2. `$action` adındaki oluşturduğunu method eğer bir veri alacak şekilde tanımlandıysa bu veriler `[$param1, ...]` şeklinde gönderilir.
-3. `delivery` methodu ilişkili(`before_actions` ve `after_actions`) methodlarla çalışması sonucunda eğer mail gönderiminde hata alıyorsa hangi **action**da hangi hata dönüyor şeklinde bir dizi döndürür. Ör. ["action1" => "error1", "action2" => "error2"]
+3. `delivery` methodu ilişkili(`before_actions` ve `after_actions`) methodlarla çalışması sonucunda eğer mail gönderiminde hata alıyorsa hangi **action**da hangi hata dönüyor şeklinde bir dizi döndürür. Ör. ["action1" => "error1", "action2" => "error2", ...]
 
 > `app/controllers/HomeController.php`
 
