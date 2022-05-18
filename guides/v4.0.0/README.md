@@ -24,7 +24,7 @@ Barak Framework için gerekli olan paketler yukarıda verilmiştir. Bu paketleri
 ### Installing Barak
 
 ```sh
-composer create-project barak-framework/barak project_name
+composer create-project barak-framework/barak=v4.0.0 project_name
 ```
 
 ### Run
