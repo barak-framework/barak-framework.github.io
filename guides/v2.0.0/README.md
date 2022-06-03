@@ -1,4 +1,4 @@
-# Barak Framework v2
+# BARAK FRAMEWORK v2
 
 ##  Requirements Packages and Configuration
 
