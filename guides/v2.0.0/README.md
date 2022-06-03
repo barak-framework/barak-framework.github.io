@@ -1,8 +1,4 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/barak-framework/barak/master/app/assets/img/default.png" height="64" />
-</p>
-
----
+# Barak Framework v2
 
 ##  Requirements Packages and Configuration
 
