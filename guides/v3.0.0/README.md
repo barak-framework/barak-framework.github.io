@@ -746,7 +746,7 @@ Her `get` işlemi için `config/routes.php` de yönlendirilen `controller` ve `a
 
 #### `render`
 
-Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Yalnızca `*.php` dosyalarının içersinde kullanılırken `<?php render(); ?>` şeklinde kullanılmalıdır. Daha ayrıntılı bilgi için [Controller#render](https://github.com/barak-framework/barak/blob/master/README.md#render)
+Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Yalnızca `*.php` dosyalarının içersinde kullanılırken `<?= render(); ?>` şeklinde kullanılmalıdır. Daha ayrıntılı bilgi için [Controller#render](https://github.com/barak-framework/barak/blob/master/README.md#render)
 
 ### Model (`app/models/TABLE.php`)
 
