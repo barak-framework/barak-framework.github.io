@@ -1154,7 +1154,7 @@ Yönlendirme dosyasında tanımlı olan (`config/routes.php`) her `get` veya `po
 `render` methodu için `Controllers` kısmındaki,
 - `Controllers#render#view_options` özelliği kullanılabilir.
 - `Controllers#render#response_options` özelliği **kullanılamaz.**
-- Görünüm dosyalarının içerisinde (`html` içerikli dosyalarının) `<?php render(); ?>` şeklinde kullanılmalıdır.
+- Görünüm dosyalarının içerisinde (`html` içerikli dosyalarının) `<?= render(); ?>` şeklinde kullanılmalıdır.
 
 Daha ayrıntılı bilgi için `Controllers#render#view_options` kısmına bakınız.
 
