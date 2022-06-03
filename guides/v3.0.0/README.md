@@ -1,4 +1,4 @@
-# Barak Framework v3
+# BARAK FRAMEWORK v3
 
 ## Requirements
 
