@@ -837,7 +837,7 @@ Yönlendirme dosyasında tanımlı olan (`config/routes.php`) her `get` veya `po
 
 ##### `render`
 
-Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Yalnızca `*.php` dosyalarının içersinde kullanılırken `<?php render(); ?>` şeklinde kullanılmalıdır. Daha ayrıntılı bilgi için `Controller#render` kısmına bakınız.
+Fonksiyonu Controller'daki gibi tüm özellikleri ile kullanılabilir. Yalnızca `*.php` dosyalarının içersinde kullanılırken `<?= render(); ?>` şeklinde kullanılmalıdır. Daha ayrıntılı bilgi için `Controller#render` kısmına bakınız.
 
 ### Model (`app/models/TABLE.php`)
 
