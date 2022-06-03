@@ -1,4 +1,4 @@
-# BARAK FRAMEWORK
+# BARAK FRAMEWORK v6
 
 ## Barak Framework Nedir ?
 
