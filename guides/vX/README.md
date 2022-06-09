@@ -2505,7 +2505,7 @@ ApplicationLogger::debug("olaylar olaylar");
 // olaylar olaylar
 ```
 
-### Cacher (`tmp/cache/*`)
+### Cacher (`tmp/cache/*.cache`)
 
 ---
 
@@ -2513,7 +2513,7 @@ Belirlediğiniz değişkenleri belli bir mühdet veritabanından değil de dosya
 
 Değişken ismini saklayabilmek için verilen anahtarlara göre  `key` (verilen anahtar)'e göre `md5` ile şifreleyip `tmp/cache/*` dizini üzerinde yazma, okuma, silme, var olduğunu bakma, tamamen silme gibi işlemleri yapılmaktadır.
 
-Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şifreleyip `tmp/cache/3290482038.php` gibi bir dosya üzerine yazar ve bu dosyayı belli bir zaman içerisinde erişimine imkan verir.
+Yani `/home/users/` sayfasına bir istek geldiğinde `$users` değişkenini şifreleyip `tmp/cache/3290482038.cache` gibi bir dosya üzerine yazar ve bu dosyayı belli bir zaman içerisinde erişimine imkan verir.
 
 ```php
 // Ör.:
