@@ -2548,7 +2548,7 @@ ApplicationCache::expiration(600000);
 
 ##### `write` ($key, $value)
 
-Saklanacak verilerin  `request_url` + `key` (istek url ve verilen anahtar)'e göre md5 ile şifreleyip belleğe yazar. Bu şekilde farklı bir sayfada kaydettiğiniz aynı anahtar isimli veriler, farklı dosyalar olarak kaydedilmektedir.
+Saklanacak verilerin `key` (verilen anahtar)'e göre md5 ile şifreleyip belleğe yazar. Bu şekilde farklı bir sayfada kaydettiğiniz aynı anahtar isimli veriler, farklı dosyalar olarak kaydedilmektedir.
 
 ```php
 $users = User::all();
@@ -2557,7 +2557,7 @@ ApplicationCache::write("users", $users);
 
 ##### `read` ($key)
 
-Bellekteki veriyi `request_url` + `key` mantığı ile okur, eğer dosyanın süresi geçmişse otomatik olarak siler.
+Bellekteki veriyi `key` mantığı ile okur, eğer dosyanın süresi geçmişse otomatik olarak siler.
 
 ```php
 $users = ApplicationCache::read("users");
@@ -2565,7 +2565,7 @@ $users = ApplicationCache::read("users");
 
 ##### `delete` ($key)
 
-`request_url` + `key` mantığına göre bulunan ve var olan dosya süresine bakılmaksızın silinir.
+`key` mantığına göre bulunan ve var olan dosya süresine bakılmaksızın silinir.
 
 ```php
 ApplicationCache::delete("users");
@@ -2573,7 +2573,7 @@ ApplicationCache::delete("users");
 
 ##### `exists` ($key)
 
-`request_url` + `key` mantığına göre var olmasına bakar.
+`key` mantığına göre var olmasına bakar.
 
 ```php
 echo (ApplicationCache::exists("users")) ? "bellekte var" : "bellekte yok";
