@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="tr" lang="tr">
 <head>
@@ -123,23 +124,23 @@
 
     $('select').change(function() {
       var VERSION = $(this).val();
- 
-      if (VERSION === "master") 
-        var DOWNLOAD_LINK = "https://github.com/barak-framework/barak/archive/refs/heads/master.zip";
-      else
-        var DOWNLOAD_LINK = "https://github.com/barak-framework/barak/archive/refs/tags/" + VERSION + ".zip";
 
+      // download link and embed - start
+      var DOWNLOAD_LINK = (VERSION === "master") ? "https://github.com/barak-framework/barak/archive/refs/heads/master.zip" : "https://github.com/barak-framework/barak/archive/refs/tags/" + VERSION + ".zip";
       $("#download").attr("href", DOWNLOAD_LINK);
+      // download link and embed - end
 
+      // markdown to html and embed - start
       var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
       var converter = new showdown.Converter({
         tables: true,
         literalMidWordUnderscores: true
       });
       var HTML = converter.makeHtml(MARKDOWN);
-
       $("#readme").html(HTML).hide();
+      // markdown to html and embed - end
 
+      // helper header h1,h2..,a embed - start
       var headers = "";
       $('#readme :header').each(function() {
 
@@ -153,8 +154,8 @@
           "</h" + level + ">";
         }
       });
-
       $("#help").html(headers).hide();
+      // helper header h1,h2..,a embed - start
 
       $('pre code').each(function(i, e) { hljs.highlightBlock(e) });
 
@@ -175,14 +176,14 @@
     });
 
 // autoplay='autoplay'
-var music_level = Math.floor(Math.random() * 24 + 1);
-$("#soundtrack").html(
-  "<audio controls='controls' hidden='true' loop='true'>" +
-  "<source src='https://barak-framework.github.io/assets/music/music" + music_level + ".mp3' type='audio/mp3' />" +
-  "</audio>"
-  );
+    var music_level = Math.floor(Math.random() * 24 + 1);
+    $("#soundtrack").html(
+      "<audio controls='controls' hidden='true' loop='true'>" +
+      "<source src='https://barak-framework.github.io/assets/music/music" + music_level + ".mp3' type='audio/mp3' />" +
+      "</audio>"
+      );
 
-});
+  });
 </script>
 
 <style type="text/css">
@@ -341,12 +342,10 @@ $("#soundtrack").html(
             </select>
           </div>
         </div>
-        <div class="animated tada" style="margin-bottom:10px;">
-          <a class="btn btn-button" href="#" role="button" id="documentation" style="width:100%">
+        <div class="animated tada">
+          <a class="btn btn-button" href="#" role="button" id="documentation" style="width:100%; margin-bottom:10px;">
             Dokümantasyon
           </a>
-        </div>
-        <div class="">
           <a class="btn btn-button" href="" role="button" id="download" style="width:100%">
             İndir
           </a>
@@ -451,12 +450,12 @@ $("#soundtrack").html(
   </div>
 -->
 
-  <!-- backtotop start -->
-  <!-- source : http://github.com/gdemir/backtotop -->
-  <link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/backtotop.min.css" />
-  <a href="#" id="backtotop" title="Back to top">&uarr;</a>
-  <script src="https://barak-framework.github.io/assets/js/backtotop.min.js"></script>
-  <!-- backtotop end -->
+<!-- backtotop start -->
+<!-- source : http://github.com/gdemir/backtotop -->
+<link rel="stylesheet" type="text/css" href="https://barak-framework.github.io/assets/css/backtotop.min.css" />
+<a href="#" id="backtotop" title="Back to top">&uarr;</a>
+<script src="https://barak-framework.github.io/assets/js/backtotop.min.js"></script>
+<!-- backtotop end -->
 
 </body>
 </html>
