@@ -2639,6 +2639,30 @@ print_r($response);
 Api servisine GET isteği yollar. Nitelik olan `headers` ve `options` anahtarlarına veri yüklenmesi zorunda değildir.
 
 ```php
+// Ör. 1:
+$http = new ApplicationHttp();
+// $http->headers = ["Content-type" => "application/html"];
+// $http->options = [];
+$response = $http->get("http://api.gdemir.github.io");
+echo $response->status_code;
+echo $response->content_type;
+print_r($response->headers);
+echo $response->body; // parçalamak gerekebilir (Ör.: `simplexml_load_string`, `json_decode`)
+```
+
+```php
+$http = new ApplicationHttp();
+// $http->headers = ["Content-type" => "application/html"];
+$username = "********";
+$password = "********";
+$http->options = ["CURLOPT_USERPWD" => $username . ":" . $password]; // Basic Auth for HTTP Authentication | Username: ********, Password: ********
+$response = $http->get("https://api.aa.com.tr/abone/discover/tr_TR");
+echo $response->status_code;
+echo $response->content_type;
+$result = json_decode($response->body, true);
+// ---
+
+// Ör. 2:
 $http = new ApplicationHttp();
 // $http->headers = ["Content-type" => "application/html"];
 // $http->options = [];
