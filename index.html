@@ -124,7 +124,7 @@
     $('select').change(function() {
       var VERSION = $(this).val();
       
-      var DOWNLOAD_LINK = "/barak-framework/barak/archive/refs/tags/" + VERSION + ".zip";
+      var DOWNLOAD_LINK = "https://github.com/barak-framework/barak/archive/refs/tags/" + VERSION + ".zip";
       $("#download").attr("href", DOWNLOAD_LINK);
 
       var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
