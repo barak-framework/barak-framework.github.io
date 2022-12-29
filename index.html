@@ -123,6 +123,10 @@
 
     $('select').change(function() {
       var VERSION = $(this).val();
+      
+      var DOWNLOAD_LINK = "/barak-framework/barak/archive/refs/tags/" + VERSION + ".zip";
+      $("#download").attr("href", DOWNLOAD_LINK);
+
       var MARKDOWN = get_markdown("https://raw.githubusercontent.com/barak-framework/barak-framework.github.io/master/guides/" + VERSION + "/README.md");
       var converter = new showdown.Converter({
         tables: true,
@@ -338,7 +342,11 @@ $("#soundtrack").html(
             Dokümantasyon
           </a>
         </div>
-
+        <div class="animated bounceOutDown">
+          <a class="btn btn-button" href="" role="button" id="download" style="width:100%">
+            İndir
+          </a>
+        </div>
       </div>
 
     </div>
