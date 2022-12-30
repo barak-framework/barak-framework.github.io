@@ -160,6 +160,33 @@ Mailer sınıfını etkin kılan anahtardır.
 
 Model sınıfını etkin kılan anahtardır.
 
+##### `config/cacher.ini` (cacher configuration file)
+
+Ön bellek ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak **zorunludur.**
+
+- Options
+
+> `datas`, `clear`
+
+```ini
+; Ör.:
+[cacher_configuration]
+
+; 10 dakika = 10 munite
+datas = 600;
+
+; 1 saat = 1 hour
+clear = 3600;
+```
+
+###### `datas`
+
+Ön bellek için kullanılan her anahtar için saniye cinsinden saklama süresini ifade eder.
+
+###### `clear`
+
+Ön bellek için kullanılan tüm anahtarlar için saniye cinsinden saklama süresini ifade eder.
+
 ##### `config/database.ini` (database configuration file)
 
 Veritabanı ayarlarının yapıldığı dosyadır. Ayar seçeneklerini kullanmak **zorunludur.**
