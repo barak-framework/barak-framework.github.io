@@ -250,6 +250,7 @@ password = 123456
 ```
 
 - Yandex SMTP Configuration (Test Edildi)
+Yandex için ilgili yandexe ait e-mail hesabınıza giriş yapıp "E-posta programları" altındaki "Portal Şifresi" kısmını işaretleyip izin vermeniz gerekmektedir.
 
 ```ini
 ; Ör.:
